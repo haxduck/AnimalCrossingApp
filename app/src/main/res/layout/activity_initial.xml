@@ -38,13 +38,13 @@
             android:id="@+id/northBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="北" />
+            android:text="北半球" />
 
         <RadioButton
             android:id="@+id/southBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="南" />
+            android:text="南半球" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

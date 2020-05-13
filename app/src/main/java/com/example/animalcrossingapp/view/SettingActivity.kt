@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.view.get
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.controller.App
 import kotlinx.android.synthetic.main.activity_initial.*
 import kotlinx.android.synthetic.main.activity_initial.confBtn
 import kotlinx.android.synthetic.main.activity_setting.*
@@ -32,6 +33,8 @@ class SettingActivity : AppCompatActivity() {
         confBtn.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("msg", hemi.toString())
+            //xml 저장
+            App.prefs.hemisphere = hemi
             startActivity(intent)
         }
     }
