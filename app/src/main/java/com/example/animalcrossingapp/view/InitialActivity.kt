@@ -20,6 +20,7 @@ class InitialActivity : AppCompatActivity() {
                          "반구설정 : " + App.prefs.hemisphere
         )
 
+        // 반구설정
         var hemi: String = ""
         radioGroup.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
@@ -37,6 +38,7 @@ class InitialActivity : AppCompatActivity() {
             val nextIntent = Intent(this, MainActivity::class.java)
             startActivity(nextIntent)
         }
+        //
 
         val iniflag = App.prefs.initialFlag
         if (iniflag == "") {
