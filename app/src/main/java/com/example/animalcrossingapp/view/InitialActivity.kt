@@ -32,7 +32,7 @@ class InitialActivity : AppCompatActivity() {
             }
         )
 
-        button.setOnClickListener {
+        confBtn.setOnClickListener {
             App.prefs.initialFlag = "1"
             App.prefs.hemisphere = hemi
             val nextIntent = Intent(this, MainActivity::class.java)
