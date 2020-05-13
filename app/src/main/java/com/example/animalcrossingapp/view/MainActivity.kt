@@ -45,6 +45,14 @@ class MainActivity : AppCompatActivity() {
         textView3.setText("" + MainController.catchFishList().size + "/" + MainController.currentFishList().size)
         textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
 
+        settingBtn.setOnClickListener{
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
+        }
+
+        if(intent.hasExtra("msg")){
+            hankyu.setText(intent.getStringExtra("msg"))
+        }
     }
 
     //test
