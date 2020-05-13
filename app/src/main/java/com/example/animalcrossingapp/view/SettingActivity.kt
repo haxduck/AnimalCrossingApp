@@ -2,6 +2,7 @@ package com.example.animalcrossingapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.animalcrossingapp.R
 
 class SettingActivity : AppCompatActivity() {
 
