@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //첫 실행 판단 prefs.xml 저장11
+        //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
         Toast.makeText(this, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
 
