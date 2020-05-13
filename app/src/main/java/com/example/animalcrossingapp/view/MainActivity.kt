@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,9 +37,10 @@ class MainActivity : AppCompatActivity() {
             + "現在時間に捕らえる"
         )
 
+        var list:ArrayList<FishVO> = MainController.currentFishList()
         imageView.setOnClickListener{
             val nextIntent = Intent(this, RealtimeListActivity::class.java)
-            nextIntent.putExtra("fishList", MainController.catchFishList())
+            nextIntent.putExtra("list", list)
             startActivity(nextIntent)
         }
 

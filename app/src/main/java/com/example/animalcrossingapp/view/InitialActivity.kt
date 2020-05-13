@@ -16,7 +16,7 @@ class InitialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_initial)
 
-        catchTextView.setText("구동횟수유무 : " + App.prefs.initialFlag + "\n" +
+        TextView.setText("구동횟수유무 : " + App.prefs.initialFlag + "\n" +
                          "반구설정 : " + App.prefs.hemisphere
         )
 

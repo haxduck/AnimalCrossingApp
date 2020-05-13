@@ -13,7 +13,7 @@ object MainController {
         val cal = Calendar.getInstance()
         cal.time = date
         val hours = cal.get(Calendar.HOUR_OF_DAY)
-        val sdf = SimpleDateFormat("yyyy年M月d日 h:00 ~ ${hours + 1}:00")
+        val sdf = SimpleDateFormat("yyyy年M月d日 H:00 ~ ${hours + 1}:00")
         val currentDate = sdf.format(Date())
         return currentDate
     }
