@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         if(iniFlag == "1") {
             setContentView(R.layout.activity_main)
         } else {
+            setContentView(R.layout.activity_main)
             val nextIntent = Intent(this, InitialActivity::class.java)
             startActivity(nextIntent)
         }
@@ -34,6 +35,12 @@ class MainActivity : AppCompatActivity() {
             MainController.currentTime() + "\n"
             + "現在時間に捕らえる"
         )
+
+        imageView.setOnClickListener{
+            val nextIntent = Intent(this, RealtimeListActivity::class.java)
+            nextIntent.putExtra("fishList", MainController.catchFishList())
+            startActivity(nextIntent)
+        }
 
         textView3.setText("" + MainController.catchFishList().size + "/" + MainController.currentFishList().size)
         textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
