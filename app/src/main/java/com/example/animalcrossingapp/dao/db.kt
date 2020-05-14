@@ -22,7 +22,7 @@ class db : AppCompatActivity() {
     }
 
     fun addUser(v:View){
-        fishDBHelper.insertFish(FishVO("fish1", 100, "c"))
+        fishDBHelper.insertFish(FishVO("fish2", 200, ""))
         var userid = this.edittext_userid.text.toString()
         var name = this.edittext_name.text.toString()
         var age = this.edittext_age.text.toString()

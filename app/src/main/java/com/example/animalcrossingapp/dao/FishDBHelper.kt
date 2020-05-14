@@ -45,6 +45,25 @@ class FishDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     }
 
     @Throws(SQLiteConstraintException::class)
+    fun updateFish(fish: FishVO): Boolean {
+        // Gets the data repository in write mode
+        val db = writableDatabase
+        // Create a new map of values, where column names are the keys
+        val values = ContentValues()
+        values.put(DBContract.FishEntry.COLUMN_NAME_JAPAN, fish.name_japan)
+        values.put(DBContract.FishEntry.COLUMN_PRICE, fish.price)
+        values.put(DBContract.FishEntry.COLUMN_CATCH_FLAG, fish.catch_flag)
+        // Define 'where' part of query.
+        val selection = DBContract.FishEntry.COLUMN_NAME_JAPAN + " LIKE ?"
+        // Specify arguments in placeholder order.
+        val selectionArgs = arrayOf(fish.name_japan)
+        // Issue SQL statement.
+        db.update(DBContract.FishEntry.TABLE_NAMEF,values ,selection, selectionArgs)
+
+        return true
+    }
+
+    @Throws(SQLiteConstraintException::class)
     fun deleteUser(userid: String): Boolean {
         // Gets the data repository in write mode
         val db = writableDatabase
