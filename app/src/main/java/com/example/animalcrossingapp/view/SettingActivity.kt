@@ -29,7 +29,7 @@ class SettingActivity : AppCompatActivity() {
            }
        }
 
-        confBtn.setOnClickListener{
+        confBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("msg", hemi.toString())
             startActivity(intent)
