@@ -16,13 +16,13 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var fishDBHelper: FishDBHelper
+    //lateinit var fishDBHelper: FishDBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        fishDBHelper = FishDBHelper(this)
-        var fishes = fishDBHelper.readAllFishes()
-        var fish = this
+        //fishDBHelper = FishDBHelper(this)
+        //var fishes = fishDBHelper.readAllFishes()
+        var context = this
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
@@ -42,12 +42,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         textView5.setText(
-            MainController.currentFishList(fish).toString() + "\n"
-            + MainController.currentBugList().toString() + "\n"
-            + fishes.toString()
+            MainController.currentFishList(context).toString() + "\n"
+            + MainController.currentBugList().toString()
         )
 
-        var flist:ArrayList<FishVO> = MainController.currentFishList(fish)
+        var flist:ArrayList<FishVO> = MainController.currentFishList(context)
         var blist:ArrayList<BugVO> = MainController.currentBugList()
         textView5.setOnClickListener{
             val nextIntent = Intent(this, RealtimeListActivity::class.java)
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(nextIntent)
         }
 
-        textView3.setText("" + MainController.catchFishList(fish).size + "/" + MainController.currentFishList(fish).size)
+        textView3.setText("" + MainController.catchFishList(context).size + "/" + MainController.currentFishList(context).size)
         textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
 
         settingBtn.setOnClickListener{
