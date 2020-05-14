@@ -1,5 +1,7 @@
 package com.example.animalcrossingapp.controller
 
+import android.content.Context
+import com.example.animalcrossingapp.dao.FishDBHelper
 import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import java.text.SimpleDateFormat
@@ -18,17 +20,21 @@ object MainController {
         return currentDate
     }
 
-    fun currentFishList(): ArrayList<FishVO> {
-        var fishList = arrayListOf<FishVO>(
+    fun currentFishList(context: Context): ArrayList<FishVO> {
+        lateinit var fishDBHelper: FishDBHelper
+        fishDBHelper = FishDBHelper(context)
+        var fishList = fishDBHelper.readAllFishes()
+
+        /*var fishList = arrayListOf<FishVO>(
             FishVO("물고기1", 1000, "c"),
             FishVO("물고기2", 2000, "")
-        )
+        )*/
         return fishList
     }
 
-    fun catchFishList(): ArrayList<FishVO> {
+    fun catchFishList(context: Context): ArrayList<FishVO> {
         var catchFishList: ArrayList<FishVO> = arrayListOf()
-        currentFishList().forEach {
+        currentFishList(context).forEach {
             if(it.catch_flag == "c") {
                 catchFishList.add(it)
             }

@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         fishDBHelper = FishDBHelper(this)
         var fishes = fishDBHelper.readAllFishes()
+        var fish = this
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
@@ -41,12 +42,12 @@ class MainActivity : AppCompatActivity() {
         )
 
         textView5.setText(
-            MainController.currentFishList().toString() + "\n"
+            MainController.currentFishList(fish).toString() + "\n"
             + MainController.currentBugList().toString() + "\n"
             + fishes.toString()
         )
 
-        var flist:ArrayList<FishVO> = MainController.currentFishList()
+        var flist:ArrayList<FishVO> = MainController.currentFishList(fish)
         var blist:ArrayList<BugVO> = MainController.currentBugList()
         textView5.setOnClickListener{
             val nextIntent = Intent(this, RealtimeListActivity::class.java)
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(nextIntent)
         }
 
-        textView3.setText("" + MainController.catchFishList().size + "/" + MainController.currentFishList().size)
+        textView3.setText("" + MainController.catchFishList(fish).size + "/" + MainController.currentFishList(fish).size)
         textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
 
         settingBtn.setOnClickListener{
@@ -65,6 +66,8 @@ class MainActivity : AppCompatActivity() {
 
         if(intent.hasExtra("msg")){
             hankyu.setText(intent.getStringExtra("msg"))
+        } else {
+            hankyu.setText(App.prefs.hemisphere)
         }
     }
 
