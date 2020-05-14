@@ -1,6 +1,8 @@
 package com.example.animalcrossingapp.vo
 
-class FishVO {
+import java.io.Serializable
+
+class FishVO : Serializable {
     constructor()
 
     constructor(name_japan: String, price: Int, catch_flag: String) {
