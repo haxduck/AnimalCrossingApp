@@ -6,12 +6,9 @@ import android.os.Build
 import android.preference.PreferenceManager
 import java.util.*
 
-/**
- * Created by devdeeds.com on 18/4/17.
- * by Jayakrishnan P.M
- */
-object LocalHelper {
-    private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
+
+object LocaleHelper {
+    private const val SELECTED_LANGUAGE = "jp"
     fun onAttach(context: Context): Context {
         val lang =
             getPersistedData(context, Locale.getDefault().language)
