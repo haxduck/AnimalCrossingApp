@@ -8,17 +8,20 @@ import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.MainController
+import com.example.animalcrossingapp.dao.FishDBHelper
+import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var fishDBHelper: FishDBHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        fishDBHelper = FishDBHelper(this)
+        var fishes = fishDBHelper.readAllFishes()
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
@@ -33,14 +36,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         textView2.setText(
-            MainController.currentTime() + "\n"
-            + "現在時間に捕らえる"
+                    "リアルタイム情報" + "\n" +
+                    MainController.currentTime()
         )
 
-        var list:ArrayList<FishVO> = MainController.currentFishList()
-        imageView.setOnClickListener{
+        textView5.setText(
+            MainController.currentFishList().toString() + "\n"
+            + MainController.currentBugList().toString() + "\n"
+            + fishes.toString()
+        )
+
+        var flist:ArrayList<FishVO> = MainController.currentFishList()
+        var blist:ArrayList<BugVO> = MainController.currentBugList()
+        textView5.setOnClickListener{
             val nextIntent = Intent(this, RealtimeListActivity::class.java)
-            nextIntent.putExtra("list", list)
+            nextIntent.putExtra("flist", flist)
+            nextIntent.putExtra("blist", blist)
             startActivity(nextIntent)
         }
 

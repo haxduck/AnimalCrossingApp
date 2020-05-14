@@ -24,4 +24,8 @@ class FishVO : Serializable {
     var month: String = ""
     var time: String = ""
 
+    override fun toString(): String {
+        return "FishVO(name_japan='$name_japan', price=$price, catch_flag='$catch_flag')"
+    }
+
 }

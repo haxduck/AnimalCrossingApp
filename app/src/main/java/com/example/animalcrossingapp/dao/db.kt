@@ -5,20 +5,24 @@ import android.os.Bundle
 import android.view.View
 import com.example.animalcrossingapp.R
 import android.widget.TextView
+import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_db.*
 
 class db : AppCompatActivity() {
 
     lateinit var usersDBHelper : UsersDBHelper
+    lateinit var fishDBHelper: FishDBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_db)
 
         usersDBHelper = UsersDBHelper(this)
+        fishDBHelper = FishDBHelper(this)
     }
 
     fun addUser(v:View){
+        fishDBHelper.insertFish(FishVO("fish1", 100, "c"))
         var userid = this.edittext_userid.text.toString()
         var name = this.edittext_name.text.toString()
         var age = this.edittext_age.text.toString()
@@ -39,6 +43,8 @@ class db : AppCompatActivity() {
     }
 
     fun showAllUsers(v:View){
+        var fishes = fishDBHelper.readAllFishes()
+
         var users = usersDBHelper.readAllUsers()
         this.ll_entries.removeAllViews()
         users.forEach {

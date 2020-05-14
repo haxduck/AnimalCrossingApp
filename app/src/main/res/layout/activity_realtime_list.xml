@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/listView"
-        android:layout_width="385dp"
-        android:layout_height="76dp"
+        android:layout_width="374dp"
+        android:layout_height="560dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"

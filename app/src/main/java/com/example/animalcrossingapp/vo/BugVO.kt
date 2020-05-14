@@ -23,4 +23,9 @@ class BugVO : Serializable {
     var sortation: String = ""
     var month: String = ""
     var time: String = ""
+
+    override fun toString(): String {
+        return "BugVO(name_japan='$name_japan', price=$price, catch_flag='$catch_flag')"
+    }
+
 }
