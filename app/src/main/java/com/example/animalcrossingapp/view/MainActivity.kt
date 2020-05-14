@@ -11,6 +11,7 @@ import com.example.animalcrossingapp.controller.MainController
 import com.example.animalcrossingapp.dao.FishDBHelper
 import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
+import kotlinx.android.synthetic.main.activity_all_fish_list.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
 
@@ -68,6 +69,14 @@ class MainActivity : AppCompatActivity() {
         } else {
             hankyu.setText(App.prefs.hemisphere)
         }
+
+        //choi
+         tvall1.setOnClickListener{
+             val intent = Intent(this, AllFishList::class.java)
+             startActivity(intent)
+
+        }
+
     }
 
     //test
