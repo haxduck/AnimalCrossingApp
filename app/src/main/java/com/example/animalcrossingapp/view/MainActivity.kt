@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //fishDBHelper = FishDBHelper(this)
         //var fishes = fishDBHelper.readAllFishes()
-        var context = this
+        val context = this
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
@@ -42,8 +42,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         textView5.setText(
-            MainController.currentFishList(context).toString() + "\n"
-            + MainController.currentBugList().toString()
+            /*MainController.currentFishList(context).toString() + "\n"
+            + MainController.currentBugList().toString()*/
+            MainController.currentAllList(context).toString()
         )
 
         var flist:ArrayList<FishVO> = MainController.currentFishList(context)

@@ -1,7 +1,9 @@
 package com.example.animalcrossingapp.controller
 
 import android.content.Context
+import com.example.animalcrossingapp.dao.AllDBHelper
 import com.example.animalcrossingapp.dao.FishDBHelper
+import com.example.animalcrossingapp.vo.AllVO
 import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import java.text.SimpleDateFormat
@@ -18,6 +20,18 @@ object MainController {
         val sdf = SimpleDateFormat("yyyy/M/d/ H:00 ~ ${hours + 1}:00")
         val currentDate = sdf.format(Date())
         return currentDate
+    }
+
+    fun currentAllList(context: Context): ArrayList<AllVO> {
+        lateinit var allDBHelper: AllDBHelper
+        allDBHelper = AllDBHelper(context)
+        var allList = allDBHelper.readAll()
+
+        /*var fishList = arrayListOf<FishVO>(
+            FishVO("물고기1", 1000, "c"),
+            FishVO("물고기2", 2000, "")
+        )*/
+        return allList
     }
 
     fun currentFishList(context: Context): ArrayList<FishVO> {
@@ -58,6 +72,26 @@ object MainController {
             }
         }
         return catchBugList
+    }
+
+    lateinit var fishDBHelper: FishDBHelper
+    fun checkCatch(fish: FishVO, context: Context) {
+        fishDBHelper = FishDBHelper(context)
+        if(fish.catch_flag == ""){
+            fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, "c"))
+        } else {
+            fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, ""))
+        }
+    }
+
+    lateinit var allDBHelper: AllDBHelper
+    fun checkCatchA(all: AllVO, context: Context) {
+        allDBHelper = AllDBHelper(context)
+        if(all.catch_flag == ""){
+            allDBHelper.updateAll(AllVO(all.name_japan, all.price, "c"))
+        } else {
+            allDBHelper.updateAll(AllVO(all.name_japan, all.price, ""))
+        }
     }
 
 

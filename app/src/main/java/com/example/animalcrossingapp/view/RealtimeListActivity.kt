@@ -2,18 +2,13 @@ package com.example.animalcrossingapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.controller.AllAdapter
 import com.example.animalcrossingapp.controller.FishAdapter
 import com.example.animalcrossingapp.controller.MainController
 import com.example.animalcrossingapp.dao.FishDBHelper
-import com.example.animalcrossingapp.databinding.ItemFishBinding
-import com.example.animalcrossingapp.vo.BugVO
-import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_realtime_list.*
 
 class RealtimeListActivity : AppCompatActivity() {
@@ -29,19 +24,23 @@ class RealtimeListActivity : AppCompatActivity() {
         //var flist = intent.getSerializableExtra("flist") as ArrayList<FishVO>
         //var blist = intent.getSerializableExtra("blist") as ArrayList<BugVO>
         var flist = MainController.currentFishList(this)
+        var blist = MainController.currentBugList()
+        var alist = MainController.currentAllList(this)
 
         //listView.setText(flist.toString() + blist.toString())
 
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this@RealtimeListActivity)
-            adapter = FishAdapter(flist) { fish ->
-                Toast.makeText(this@RealtimeListActivity, "$fish", Toast.LENGTH_SHORT).show()
-                if(fish.catch_flag == ""){
+            adapter = AllAdapter(alist) { all ->
+                Toast.makeText(this@RealtimeListActivity, "$all", Toast.LENGTH_SHORT).show()
+                /*if(fish.catch_flag == ""){
                     fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, "c"))
                 } else {
                     fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, ""))
-                }
+                }*/
+                MainController.checkCatchA(all,this@RealtimeListActivity)
             }
+
         }
 
     }

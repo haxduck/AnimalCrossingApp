@@ -22,4 +22,13 @@ object DBContract {
             val COLUMN_CATCH_FLAG = "catch_flag"
         }
     }
+
+    class AllEntry : BaseColumns {
+        companion object {
+            val TABLE_NAME = "AllList"
+            val COLUMN_NAME_JAPAN = "name_japan"
+            val COLUMN_PRICE = "price"
+            val COLUMN_CATCH_FLAG = "catch_flag"
+        }
+    }
 }
