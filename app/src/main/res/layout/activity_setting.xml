@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.InitialActivity">
+    tools:context=".view.SettingActivity">
 
     <Button
         android:id="@+id/confBtn"
@@ -80,7 +80,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/sample"
         android:layout_width="163dp"
         android:layout_height="37dp"
         android:layout_marginBottom="28dp"

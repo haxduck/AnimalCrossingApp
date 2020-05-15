@@ -9,7 +9,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import java.util.Locale;
 
-public class Locales {
+public class SettingLocales {
 
     private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
 
@@ -28,13 +28,10 @@ public class Locales {
     }
 
     public static Context setLocale(Context context, String language) {
+        System.out.println("1");
         persist(context, language);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        System.out.println(context + "3");
             return updateResources(context, language);
-        }
-
-        return updateResourcesLegacy(context, language);
     }
 
     private static String getPersistedData(Context context, String defaultLanguage) {
@@ -54,11 +51,11 @@ public class Locales {
     private static Context updateResources(Context context, String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
-
+        System.out.println(context + "1");
         Configuration configuration = context.getResources().getConfiguration();
         configuration.setLocale(locale);
         configuration.setLayoutDirection(locale);
-
+        System.out.println(context.createConfigurationContext(configuration) + "5");
         return context.createConfigurationContext(configuration);
     }
 
@@ -66,7 +63,7 @@ public class Locales {
     private static Context updateResourcesLegacy(Context context, String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
-
+        System.out.println(context + "2");
         Resources resources = context.getResources();
 
         Configuration configuration = resources.getConfiguration();
@@ -76,7 +73,9 @@ public class Locales {
         }
 
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
+        System.out.println(context + "4");
         return context;
     }
+
+
 }

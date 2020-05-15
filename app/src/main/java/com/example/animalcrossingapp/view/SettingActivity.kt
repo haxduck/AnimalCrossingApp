@@ -7,9 +7,10 @@ import android.widget.Toast
 import androidx.core.view.get
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
-import com.example.animalcrossingapp.language.Locales
+import com.example.animalcrossingapp.language.SettingLocales
 import kotlinx.android.synthetic.main.activity_initial.confBtn
 import kotlinx.android.synthetic.main.activity_setting.*
+import java.util.*
 
 class SettingActivity : AppCompatActivity() {
 
@@ -31,9 +32,12 @@ class SettingActivity : AppCompatActivity() {
         language.setOnCheckedChangeListener{group, checkedId ->
             if(japanese.isChecked == true){
                 mLanguageCode = "ja"
-                Locales.setLocale(this@SettingActivity, mLanguageCode)
+                Toast.makeText(this@SettingActivity, mLanguageCode.toString(), Toast.LENGTH_SHORT).show()
+                SettingLocales.setLocale(baseContext, mLanguageCode)
             }else if (korean.isChecked == true){
                 mLanguageCode = "ko"
+                Toast.makeText(this@SettingActivity, mLanguageCode.toString(), Toast.LENGTH_SHORT).show()
+                SettingLocales.setLocale(this@SettingActivity, mLanguageCode)
             }
         }
 
@@ -43,7 +47,8 @@ class SettingActivity : AppCompatActivity() {
             //xml 저장
             App.prefs.hemisphere = hemi
             App.prefs.language = mLanguageCode
-            Locales.setLocale(also {  }, mLanguageCode)
+            Toast.makeText(this@SettingActivity, "環境設定が適用されました", Toast.LENGTH_SHORT).show()
+            SettingLocales.setLocale(this@SettingActivity , mLanguageCode)
             recreate()
             startActivity(intent)
         }
