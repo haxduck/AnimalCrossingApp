@@ -34,11 +34,13 @@ object MainController {
         return allList
     }
 
-    fun currentFishList(context: Context): ArrayList<FishVO> {
-        lateinit var fishDBHelper: FishDBHelper
-        fishDBHelper = FishDBHelper(context)
-        var fishList = fishDBHelper.readAllFishes()
-
+    fun currentFishList(context: Context): ArrayList<AllVO> {
+        var fishList: ArrayList<AllVO> = arrayListOf()
+        currentAllList(context).forEach {
+            if(it.sort == "f") {
+                fishList.add(it)
+            }
+        }
         /*var fishList = arrayListOf<FishVO>(
             FishVO("물고기1", 1000, "c"),
             FishVO("물고기2", 2000, "")
@@ -46,8 +48,8 @@ object MainController {
         return fishList
     }
 
-    fun catchFishList(context: Context): ArrayList<FishVO> {
-        var catchFishList: ArrayList<FishVO> = arrayListOf()
+    fun catchFishList(context: Context): ArrayList<AllVO> {
+        var catchFishList: ArrayList<AllVO> = arrayListOf()
         currentFishList(context).forEach {
             if(it.catch_flag == "c") {
                 catchFishList.add(it)
@@ -56,17 +58,20 @@ object MainController {
         return catchFishList
     }
 
-    fun currentBugList(): ArrayList<BugVO> {
-        var bugList = arrayListOf<BugVO>(
-            BugVO("벌레1", 100, "c"),
-            BugVO("벌레2", 200, "")
-        )
+    fun currentBugList(context: Context): ArrayList<AllVO> {
+        var bugList: ArrayList<AllVO> = arrayListOf()
+        currentAllList(context).forEach {
+            if(it.sort == "b") {
+                bugList.add(it)
+            }
+        }
+
         return bugList
     }
 
-    fun catchBugList(): ArrayList<BugVO> {
-        var catchBugList: ArrayList<BugVO> = arrayListOf()
-        currentBugList().forEach {
+    fun catchBugList(context: Context): ArrayList<AllVO> {
+        var catchBugList: ArrayList<AllVO> = arrayListOf()
+        currentBugList(context).forEach {
             if(it.catch_flag == "c") {
                 catchBugList.add(it)
             }
@@ -88,9 +93,9 @@ object MainController {
     fun checkCatchA(all: AllVO, context: Context) {
         allDBHelper = AllDBHelper(context)
         if(all.catch_flag == ""){
-            allDBHelper.updateAll(AllVO(all.name_japan, all.price, "c"))
+            allDBHelper.updateAll(AllVO(all.name_japan, all.price, "c", all.sort))
         } else {
-            allDBHelper.updateAll(AllVO(all.name_japan, all.price, ""))
+            allDBHelper.updateAll(AllVO(all.name_japan, all.price, "", all.sort))
         }
     }
 

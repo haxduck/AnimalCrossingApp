@@ -45,15 +45,15 @@ class db : AppCompatActivity() {
     }
 
     fun showAllUsers(v:View){
-        allDBHelper.insertAll(AllVO("fish1",100, "c"))
-        allDBHelper.insertAll(AllVO("fish2",200, ""))
-        allDBHelper.insertAll(AllVO("fish3",300, "c"))
-        allDBHelper.insertAll(AllVO("bug1",400, ""))
-        allDBHelper.insertAll(AllVO("bug2",500, "c"))
-        allDBHelper.insertAll(AllVO("bug3",600, ""))
-        allDBHelper.insertAll(AllVO("fish4",700, ""))
-        allDBHelper.insertAll(AllVO("bug4",800, "c"))
-        allDBHelper.insertAll(AllVO("fish5",900, ""))
+        allDBHelper.insertAll(AllVO("fish1",100, "c","f"))
+        allDBHelper.insertAll(AllVO("fish2",200, "","f"))
+        allDBHelper.insertAll(AllVO("fish3",300, "c","f"))
+        allDBHelper.insertAll(AllVO("bug1",400, "","b"))
+        allDBHelper.insertAll(AllVO("bug2",500, "c","b"))
+        allDBHelper.insertAll(AllVO("bug3",600, "","b"))
+        allDBHelper.insertAll(AllVO("fish4",700, "","f"))
+        allDBHelper.insertAll(AllVO("bug4",800, "c","b"))
+        allDBHelper.insertAll(AllVO("fish5",900, "","f"))
 
         var users = usersDBHelper.readAllUsers()
         this.ll_entries.removeAllViews()

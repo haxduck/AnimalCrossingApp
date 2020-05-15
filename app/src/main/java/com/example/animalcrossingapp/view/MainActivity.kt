@@ -9,6 +9,7 @@ import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.MainController
 import com.example.animalcrossingapp.dao.FishDBHelper
+import com.example.animalcrossingapp.vo.AllVO
 import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,17 +48,17 @@ class MainActivity : AppCompatActivity() {
             MainController.currentAllList(context).toString()
         )
 
-        var flist:ArrayList<FishVO> = MainController.currentFishList(context)
-        var blist:ArrayList<BugVO> = MainController.currentBugList()
+       /* var flist:ArrayList<AllVO> = MainController.currentFishList(context)
+        var blist:ArrayList<BugVO> = MainController.currentBugList()*/
         textView5.setOnClickListener{
             val nextIntent = Intent(this, RealtimeListActivity::class.java)
-            nextIntent.putExtra("flist", flist)
-            nextIntent.putExtra("blist", blist)
+            /*nextIntent.putExtra("flist", flist)
+            nextIntent.putExtra("blist", blist)*/
             startActivity(nextIntent)
         }
 
         textView3.setText("" + MainController.catchFishList(context).size + "/" + MainController.currentFishList(context).size)
-        textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
+        textView4.setText("" + MainController.catchBugList(context).size + "/" + MainController.currentBugList(context).size)
 
         settingBtn.setOnClickListener{
             val intent = Intent(this, SettingActivity::class.java)

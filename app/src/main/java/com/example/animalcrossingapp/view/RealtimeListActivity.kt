@@ -24,7 +24,7 @@ class RealtimeListActivity : AppCompatActivity() {
         //var flist = intent.getSerializableExtra("flist") as ArrayList<FishVO>
         //var blist = intent.getSerializableExtra("blist") as ArrayList<BugVO>
         var flist = MainController.currentFishList(this)
-        var blist = MainController.currentBugList()
+        var blist = MainController.currentBugList(this)
         var alist = MainController.currentAllList(this)
 
         //listView.setText(flist.toString() + blist.toString())

@@ -37,6 +37,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         values.put(DBContract.AllEntry.COLUMN_NAME_JAPAN, all.name_japan)
         values.put(DBContract.AllEntry.COLUMN_PRICE, all.price)
         values.put(DBContract.AllEntry.COLUMN_CATCH_FLAG, all.catch_flag)
+        values.put(DBContract.AllEntry.COLUMN_SORT, all.sort)
 
         // Insert the new row, returning the primary key value of the new row
         val newRowId = db.insert(DBContract.AllEntry.TABLE_NAME, null, values)
@@ -91,12 +92,14 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
 
         var price: Int
         var catch_flag: String
+        var sort: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
                 price = cursor.getInt(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_PRICE))
                 catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_CATCH_FLAG))
+                sort = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_SORT))
 
-                users.add(AllVO(all, price, catch_flag))
+                users.add(AllVO(all, price, catch_flag, sort))
                 cursor.moveToNext()
             }
         }
@@ -117,13 +120,15 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         var name_japan: String
         var price: Int
         var catch_flag: String
+        var sort: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
                 name_japan = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_NAME_JAPAN))
                 price = cursor.getInt(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_PRICE))
                 catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_CATCH_FLAG))
+                sort = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_SORT))
 
-                alles.add(AllVO(name_japan, price, catch_flag))
+                alles.add(AllVO(name_japan, price, catch_flag, sort))
                 cursor.moveToNext()
             }
         }
@@ -139,7 +144,8 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
             "CREATE TABLE " + DBContract.AllEntry.TABLE_NAME + " (" +
                     DBContract.AllEntry.COLUMN_NAME_JAPAN + " TEXT," +
                     DBContract.AllEntry.COLUMN_PRICE + " INTEGER," +
-                    DBContract.AllEntry.COLUMN_CATCH_FLAG + " TEXT)"
+                    DBContract.AllEntry.COLUMN_CATCH_FLAG + " TEXT," +
+                    DBContract.AllEntry.COLUMN_SORT + " TEXT)"
 
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContract.AllEntry.TABLE_NAME
     }
