@@ -9,6 +9,7 @@ import com.example.animalcrossingapp.controller.AllAdapter
 import com.example.animalcrossingapp.controller.FishAdapter
 import com.example.animalcrossingapp.controller.MainController
 import com.example.animalcrossingapp.dao.FishDBHelper
+import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_realtime_list.*
 
 class RealtimeListActivity : AppCompatActivity() {

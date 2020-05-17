@@ -16,7 +16,16 @@ object DBContract {
 
     class FishEntry : BaseColumns {
         companion object {
-            val TABLE_NAMEF = "Fishes"
+            val TABLE_NAME = "Fishes"
+            val COLUMN_NAME_JAPAN = "name_japan"
+            val COLUMN_PRICE = "price"
+            val COLUMN_CATCH_FLAG = "catch_flag"
+        }
+    }
+
+    class BugEntry : BaseColumns {
+        companion object {
+            val TABLE_NAME = "Bugs"
             val COLUMN_NAME_JAPAN = "name_japan"
             val COLUMN_PRICE = "price"
             val COLUMN_CATCH_FLAG = "catch_flag"

@@ -8,12 +8,7 @@ import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.MainController
-import com.example.animalcrossingapp.dao.FishDBHelper
-import com.example.animalcrossingapp.vo.AllVO
-import com.example.animalcrossingapp.vo.BugVO
-import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val context = this
 
         //첫 실행 판단 prefs.xml 저장
-        val iniFlag = App.prefs.initialFlag
+        val iniFlag = MainController.readIniFlag()
         Toast.makeText(this, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
 
         if(iniFlag == "1") {
