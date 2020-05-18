@@ -78,7 +78,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         return true
     }
 
-    fun readAll(all: String): ArrayList<AllVO> {
+    fun readAllA(all: String): ArrayList<AllVO> {
         val alls = ArrayList<AllVO>()
         val db = writableDatabase
         var cursor: Cursor? = null
@@ -107,7 +107,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
     }
 
     fun readAll(): ArrayList<AllVO> {
-        val alles = ArrayList<AllVO>()
+        val alls = ArrayList<AllVO>()
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
@@ -128,11 +128,11 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
                 catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_CATCH_FLAG))
                 sort = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_SORT))
 
-                alles.add(AllVO(name_japan, price, catch_flag, sort))
+                alls.add(AllVO(name_japan, price, catch_flag, sort))
                 cursor.moveToNext()
             }
         }
-        return alles
+        return alls
     }
 
     companion object {
