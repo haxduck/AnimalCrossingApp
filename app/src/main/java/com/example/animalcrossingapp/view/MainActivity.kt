@@ -48,11 +48,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         var flist:ArrayList<FishVO> = MainController.currentFishList(context)
-        var blist:ArrayList<BugVO> = MainController.currentBugList()
+
         textView5.setOnClickListener{
             val nextIntent = Intent(this, RealtimeListActivity::class.java)
             nextIntent.putExtra("flist", flist)
-            nextIntent.putExtra("blist", blist)
+
             startActivity(nextIntent)
         }
 
@@ -76,6 +76,13 @@ class MainActivity : AppCompatActivity() {
              startActivity(intent)
 
         }
+         tvall2.setOnClickListener{
+            val intent = Intent(this, AllBugList::class.java)
+            startActivity(intent)
+
+        }
+
+
 
     }
 

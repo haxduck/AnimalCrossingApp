@@ -5,17 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.ListController
-import kotlinx.android.synthetic.main.activity_all_fish_list.*
+import kotlinx.android.synthetic.main.activity_all_bug_list.*
 
-class AllFishList : AppCompatActivity() {
+class AllBugList : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_all_fish_list)
+        setContentView(R.layout.activity_all_bug_list)
 
-        var flist= ListController.AllFishList(this)
+        var blist = ListController.AllBugList(this)
 
-        if(flist.size==0){
+        if (blist.size == 0) {
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -23,14 +23,7 @@ class AllFishList : AppCompatActivity() {
 
         }
 
-
-
-        tx1.setText(flist.toString())
-
-
-
+        tv2.setText(blist.toString())
 
     }
-
-
 }
