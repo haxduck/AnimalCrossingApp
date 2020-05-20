@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".view.SearchActivity">
+
+    <EditText
+        android:id="@+id/searchET"
+        android:layout_width="291dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:imeOptions="actionSearch"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/searchBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchET"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/sortRG"
+        android:layout_width="379dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchET">
+
+        <RadioButton
+            android:id="@+id/fishRB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fish" />
+
+        <RadioButton
+            android:id="@+id/bugRB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bug" />
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/monthCB1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="11dp"
+        android:text="1月"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortRG" />
+
+    <CheckBox
+        android:id="@+id/monthCB2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="2月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB1"
+        app:layout_constraintTop_toBottomOf="@+id/sortRG" />
+
+    <CheckBox
+        android:id="@+id/monthCB3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="3月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB2"
+        app:layout_constraintTop_toBottomOf="@+id/sortRG" />
+
+    <CheckBox
+        android:id="@+id/monthCB4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="11dp"
+        android:text="4月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB3"
+        app:layout_constraintTop_toBottomOf="@+id/sortRG" />
+
+    <CheckBox
+        android:id="@+id/monthCB5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:text="5月"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB1" />
+
+    <CheckBox
+        android:id="@+id/monthCB6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="6月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB5"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB2" />
+
+    <CheckBox
+        android:id="@+id/monthCB7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="7月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB6"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB3" />
+
+    <CheckBox
+        android:id="@+id/monthCB8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="8月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB7"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB4" />
+
+    <CheckBox
+        android:id="@+id/monthCB9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:text="9月"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB5" />
+
+    <CheckBox
+        android:id="@+id/monthCB10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="10月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB9"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB6" />
+
+    <CheckBox
+        android:id="@+id/monthCB11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="11月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB10"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB7" />
+
+    <CheckBox
+        android:id="@+id/monthCB12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="12月"
+        app:layout_constraintStart_toEndOf="@+id/monthCB11"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB8" />
+
+    <TextView
+        android:id="@+id/testTV"
+        android:layout_width="370dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="404dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortRG" />
+
+    <ToggleButton
+        android:id="@+id/searchTgBtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="15dp"
+        android:text="川"
+        android:textOff="川"
+        android:textOn="川"
+        app:layout_constraintStart_toEndOf="@+id/searchTgBtn1"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB9" />
+
+    <ToggleButton
+        android:id="@+id/searchTgBtn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="15dp"
+        android:text="地"
+        android:textOff="地"
+        android:textOn="地"
+        app:layout_constraintStart_toEndOf="@+id/searchTgBtn2"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB9" />
+
+    <ToggleButton
+        android:id="@+id/searchTgBtn4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="河口"
+        android:textOff="河口"
+        android:textOn="河口"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchTgBtn1" />
+
+    <ToggleButton
+        android:id="@+id/searchTgBtn5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="崖の上 "
+        android:textIsSelectable="false"
+        android:textOff="崖の上 "
+        android:textOn="崖の上 "
+        app:layout_constraintStart_toEndOf="@+id/searchTgBtn4"
+        app:layout_constraintTop_toBottomOf="@+id/searchTgBtn2" />
+
+    <ToggleButton
+        android:id="@+id/searchTgBtn6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="桟橋"
+        android:textOff="桟橋"
+        android:textOn="桟橋"
+        app:layout_constraintStart_toEndOf="@+id/searchTgBtn5"
+        app:layout_constraintTop_toBottomOf="@+id/searchTgBtn3" />
+
+    <ToggleButton
+        android:id="@+id/searchTgBtn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
+        android:text="海"
+        android:textOff="海"
+        android:textOn="海"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthCB9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
+import com.example.animalcrossingapp.controller.MainController
 import kotlinx.android.synthetic.main.activity_initial.*
 
 class InitialActivity : AppCompatActivity() {
@@ -16,9 +17,7 @@ class InitialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_initial)
 
-        TextView.setText("구동횟수유무 : " + App.prefs.initialFlag + "\n" +
-                         "반구설정 : " + App.prefs.hemisphere
-        )
+        TextView.setText("")
 
         // 반구설정
         var hemi: String = ""
@@ -33,8 +32,8 @@ class InitialActivity : AppCompatActivity() {
         )
 
         confBtn.setOnClickListener {
-            App.prefs.initialFlag = "1"
-            App.prefs.hemisphere = hemi
+            MainController.onInitialFlag()
+            MainController.setHemiSphere(hemi)
             val nextIntent = Intent(this, MainActivity::class.java)
             startActivity(nextIntent)
         }
