@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var fishDBHelper: FishDBHelper
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fishDBHelper = FishDBHelper(this)
