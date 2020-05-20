@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.animalcrossingapp" >
+    package="com.example.animalcrossingapp">
 
     <application
         android:name=".controller.App"
@@ -9,15 +9,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".view.SearchActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".room.RoomTestActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".view.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dao.db" >
+        <activity android:name=".dao.db">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,12 +37,15 @@
         <activity android:name=".view.SettingActivity" />
         <activity android:name=".view.RealtimeListActivity" />
         <activity android:name=".view.InitialActivity" />
-        <activity android:name=".view.MainActivity" >
-            <!--<intent-filter>
+        <activity android:name=".view.MainActivity">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
     </application>
 
