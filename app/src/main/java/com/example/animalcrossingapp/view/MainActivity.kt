@@ -1,8 +1,11 @@
 package com.example.animalcrossingapp.view
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import com.example.animalcrossingapp.R
@@ -13,6 +16,9 @@ import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
+import androidx.appcompat.widget.SearchView
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -68,11 +74,46 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_top, menu)
+//        menuInflater.inflate(R.menu.menu_bottom, menu)
+//        bottomBar.setupWithNavController(menu!!, navController)
+
+        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchItem = menu?.findItem(R.id.search)
+        val searchView = searchItem?.actionView as SearchView
+
+        searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
+
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                searchView.setQuery("", false)
+                searchItem.collapseActionView()
+                Toast.makeText(this@MainActivity, "Looking for $query", Toast.LENGTH_LONG).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
+
+      return true
+    }
+
+
     //test
     fun clearXml(view: View) {
         App.prefs.initialFlag = ""
         App.prefs.hemisphere = ""
     }
-    //
+//
 
 }
+
+
