@@ -2,7 +2,7 @@ package com.example.animalcrossingapp.util
 
 object AnimalSort {
     private const val number = 11
-    private val data: IntArray
+    private val data: IntArray = TODO()
     private var cnt = 0
 
     // quick_sort 호출 횟수

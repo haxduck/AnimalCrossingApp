@@ -43,7 +43,10 @@ public class SettingLocales {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
-        editor.putString(SELECTED_LANGUAGE, language);
+
+
+
+                 editor.putString(SELECTED_LANGUAGE, language);
         editor.apply();
     }
 
