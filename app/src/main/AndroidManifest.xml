@@ -38,14 +38,11 @@
         <activity android:name=".view.RealtimeListActivity" />
         <activity android:name=".view.InitialActivity" />
         <activity android:name=".view.MainActivity">
-
-            <!--
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+            </intent-filter>-->
         </activity>
     </application>
 

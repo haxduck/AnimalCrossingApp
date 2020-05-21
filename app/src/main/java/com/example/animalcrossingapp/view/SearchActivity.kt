@@ -12,7 +12,9 @@ import com.example.animalcrossingapp.dao.TestDBHelper
 import com.example.animalcrossingapp.room.AppDatabase
 import com.example.animalcrossingapp.roomtest.Animal
 import com.example.animalcrossingapp.roomtest.AnimalDB
+import com.example.animalcrossingapp.roomtest1.TestDB
 import kotlinx.android.synthetic.main.activity_search.*
+import java.io.File
 
 class SearchActivity : AppCompatActivity() {
 
@@ -27,13 +29,26 @@ class SearchActivity : AppCompatActivity() {
             AnimalDB::class.java, "animal.db"
         ).allowMainThreadQueries().build()
 
+        val testdb = Room.databaseBuilder(
+            applicationContext,
+            TestDB::class.java, "testdb.db"
+        ).allowMainThreadQueries().createFromAsset("testdb.db").build()
+
+        /*val testdb = Room.databaseBuilder(
+            applicationContext,
+            TestDB::class.java, "testdb.db"
+        ).allowMainThreadQueries().build()*/
+
         testBtn.setOnClickListener {
-            db.anmalDao().insert(
-                Animal(name = "test", price = 100, catch_flag = "0", sort = "f", month = "1月", habitant = "海")
-            )
+            /*db.anmalDao().insert(
+                //Animal(name = "test", price = 100, catch_flag = "0", sort = "f", month = "1月", habitant = "海")
+            )*/
+
             testTV.setText(
-                db.anmalDao().selectAll().toString()
+               db.animalDao().selectAll().toString()
             )
+
+            Log.d("searchActivity",testdb.testDao().select().size.toString())
         }
 
 
@@ -130,7 +145,7 @@ class SearchActivity : AppCompatActivity() {
             }
 
             //var list: ArrayList<Any> = testDBHelper.readTest(name, price, sort, month, habitant)
-            var roomlist: List<Animal> = db.anmalDao().select(name, min, max, sort, month, habitant)
+            var roomlist: List<Animal> = db.animalDao().select(name, min, max, sort, month, habitant)
             //Log.d("SearchActivity", list.size.toString())
             testTV.setText(
                 name + "\t"
