@@ -1,5 +1,6 @@
 package com.example.animalcrossingapp.view
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -73,12 +74,19 @@ class SearchActivity : AppCompatActivity() {
         }
 
         searchBTN.setOnClickListener {
-            searchFB("aaa","bbb", 1)
+            val list = searchFB()
+            val slist = arrayListOf<AnimalVO>()
+            list.forEach{
+                slist.add(it)
+            }
+            val intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("list", slist)
+            startActivity(intent)
         }
 
     }
 
-    fun searchFB(vararg keywords: Any) {
+    fun searchFB(vararg keywords: Any): MutableSet<AnimalVO> {
         val testdb = AnimalDB.getInstance(this)!!
 
         val name: String
@@ -292,6 +300,8 @@ class SearchActivity : AppCompatActivity() {
         val id = this.getResources().getIdentifier(tmp, "drawable", this.getPackageName())
         Log.d("id", id.toString())
         imageView.setImageResource(id)
+
+        return aarr
     }
 
     fun setArr(values: ArrayList<String>): String? {

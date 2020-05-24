@@ -1,9 +1,12 @@
 package com.example.animalcrossingapp.room
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "animaldb")
 data class AnimalVO (
     @PrimaryKey(autoGenerate = true) var aid: Int = 0,
@@ -21,4 +24,4 @@ data class AnimalVO (
     @ColumnInfo(name = "nmonths") var nmonths: String? = "",
     @ColumnInfo(name = "smonths") var smonths: String? = "",
     @ColumnInfo(name = "timeString") var timeString: String? = ""
-)
+) : Parcelable
