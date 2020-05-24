@@ -36,12 +36,15 @@ class TestDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
         // Create a new map of values, where column names are the keys
         val values = ContentValues()
-        values.put(Tbl.COLUMN_NAME, "fish1")
-        values.put(Tbl.COLUMN_PRICE, 100)
+
+
+        values.put(Tbl.COLUMN_NAME, "fish2")
+        values.put(Tbl.COLUMN_PRICE, 3000)
         values.put(Tbl.COLUMN_CATCH_FLAG, "0")
         values.put(Tbl.COLUMN_SORT, "f")
-        values.put(Tbl.COLUMN_MONTH, "1月")
-        values.put(Tbl.COLUMN_HABITANT, "海")
+        values.put(Tbl.COLUMN_MONTH, "3月")
+        values.put(Tbl.COLUMN_HABITANT, "住人")
+
 
         // Insert the new row, returning the primary key value of the new row
         val newRowId = db.insert(Tbl.TABLE_NAME, null, values)
@@ -55,11 +58,11 @@ class TestDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         val db = writableDatabase
         // Create a new map of values, where column names are the keys
         val values = ContentValues()
-        values.put(DBContract.AllEntry.COLUMN_NAME_JAPAN, all.name_japan)
+        values.put(DBContract.AllEntry.COLUMN_NAME, all.name_japan)
         values.put(DBContract.AllEntry.COLUMN_PRICE, all.price)
         values.put(DBContract.AllEntry.COLUMN_CATCH_FLAG, all.catch_flag)
         // Define 'where' part of query.
-        val selection = DBContract.AllEntry.COLUMN_NAME_JAPAN + " LIKE ?"
+        val selection = DBContract.AllEntry.COLUMN_NAME + " LIKE ?"
         // Specify arguments in placeholder order.
         val selectionArgs = arrayOf(all.name_japan)
         // Issue SQL statement.
@@ -73,7 +76,7 @@ class TestDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         // Gets the data repository in write mode
         val db = writableDatabase
         // Define 'where' part of query.
-        val selection = DBContract.AllEntry.COLUMN_NAME_JAPAN + " LIKE ?"
+        val selection = DBContract.AllEntry.COLUMN_NAME + " LIKE ?"
         // Specify arguments in placeholder order.
         val selectionArgs = arrayOf(all.name_japan)
         // Issue SQL statement.
@@ -182,7 +185,7 @@ class TestDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         var sort: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
-                name_japan = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_NAME_JAPAN))
+                name_japan = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_NAME))
                 price = cursor.getInt(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_PRICE))
                 catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_CATCH_FLAG))
                 sort = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_SORT))

@@ -24,8 +24,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <TextView
-            android:id="@+id/testTV"
+        <ScrollView
+            android:id="@+id/SV"
             android:layout_width="382dp"
             android:layout_height="111dp"
             android:layout_marginStart="16dp"
@@ -37,7 +37,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/testTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </ScrollView>
 
         <EditText
             android:id="@+id/searchET"
@@ -50,7 +67,7 @@
             android:imeOptions="actionSearch"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testTV" />
+            app:layout_constraintTop_toBottomOf="@+id/SV" />
 
         <Button
             android:id="@+id/searchBTN"
@@ -60,7 +77,7 @@
             android:text="Search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/searchET"
-            app:layout_constraintTop_toBottomOf="@+id/testTV" />
+            app:layout_constraintTop_toBottomOf="@+id/SV" />
 
 
         <EditText
@@ -76,7 +93,7 @@
             app:layout_constraintTop_toBottomOf="@+id/sortRG" />
 
         <EditText
-            android:id="@+id/minTIme"
+            android:id="@+id/minTime"
             android:layout_width="178dp"
             android:layout_height="46dp"
             android:layout_marginStart="16dp"
@@ -94,7 +111,7 @@
             android:layout_marginLeft="8dp"
             android:ems="10"
             android:inputType="number"
-            app:layout_constraintStart_toEndOf="@+id/minTIme"
+            app:layout_constraintStart_toEndOf="@+id/minTime"
             app:layout_constraintTop_toBottomOf="@+id/priceMaxET"
             tools:ignore="MissingConstraints" />
 
@@ -154,7 +171,7 @@
             android:layout_marginTop="16dp"
             android:text="1月"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minTIme" />
+            app:layout_constraintTop_toBottomOf="@+id/minTime" />
 
         <CheckBox
             android:id="@+id/monthCB2"
@@ -163,7 +180,7 @@
             android:layout_marginTop="16dp"
             android:text="2月"
             app:layout_constraintStart_toEndOf="@+id/monthCB1"
-            app:layout_constraintTop_toBottomOf="@+id/minTIme" />
+            app:layout_constraintTop_toBottomOf="@+id/minTime" />
 
         <CheckBox
             android:id="@+id/monthCB3"
@@ -172,7 +189,7 @@
             android:layout_marginTop="16dp"
             android:text="3月"
             app:layout_constraintStart_toEndOf="@+id/monthCB2"
-            app:layout_constraintTop_toBottomOf="@+id/minTIme" />
+            app:layout_constraintTop_toBottomOf="@+id/minTime" />
 
         <CheckBox
             android:id="@+id/monthCB4"
@@ -181,7 +198,7 @@
             android:layout_marginTop="16dp"
             android:text="4月"
             app:layout_constraintStart_toEndOf="@+id/monthCB3"
-            app:layout_constraintTop_toBottomOf="@+id/minTIme" />
+            app:layout_constraintTop_toBottomOf="@+id/minTime" />
 
         <CheckBox
             android:id="@+id/monthCB5"
@@ -299,9 +316,9 @@
                 android:id="@+id/searchTgBtn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="地"
-                android:textOff="地"
-                android:textOn="地"
+                android:text="池"
+                android:textOff="池"
+                android:textOn="池"
                 app:layout_constraintStart_toEndOf="@+id/searchTgBtn2"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -343,11 +360,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/monthCB9">
 
@@ -574,15 +590,49 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bugTgBtn19" />
 
+            <ToggleButton
+                android:id="@+id/bugTgBtn23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="川"
+                android:textOff="川"
+                android:textOn="川"
+                app:layout_constraintStart_toEndOf="@+id/bugTgBtn22"
+                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn19" />
+
+            <ToggleButton
+                android:id="@+id/bugTgBtn24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="木、ヤシの木"
+                android:textOff="木、ヤシの木"
+                android:textOn="木、ヤシの木"
+                app:layout_constraintStart_toEndOf="@id/bugTgBtn23"
+                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn19" />
+
+            <ToggleButton
+                android:id="@+id/bugTgBtn25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ヤシの木、木"
+                android:textOff="ヤシの木、木"
+                android:textOn="木、ヤシの木"
+                app:layout_constraintStart_toEndOf="@id/bugTgBtn24"
+                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn19" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/testBtn"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TEST"
-            app:layout_constraintBottom_toBottomOf="@+id/testTV"
-            app:layout_constraintEnd_toEndOf="@+id/testTV" />
+            android:layout_marginStart="136dp"
+            android:layout_marginLeft="136dp"
+            app:layout_constraintBottom_toBottomOf="@+id/SV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/SV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_background" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -2,6 +2,7 @@ package com.example.animalcrossingapp.controller
 
 import android.content.Context
 import android.content.SharedPreferences
+import kotlin.concurrent.timer
 
 class MySharedPreferences(context: Context) {
 
@@ -20,6 +21,28 @@ class MySharedPreferences(context: Context) {
     var hemisphere: String?
         get() = prefs.getString(PREF_KET_HEMISPHERE, "")
         set(value) = prefs.edit().putString(PREF_KET_HEMISPHERE, value).apply()
+
+    //검색저장용
+    var sname: String?
+        get() = prefs.getString("sname", "")
+        set(value) = prefs.edit().putString("sname", value).apply()
+    var ssort: String?
+        get() = prefs.getString("ssort", "")
+        set(value) = prefs.edit().putString("ssort", value).apply()
+    var siprice: Int
+        get() = prefs.getInt("siprice", 0)
+        set(value) = prefs.edit().putInt("sprice", value).apply()
+    var smprice: Int
+        get() = prefs.getInt("smprice", 0)
+        set(value) = prefs.edit().putInt("smprice", value).apply()
+    var smonth: String?
+        get() = prefs.getString("smonth", "")
+        set(value) = prefs.edit().putString("smonth", value).apply()
+    var shabit: String?
+        get() = prefs.getString("shabit", "")
+        set(value) = prefs.edit().putString("shabit", value).apply()
+
+
 
 
 }
