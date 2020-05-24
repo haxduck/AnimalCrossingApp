@@ -17,5 +17,8 @@ data class AnimalVO (
     @ColumnInfo(name = "sm") var sm: String? ="",
     @ColumnInfo(name = "time") var time: String? ="",
     @ColumnInfo(name = "sort") var sort: String? ="",
-    @ColumnInfo(name = "flag") var flag: String? = ""
+    @ColumnInfo(name = "flag") var flag: String? = "",
+    @ColumnInfo(name = "nmonths") var nmonths: String? = "",
+    @ColumnInfo(name = "smonths") var smonths: String? = "",
+    @ColumnInfo(name = "timeString") var timeString: String? = ""
 )

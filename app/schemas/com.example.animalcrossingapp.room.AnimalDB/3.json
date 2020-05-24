@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "1d0a5121a16828b71fa8d72d1472dfe3",
+    "identityHash": "a7205063e91b994ccae752cde336424e",
     "entities": [
       {
         "tableName": "animaldb",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`aid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `pic` TEXT, `shw` TEXT, `shwPic` TEXT, `price` INTEGER NOT NULL, `loc` TEXT, `nm` TEXT, `sm` TEXT, `time` TEXT, `sort` TEXT, `flag` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`aid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `pic` TEXT, `shw` TEXT, `shwPic` TEXT, `price` INTEGER NOT NULL, `loc` TEXT, `nm` TEXT, `sm` TEXT, `time` TEXT, `sort` TEXT, `flag` TEXT, `nmonths` TEXT, `smonths` TEXT, `timeString` TEXT)",
         "fields": [
           {
             "fieldPath": "aid",
@@ -79,6 +79,24 @@
             "columnName": "flag",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "nmonths",
+            "columnName": "nmonths",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "smonths",
+            "columnName": "smonths",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeString",
+            "columnName": "timeString",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -94,7 +112,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d0a5121a16828b71fa8d72d1472dfe3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a7205063e91b994ccae752cde336424e')"
     ]
   }
 }
