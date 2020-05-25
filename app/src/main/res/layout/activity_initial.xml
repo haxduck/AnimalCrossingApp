@@ -12,7 +12,6 @@
         android:layout_width="350dp"
         android:layout_height="250dp"
         android:background="#FFFFFF"
-
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +43,6 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="70dp"
             android:layout_marginBottom="10dp"
-
             android:background="@drawable/radiobutton_hankyusetting2"
             android:gravity="center"
             android:orientation="horizontal"

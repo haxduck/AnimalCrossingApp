@@ -47,32 +47,65 @@ class MainActivity : AppCompatActivity() {
                     MainController.currentTime()
         )
 
-        textView5.setText(
-            MainController.currentFishList().toString() + "\n"
-            + MainController.currentBugList().toString() + "\n"
-            + fishes.toString()
-        )
+//        textView5.setText(
+//            MainController.currentFishList().toString() + "\n"
+//            + MainController.currentBugList().toString() + "\n"
+//            + fishes.toString()
+//        )
 
         var flist:ArrayList<FishVO> = MainController.currentFishList()
         var blist:ArrayList<BugVO> = MainController.currentBugList()
-        textView5.setOnClickListener{
-            val nextIntent = Intent(this, RealtimeListActivity::class.java)
-            nextIntent.putExtra("flist", flist)
-            nextIntent.putExtra("blist", blist)
-            startActivity(nextIntent)
-        }
+//        textView5.setOnClickListener{
+//            val nextIntent = Intent(this, RealtimeListActivity::class.java)
+//            nextIntent.putExtra("flist", flist)
+//            nextIntent.putExtra("blist", blist)
+//            startActivity(nextIntent)
+//        }
 
-        textView3.setText("" + MainController.catchFishList().size + "/" + MainController.currentFishList().size)
-        textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
+//        textView3.setText("" + MainController.catchFishList().size + "/" + MainController.currentFishList().size)
+//        textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
+//
+//        settingBtn.setOnClickListener{
+//            val intent = Intent(this, SettingActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        if(intent.hasExtra("msg")){
+//            hankyu.setText(intent.getStringExtra("msg"))
+//        }
 
-        settingBtn.setOnClickListener{
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
-        }
+        val img = arrayOf(
+            R.drawable.icon_ray,
+            R.drawable.icon_redsnapper,
+            R.drawable.icon_ribboneel,
+            R.drawable.icon_saddledbichir,
+            R.drawable.icon_salmon,
+            R.drawable.icon_sawshark,
+            R.drawable.icon_seabass,
+            R.drawable.icon_seabutterfly,
+            R.drawable.icon_seahorse,
+            R.drawable.icon_snappingturtle,
+            R.drawable.icon_softshelledturtle,
+            R.drawable.icon_anchovy,
+            R.drawable.icon_angelfish,
+            R.drawable.icon_arapaima,
+            R.drawable.icon_arowana,
+            R.drawable.icon_barredknifejaw,
+            R.drawable.icon_barreleye,
+            R.drawable.icon_betta,
+            R.drawable.icon_bitterling,
+            R.drawable.icon_blackbass,
+            R.drawable.icon_blowfish,
+            R.drawable.icon_bluegill,
+            R.drawable.icon_bluemarlin,
+            R.drawable.icon_butterflyfish,
+            R.drawable.icon_carp,
+            R.drawable.icon_catfish
 
-        if(intent.hasExtra("msg")){
-            hankyu.setText(intent.getStringExtra("msg"))
-        }
+        )
+
+        val griviewAdapter = GridviewAdapter(this, img)
+        gridView1.adapter = griviewAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

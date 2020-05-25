@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- UNSELECTED -->
+    <item android:state_checked="false">
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle" >
+            <corners
+                android:radius="10dp" />
+            <solid
+                android:color="#E9E9E9" />
+            <stroke
+                android:width="3dp"
+                android:color="#E9E9E9" />
+        </shape>
+    </item>
+    <!-- SELECTED -->
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- 배경 -->
+            <item>
+                <shape
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:shape="rectangle" >
+                    <corners
+                        android:radius="10dp" />
+                    <solid
+                        android:color="#fff" />
+                    <stroke
+                        android:width="3dp"
+                        android:color="#0DB694" />
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+
+
+
+</selector>
