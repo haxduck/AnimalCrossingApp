@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/menu_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_top"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="333dp"
@@ -102,22 +90,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <me.ibrahimsn.lib.SmoothBottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:backgroundColor="@color/colorPrimary"
-        app:textColor="#000000"
-        app:textSize="14sp"
-        app:iconSize="24dp"
-        app:indicatorColor="#2DFFFFFF"
-        app:indicatorRadius="10dp"
-        app:sideMargins="10dp"
-        app:itemPadding="10dp"
-        app:iconTint="#C8FFFFFF"
-        app:iconTintActive="#FFFFFF"
-        app:menu="@menu/menu_bottom"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+        android:id="@+id/tvall1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginRight="49dp"
+        android:layout_marginBottom="62dp"
+        android:text="all"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/hankyu"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clearBtn"
+        app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/tvall2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginBottom="64dp"
+        android:text="ALL2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/hankyu"
+        app:layout_constraintStart_toEndOf="@+id/tvall1"
+        app:layout_constraintTop_toBottomOf="@+id/clearBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

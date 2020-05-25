@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.animalcrossingapp.R
 import android.widget.TextView
-import com.example.animalcrossingapp.vo.AllVO
+import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_db.*
 
@@ -13,7 +13,7 @@ class db : AppCompatActivity() {
 
     lateinit var usersDBHelper : UsersDBHelper
     lateinit var fishDBHelper: FishDBHelper
-    lateinit var allDBHelper: AllDBHelper
+    lateinit var bugDBHelper: BugDBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +21,13 @@ class db : AppCompatActivity() {
 
         usersDBHelper = UsersDBHelper(this)
         fishDBHelper = FishDBHelper(this)
-        allDBHelper = AllDBHelper(this)
+        bugDBHelper = BugDBHelper(this)
     }
 
     fun addUser(v:View){
+        fishDBHelper.insertFish(FishVO("fish1", 100, "c"))
+        bugDBHelper.insertBug(BugVO("bb1", 100, "1"))
+
         var userid = this.edittext_userid.text.toString()
         var name = this.edittext_name.text.toString()
         var age = this.edittext_age.text.toString()
@@ -45,16 +48,8 @@ class db : AppCompatActivity() {
     }
 
     fun showAllUsers(v:View){
-        allDBHelper.insertAll(AllVO("fish1",100, "1","f"))
-        allDBHelper.insertAll(AllVO("fish2",200, "0","f"))
-        allDBHelper.insertAll(AllVO("fish3",300, "1","f"))
-        allDBHelper.insertAll(AllVO("bug1",400, "0","b"))
-        allDBHelper.insertAll(AllVO("bug2",500, "1","b"))
-        allDBHelper.insertAll(AllVO("bug3",600, "0","b"))
-        allDBHelper.insertAll(AllVO("fish4",700, "0","f"))
-        allDBHelper.insertAll(AllVO("bug4",800, "1","b"))
-        allDBHelper.insertAll(AllVO("fish5",900, "0","f"))
-
+        var fishes = fishDBHelper.readAllFishes()
+        var bugs =bugDBHelper.readAllBugs()
         var users = usersDBHelper.readAllUsers()
         this.ll_entries.removeAllViews()
         users.forEach {

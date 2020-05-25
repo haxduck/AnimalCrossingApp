@@ -10,37 +10,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SortActivity"></activity>
-        <activity android:name=".view.SearchActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".view.AllBugList"></activity>
         <activity android:name=".dao.db">
 
-            <!--
-            <intent-filter>
+
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
+-->
         </activity>
         <activity android:name=".view.SettingActivity" />
         <activity android:name=".view.RealtimeListActivity" />
         <activity android:name=".view.InitialActivity" />
-        <activity android:name=".view.SoActivity" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.AllFishList" />
 
-            <!--
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
     </application>
 

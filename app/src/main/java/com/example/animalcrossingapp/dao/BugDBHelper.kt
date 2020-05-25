@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.animalcrossingapp.vo.BugVO
-
 import java.util.ArrayList
 
 class BugDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -39,77 +38,57 @@ class BugDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         values.put(DBContract.BugEntry.COLUMN_CATCH_FLAG, bug.catch_flag)
 
         // Insert the new row, returning the primary key value of the new row
-        val newRowId = db.insert(DBContract.BugEntry.TABLE_NAME, null, values)
+        val newRowId = db.insert(DBContract.BugEntry.TABLE_NAMEB, null, values)
 
         return true
     }
 
     @Throws(SQLiteConstraintException::class)
-    fun updateBug(bug: BugVO): Boolean {
+    fun deleteUser(userid: String): Boolean {
         // Gets the data repository in write mode
         val db = writableDatabase
-        // Create a new map of values, where column names are the keys
-        val values = ContentValues()
-        values.put(DBContract.BugEntry.COLUMN_NAME_JAPAN, bug.name_japan)
-        values.put(DBContract.BugEntry.COLUMN_PRICE, bug.price)
-        values.put(DBContract.BugEntry.COLUMN_CATCH_FLAG, bug.catch_flag)
         // Define 'where' part of query.
-        val selection = DBContract.BugEntry.COLUMN_NAME_JAPAN + " LIKE ?"
+        val selection = DBContract.UserEntry.COLUMN_USER_ID + " LIKE ?"
         // Specify arguments in placeholder order.
-        val selectionArgs = arrayOf(bug.name_japan)
+        val selectionArgs = arrayOf(userid)
         // Issue SQL statement.
-        db.update(DBContract.BugEntry.TABLE_NAME,values ,selection, selectionArgs)
+        db.delete(DBContract.UserEntry.TABLE_NAME, selection, selectionArgs)
 
         return true
     }
 
-    @Throws(SQLiteConstraintException::class)
-    fun deleteBug(bug: BugVO): Boolean {
-        // Gets the data repository in write mode
-        val db = writableDatabase
-        // Define 'where' part of query.
-        val selection = DBContract.BugEntry.COLUMN_NAME_JAPAN + " LIKE ?"
-        // Specify arguments in placeholder order.
-        val selectionArgs = arrayOf(bug.name_japan)
-        // Issue SQL statement.
-        db.delete(DBContract.BugEntry.TABLE_NAME, selection, selectionArgs)
-
-        return true
-    }
-
-    fun readBug(bug: BugVO): ArrayList<BugVO> {
-        val buges = ArrayList<BugVO>()
+    fun readUser(userid: String): ArrayList<UserModel> {
+        val users = ArrayList<UserModel>()
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select * from " + DBContract.BugEntry.TABLE_NAME + " WHERE " + DBContract.BugEntry.COLUMN_NAME_JAPAN + "='" + bug.name_japan + "'", null)
+            cursor = db.rawQuery("select * from " + DBContract.UserEntry.TABLE_NAME + " WHERE " + DBContract.UserEntry.COLUMN_USER_ID + "='" + userid + "'", null)
         } catch (e: SQLiteException) {
             // if table not yet present, create it
             db.execSQL(SQL_CREATE_ENTRIES)
             return ArrayList()
         }
 
-        var price: Int
-        var catch_flag: String
-        var sort: String
+        var name: String
+        var age: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
-                price = cursor.getInt(cursor.getColumnIndex(DBContract.BugEntry.COLUMN_PRICE))
-                catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.BugEntry.COLUMN_CATCH_FLAG))
+                name = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_NAME))
+                age = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_AGE))
 
-                buges.add(BugVO(bug.name_japan, price, catch_flag, sort= "b"))
+                users.add(UserModel(userid, name, age))
                 cursor.moveToNext()
             }
         }
-        return buges
+        return users
     }
 
-    fun readAllBuges(): ArrayList<BugVO> {
-        val buges = ArrayList<BugVO>()
+    fun readAllBugs(): ArrayList<BugVO> {
+        val bugs = ArrayList<BugVO>()
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select * from " + DBContract.BugEntry.TABLE_NAME, null)
+            cursor = db.rawQuery("select * from " + DBContract.BugEntry.TABLE_NAMEB, null)
         } catch (e: SQLiteException) {
             db.execSQL(SQL_CREATE_ENTRIES)
             return ArrayList()
@@ -118,18 +97,18 @@ class BugDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         var name_japan: String
         var price: Int
         var catch_flag: String
-        var sort: String = ""
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
                 name_japan = cursor.getString(cursor.getColumnIndex(DBContract.BugEntry.COLUMN_NAME_JAPAN))
                 price = cursor.getInt(cursor.getColumnIndex(DBContract.BugEntry.COLUMN_PRICE))
                 catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.BugEntry.COLUMN_CATCH_FLAG))
 
-                buges.add(BugVO(name_japan, price, catch_flag, sort))
+
+                bugs.add(BugVO(name_japan, price, catch_flag))
                 cursor.moveToNext()
             }
         }
-        return buges
+        return bugs
     }
 
     companion object {
@@ -138,12 +117,12 @@ class BugDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         val DATABASE_NAME = "BugReader.db"
 
         private val SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + DBContract.BugEntry.TABLE_NAME + " (" +
+            "CREATE TABLE " + DBContract.BugEntry.TABLE_NAMEB + " (" +
                     DBContract.BugEntry.COLUMN_NAME_JAPAN + " TEXT," +
                     DBContract.BugEntry.COLUMN_PRICE + " INTEGER," +
                     DBContract.BugEntry.COLUMN_CATCH_FLAG + " TEXT)"
 
-        private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContract.BugEntry.TABLE_NAME
+        private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContract.BugEntry.TABLE_NAMEB
     }
 
 }
