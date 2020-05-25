@@ -34,7 +34,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
 
         // Create a new map of values, where column names are the keys
         val values = ContentValues()
-        values.put(DBContract.AllEntry.COLUMN_NAME_JAPAN, all.name_japan)
+        values.put(DBContract.AllEntry.COLUMN_NAME, all.name_japan)
         values.put(DBContract.AllEntry.COLUMN_PRICE, all.price)
         values.put(DBContract.AllEntry.COLUMN_CATCH_FLAG, all.catch_flag)
         values.put(DBContract.AllEntry.COLUMN_SORT, all.sort)
@@ -52,11 +52,11 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         val db = writableDatabase
         // Create a new map of values, where column names are the keys
         val values = ContentValues()
-        values.put(DBContract.AllEntry.COLUMN_NAME_JAPAN, all.name_japan)
+        values.put(DBContract.AllEntry.COLUMN_NAME, all.name_japan)
         values.put(DBContract.AllEntry.COLUMN_PRICE, all.price)
         values.put(DBContract.AllEntry.COLUMN_CATCH_FLAG, all.catch_flag)
         // Define 'where' part of query.
-        val selection = DBContract.AllEntry.COLUMN_NAME_JAPAN + " LIKE ?"
+        val selection = DBContract.AllEntry.COLUMN_NAME + " LIKE ?"
         // Specify arguments in placeholder order.
         val selectionArgs = arrayOf(all.name_japan)
         // Issue SQL statement.
@@ -70,7 +70,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         // Gets the data repository in write mode
         val db = writableDatabase
         // Define 'where' part of query.
-        val selection = DBContract.AllEntry.COLUMN_NAME_JAPAN + " LIKE ?"
+        val selection = DBContract.AllEntry.COLUMN_NAME + " LIKE ?"
         // Specify arguments in placeholder order.
         val selectionArgs = arrayOf(all.name_japan)
         // Issue SQL statement.
@@ -84,7 +84,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select * from " + DBContract.AllEntry.TABLE_NAME + " WHERE " + DBContract.AllEntry.COLUMN_NAME_JAPAN + "='" + all + "'", null)
+            cursor = db.rawQuery("select * from " + DBContract.AllEntry.TABLE_NAME + " WHERE " + DBContract.AllEntry.COLUMN_NAME + "='" + all + "'", null)
         } catch (e: SQLiteException) {
             // if table not yet present, create it
             db.execSQL(SQL_CREATE_ENTRIES)
@@ -124,7 +124,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         var sort: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
-                name_japan = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_NAME_JAPAN))
+                name_japan = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_NAME))
                 price = cursor.getInt(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_PRICE))
                 catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_CATCH_FLAG))
                 sort = cursor.getString(cursor.getColumnIndex(DBContract.AllEntry.COLUMN_SORT))
@@ -143,7 +143,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
 
         private val SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DBContract.AllEntry.TABLE_NAME + " (" +
-                    DBContract.AllEntry.COLUMN_NAME_JAPAN + " TEXT," +
+                    DBContract.AllEntry.COLUMN_NAME + " TEXT," +
                     DBContract.AllEntry.COLUMN_PRICE + " INTEGER," +
                     DBContract.AllEntry.COLUMN_CATCH_FLAG + " TEXT," +
                     DBContract.AllEntry.COLUMN_SORT + " TEXT)"
