@@ -61,6 +61,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        searchBtn.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
         if (intent.hasExtra("msg")) {
             hankyu.setText(intent.getStringExtra("msg"))
         } else {
