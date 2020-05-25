@@ -6,10 +6,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.AllAdapter
-import com.example.animalcrossingapp.controller.FishAdapter
 import com.example.animalcrossingapp.controller.MainController
 import com.example.animalcrossingapp.dao.FishDBHelper
-import com.example.animalcrossingapp.vo.FishVO
 import kotlinx.android.synthetic.main.activity_realtime_list.*
 
 class RealtimeListActivity : AppCompatActivity() {
@@ -25,8 +23,8 @@ class RealtimeListActivity : AppCompatActivity() {
         //var flist = intent.getSerializableExtra("flist") as ArrayList<FishVO>
         //var blist = intent.getSerializableExtra("blist") as ArrayList<BugVO>
         var flist = MainController.currentFishList(this)
-        var blist = MainController.currentBugList(this)
-        var alist = MainController.currentAllList(this)
+        var blist = MainController.currentBugList()
+        var alist = MainController.currentAllList()
 
         //listView.setText(flist.toString() + blist.toString())
 

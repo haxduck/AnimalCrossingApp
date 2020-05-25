@@ -45,6 +45,7 @@ class AllDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
         return true
     }
 
+
     @Throws(SQLiteConstraintException::class)
     fun updateAll(all: AllVO): Boolean {
         // Gets the data repository in write mode

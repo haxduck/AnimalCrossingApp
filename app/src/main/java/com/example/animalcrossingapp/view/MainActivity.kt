@@ -8,10 +8,7 @@ import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.MainController
-import com.example.animalcrossingapp.dao.FishDBHelper
-import com.example.animalcrossingapp.vo.BugVO
-import com.example.animalcrossingapp.vo.FishVO
-import kotlinx.android.synthetic.main.activity_all_fish_list.*
+import com.example.animalcrossingapp.vo.AllVO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
 
@@ -47,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             + MainController.currentBugList().toString()
         )
 
-        var flist:ArrayList<FishVO> = MainController.currentFishList(context)
+        var flist: ArrayList<AllVO> = MainController.currentFishList(context)
 
         textView5.setOnClickListener{
             val nextIntent = Intent(this, RealtimeListActivity::class.java)
