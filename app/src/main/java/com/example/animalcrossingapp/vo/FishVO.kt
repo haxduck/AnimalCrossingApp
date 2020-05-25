@@ -9,6 +9,7 @@ class FishVO : Serializable {
         this.name_japan = name_japan
         this.price = price
         this.catch_flag = catch_flag
+
     }
 
     var name_japan: String = ""
@@ -23,6 +24,7 @@ class FishVO : Serializable {
     var sortation: String = ""
     var month: String = ""
     var time: String = ""
+
 
     override fun toString(): String {
         return "FishVO(name_japan='$name_japan', price=$price, catch_flag='$catch_flag')"
