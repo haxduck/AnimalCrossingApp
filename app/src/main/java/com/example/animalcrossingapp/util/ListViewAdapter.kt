@@ -36,7 +36,7 @@ class ListViewAdapter(itemList: ArrayList<AllVO>?) :
             convertView = inflater.inflate(R.layout.activity_sort, parent, false)
         }
 
-        val sortTv = convertView.findViewById<View>(R.id.tv_sort) as TextView
+        val sortTv = convertView.findViewById<View>(R.id.id_text) as TextView
 
         val all = allList!![position]
 

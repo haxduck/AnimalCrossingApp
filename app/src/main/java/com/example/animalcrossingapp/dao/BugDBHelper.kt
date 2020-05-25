@@ -104,7 +104,7 @@ class BugDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, n
                 catch_flag = cursor.getString(cursor.getColumnIndex(DBContract.BugEntry.COLUMN_CATCH_FLAG))
 
 
-                bugs.add(BugVO(name_japan, price, catch_flag))
+                bugs.add(BugVO(name_japan, price, catch_flag, ""))
                 cursor.moveToNext()
             }
         }

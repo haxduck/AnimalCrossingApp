@@ -4,7 +4,6 @@ import android.content.Context
 import com.example.animalcrossingapp.dao.AllDBHelper
 import com.example.animalcrossingapp.dao.FishDBHelper
 import com.example.animalcrossingapp.vo.AllVO
-import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import java.text.SimpleDateFormat
 import java.util.*
