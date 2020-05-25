@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.animalcrossingapp.dao.AllDBHelper
 import com.example.animalcrossingapp.dao.FishDBHelper
 import com.example.animalcrossingapp.vo.AllVO
+import com.example.animalcrossingapp.vo.BugVO
 import com.example.animalcrossingapp.vo.FishVO
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,26 +30,22 @@ object MainController {
         val date: Date = Date()
         val cal = Calendar.getInstance()
         cal.time = date
-        val hours = cal.get(Calendar.HOUR_OF_DAY)
+        val hours = cal.get(Calendar.HOUR)
         val sdf = SimpleDateFormat("yyyy/M/d/ H:00 ~ ${hours + 1}:00")
         val currentDate = sdf.format(Date())
         return currentDate
     }
 
-    fun currentAllList(): ArrayList<AllVO> {
+    fun currentAllList(context: Context): ArrayList<AllVO> {
         lateinit var allDBHelper: AllDBHelper
-        allDBHelper = AllDBHelper()
+        allDBHelper = AllDBHelper(context)
         var allList = allDBHelper.readAll()
-        if (allList.size == 0 ) {
-            throw Exception("システム障害が発生しました。")
-        } else {
-            return allList
-        }
+        return allList
     }
 
     fun currentFishList(context: Context): ArrayList<AllVO> {
         var fishList: ArrayList<AllVO> = arrayListOf()
-        currentAllList().forEach {
+        currentAllList(context).forEach {
             if(it.sort == "f") {
                 fishList.add(it)
             }
@@ -70,9 +67,9 @@ object MainController {
         return catchFishList
     }
 
-    fun currentBugList(): ArrayList<AllVO> {
+    fun currentBugList(context: Context): ArrayList<AllVO> {
         var bugList: ArrayList<AllVO> = arrayListOf()
-        currentAllList().forEach {
+        currentAllList(context).forEach {
             if(it.sort == "b") {
                 bugList.add(it)
             }
@@ -81,9 +78,9 @@ object MainController {
         return bugList
     }
 
-    fun catchBugList(): ArrayList<AllVO> {
+    fun catchBugList(context: Context): ArrayList<AllVO> {
         var catchBugList: ArrayList<AllVO> = arrayListOf()
-        currentBugList().forEach {
+        currentBugList(context).forEach {
             if(it.catch_flag == "1") {
                 catchBugList.add(it)
             }
@@ -91,19 +88,19 @@ object MainController {
         return catchBugList
     }
 
-//    lateinit var fishDBHelper: FishDBHelper
-//    fun checkCatch(fish: FishVO, context: Context) {
-//        fishDBHelper = FishDBHelper(context)
-//        if(fish.catch_flag == "0"){
-//            fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, "1", fish.sort))
-//        } else {
-//            fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, "0", fish.sort))
-//        }
-//    }
+    lateinit var fishDBHelper: FishDBHelper
+    fun checkCatch(fish: FishVO, context: Context) {
+        fishDBHelper = FishDBHelper(context)
+        if(fish.catch_flag == "0"){
+            fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, "1", fish.sort))
+        } else {
+            fishDBHelper.updateFish(FishVO(fish.name_japan, fish.price, "0", fish.sort))
+        }
+    }
 
     lateinit var allDBHelper: AllDBHelper
     fun checkCatchA(all: AllVO, context: Context) {
-        allDBHelper = AllDBHelper()
+        allDBHelper = AllDBHelper(context)
         if(all.catch_flag == "0"){
             allDBHelper.updateAll(AllVO(all.name_japan, all.price, "1", all.sort))
         } else {
