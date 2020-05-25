@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val context = this
 
+        val db = AnimalDB.getInstance(this)!!
+
         val iniFlag = MainController.readIniFlag()
         Toast.makeText(this, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
 
@@ -35,60 +37,23 @@ class MainActivity : AppCompatActivity() {
                     MainController.currentTime()
         )
 
-
-        /*//실시간 현재 시간 / 반구 /
-        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        val hemisphere = App.prefs.hemisphere
-        val db = AnimalDB.getInstance(this)!!
-        val allList = db.animalDao().selectAll()
-        val realTimeList = mutableSetOf<AnimalVO>()
-        val thisMonthList = mutableSetOf<AnimalVO>()
-        allList.forEach { animal ->
-            //월
-            val monthList = animal.nm!!.replace("[", "").replace("]", "").split(", ").map { it.toInt() }
-            monthList.forEach {
-                if (it == Calendar.getInstance().get(Calendar.MONTH) + 1) {
-                    thisMonthList.add(animal)
-                }
-            }
-
-            //시간
-            thisMonthList.forEach { thisMonthAnimal ->
-                val timeList = arrayListOf<String>()
-                var intList: List<Int>
-                timeList.add(thisMonthAnimal.time!!)
-                timeList.forEach{
-                    intList = it.replace("[", "").replace("]", "").split(", ").map { it.toInt() }
-                    intList.forEach {
-                        if (it == currentHour) {
-                            realTimeList.add(thisMonthAnimal)
-                        }
-                    }
-                }
-            }
-
-        }*/
-
         textView5.text = searchRealTimeList().toString()
 
-        /* var flist:ArrayList<AllVO> = MainController.currentFishList(context)
-         var blist:ArrayList<BugVO> = MainController.currentBugList()*/
         textView5.setOnClickListener {
-            val nextIntent = Intent(this, RealtimeListActivity::class.java)
-            /*nextIntent.putExtra("flist", flist)
-            nextIntent.putExtra("blist", blist)*/
-            startActivity(nextIntent)
+            val intent = Intent(this, ListActivity::class.java)
+            val list = arrayListOf<AnimalVO>()
+            searchRealTimeList().forEach{
+                list.add(it)
+            }
+            intent.putParcelableArrayListExtra("list", list)
+            startActivity(intent)
         }
 
         textView3.setText(
-            "" + MainController.catchFishList(context).size + "/" + MainController.currentFishList(
-                context
-            ).size
+            "" + db.animalDao().selectCatchFish().size + "/80"
         )
         textView4.setText(
-            "" + MainController.catchBugList(context).size + "/" + MainController.currentBugList(
-                context
-            ).size
+            "" + db.animalDao().selectCatchBug().size + "/80"
         )
 
         settingBtn.setOnClickListener {

@@ -17,7 +17,6 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_realtime_list)
 
         val list = intent.getParcelableArrayListExtra<AnimalVO>("list")
-        Log.d("list", list.toString())
 
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this@ListActivity)

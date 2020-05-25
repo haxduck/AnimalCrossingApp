@@ -14,7 +14,13 @@ interface AnimalDAO {
     @Query("SELECT * FROM animaldb WHERE aid = :id")
     fun selectId(id: Int): AnimalVO
 
-    @Query("SELECT * FROM animaldb WHERE sort IN ('B', 'F')")
+    @Query("SELECT * FROM animaldb WHERE sort IN ('B')")
     fun selectBug(): List<AnimalVO>
+
+    @Query("SELECT * FROM animaldb WHERE sort IN ('F') AND flag = '1'")
+    fun selectCatchFish(): List<AnimalVO>
+
+    @Query("SELECT * FROM animaldb WHERE sort IN ('F') AND flag = '1'")
+    fun selectCatchBug(): List<AnimalVO>
 
 }

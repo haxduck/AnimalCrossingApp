@@ -616,7 +616,7 @@
                 android:layout_height="wrap_content"
                 android:text="ヤシの木、木"
                 android:textOff="ヤシの木、木"
-                android:textOn="木、ヤシの木"
+                android:textOn="ヤシの木、木"
                 app:layout_constraintStart_toEndOf="@id/bugTgBtn24"
                 app:layout_constraintTop_toBottomOf="@+id/bugTgBtn19" />
 
