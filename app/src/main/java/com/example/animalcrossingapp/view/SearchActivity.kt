@@ -1,14 +1,16 @@
 package com.example.animalcrossingapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.example.animalcrossingapp.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search.*
 
-class SearchActivity : AppCompatActivity() {
+class  SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,5 +54,9 @@ class SearchActivity : AppCompatActivity() {
             )
         }
 
+        Btnmain.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

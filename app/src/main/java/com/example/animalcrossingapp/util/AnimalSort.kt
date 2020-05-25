@@ -57,4 +57,5 @@ object AnimalSort {
         // 연산 횟수
         println("N : $number / cnt : $cnt")
     }
+
 }

@@ -20,12 +20,13 @@ class SettingActivity : AppCompatActivity() {
 
         var hemi = ""
         var mLanguageCode = ""
-       hankyu.setOnCheckedChangeListener{arg0, isChecked ->
+
+        hankyu.setOnCheckedChangeListener{group, isChecked ->
            if(minami.isChecked == true){
-               hemi = "南半球"
+               hemi = "minami"
                Toast.makeText(this@SettingActivity, hemi.toString(), Toast.LENGTH_SHORT).show()
            }else if (kita.isChecked == true){
-               hemi = "北半球"
+               hemi = "kita"
                Toast.makeText(this@SettingActivity, hemi.toString(), Toast.LENGTH_SHORT).show()
            }
        }
@@ -33,11 +34,9 @@ class SettingActivity : AppCompatActivity() {
             if(japanese.isChecked == true){
                 mLanguageCode = "ja"
                 Toast.makeText(this@SettingActivity, mLanguageCode.toString(), Toast.LENGTH_SHORT).show()
-                SettingLocales.setLocale(baseContext, mLanguageCode)
             }else if (korean.isChecked == true){
                 mLanguageCode = "ko"
                 Toast.makeText(this@SettingActivity, mLanguageCode.toString(), Toast.LENGTH_SHORT).show()
-                SettingLocales.setLocale(this@SettingActivity, mLanguageCode)
             }
         }
 
@@ -48,8 +47,6 @@ class SettingActivity : AppCompatActivity() {
             App.prefs.hemisphere = hemi
             App.prefs.language = mLanguageCode
             Toast.makeText(this@SettingActivity, "環境設定が適用されました", Toast.LENGTH_SHORT).show()
-            SettingLocales.setLocale(this@SettingActivity , mLanguageCode)
-            recreate()
             startActivity(intent)
         }
     }

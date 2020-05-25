@@ -5,8 +5,9 @@ open class AllVO (
     val price : Int,
     val catch_flag : String,
     val sort: String
-){
+) {
     override fun toString(): String {
         return "AllVO(name_japan='$name_japan', price=$price, catch_flag='$catch_flag', sort='$sort')"
     }
+
 }
