@@ -4,89 +4,189 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.InitialActivity">
+    android:background="#A6D7C8"
+    tools:context=".view.SettingActivity">
 
-    <Button
-        android:id="@+id/confBtn"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setting_wrap"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="適用"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/hankyu"
-        android:layout_width="337dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginBottom="250dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/confBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RadioButton
-            android:id="@+id/minami"
-            android:layout_width="159dp"
-            android:layout_height="wrap_content"
-            android:button="@android:drawable/btn_radio"
-            android:text="南半球" />
+        <TextView
+            android:id="@+id/Kankyo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#0DB694"
+            android:backgroundTint="#0DB694"
+            android:gravity="center"
+            android:text="環境設定"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/kita"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@android:drawable/btn_radio"
-            android:text="北半球" />
-    </RadioGroup>
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/radiobutton_hankyusetting2"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Kankyo">
 
-    <RadioGroup
-        android:id="@+id/language"
-        android:layout_width="332dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
-        android:layout_marginBottom="133dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/confBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="半球設定"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/japanese"
-            android:layout_width="164dp"
-            android:layout_height="47dp"
-            android:button="@android:drawable/btn_radio"
-            android:text="日本語" />
+            <RadioGroup
+                android:id="@+id/hankyu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1">
 
-        <RadioButton
-            android:id="@+id/korean"
+                <RadioButton
+                    android:id="@+id/minami"
+                    android:layout_width="300px"
+                    android:layout_height="100px"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/radiobutton_hankyusetting"
+                    android:button="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="南半球" />
+
+                <RadioButton
+                    android:id="@+id/kita"
+                    android:layout_width="300px"
+                    android:layout_height="100px"
+                    android:background="@drawable/radiobutton_hankyusetting"
+                    android:button="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="北半球" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:button="@android:drawable/btn_radio"
-            android:text="한국어" />
-    </RadioGroup>
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/radiobutton_hankyusetting2"
+            app:layout_constraintBottom_toTopOf="@id/confBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="163dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="28dp"
-        android:text="@string/hi"
-        app:layout_constraintBottom_toTopOf="@+id/confBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="言語設定"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                <RadioButton
+                    android:id="@+id/japanese"
+                    android:layout_width="115dp"
+                    android:layout_height="100px"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/radiobutton_hankyusetting"
+                    android:button="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="日本語" />
+
+                <RadioButton
+                    android:id="@+id/korean"
+                    android:layout_width="300px"
+                    android:layout_height="100px"
+                    android:background="@drawable/radiobutton_hankyusetting"
+                    android:button="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="한국어" />
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/confBtn"
+            android:layout_width="800px"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#0DB694"
+            android:text="適用"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.467"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
