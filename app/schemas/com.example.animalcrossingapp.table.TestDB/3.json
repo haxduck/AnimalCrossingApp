@@ -1,0 +1,116 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "8d7ec047a0f3cbcedac8d7272e53b4f7",
+    "entities": [
+      {
+        "tableName": "Information",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`information_code` TEXT NOT NULL, `habitat_code` TEXT NOT NULL, `capture_code` TEXT NOT NULL, `name_japan` TEXT, `name_korea` TEXT, `price` INTEGER NOT NULL DEFAULT 0, `catch_flag` TEXT NOT NULL DEFAULT 'c1', `size` TEXT, `sortation` TEXT, PRIMARY KEY(`information_code`))",
+        "fields": [
+          {
+            "fieldPath": "information_code",
+            "columnName": "information_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "habitat_code",
+            "columnName": "habitat_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "capture_code",
+            "columnName": "capture_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name_japan",
+            "columnName": "name_japan",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_korea",
+            "columnName": "name_korea",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "catch_flag",
+            "columnName": "catch_flag",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'c1'"
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sortation",
+            "columnName": "sortation",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "information_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Capture",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`capture_code` TEXT NOT NULL, `picture` INTEGER NOT NULL, `shilhouette` INTEGER NOT NULL, PRIMARY KEY(`capture_code`))",
+        "fields": [
+          {
+            "fieldPath": "capture_code",
+            "columnName": "capture_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "picture",
+            "columnName": "picture",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shilhouette",
+            "columnName": "shilhouette",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "capture_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8d7ec047a0f3cbcedac8d7272e53b4f7')"
+    ]
+  }
+}
