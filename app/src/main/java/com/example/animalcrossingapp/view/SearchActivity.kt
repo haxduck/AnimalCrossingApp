@@ -1,17 +1,21 @@
 package com.example.animalcrossingapp.view
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
+import androidx.room.Room
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.cache.Member
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
+import com.example.animalcrossingapp.table.TestDB
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_search.*
 import org.json.JSONArray
@@ -22,6 +26,16 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        //testcode
+        val testdb = Room.databaseBuilder(
+            this.applicationContext,
+            TestDB::class.java, "AnimalCrossing.db"
+        ).allowMainThreadQueries().createFromAsset("AnimalCrossing.db").build()
+        val blob = testdb.testDao().selectJoin().get(0).picture
+        val bitmap: Bitmap = BitmapFactory.decodeByteArray(blob, 0, blob!!.size)
+        imageView.setImageBitmap(bitmap)
+
 
         //캐쉬
         val sharedPreference = getSharedPreferences("caches", 0)
@@ -299,7 +313,7 @@ class SearchActivity : AppCompatActivity() {
         val tmp = "show"
         val id = this.getResources().getIdentifier(tmp, "drawable", this.getPackageName())
         Log.d("id", id.toString())
-        imageView.setImageResource(id)
+//        imageView.setImageResource(id)
 
         return aarr
     }

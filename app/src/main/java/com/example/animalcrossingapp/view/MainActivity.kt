@@ -14,8 +14,10 @@ import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.MainController
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.appcompat.widget.SearchView
+import androidx.room.Room
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
+import com.example.animalcrossingapp.table.TestDB
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,9 +28,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val db = AnimalDB.getInstance(this)!!
-
-        var test = db.animalDao().test()
-        Log.d("1111", test.toString())
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
