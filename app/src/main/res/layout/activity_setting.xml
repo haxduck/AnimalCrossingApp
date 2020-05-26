@@ -39,7 +39,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
@@ -82,7 +82,7 @@
                     android:id="@+id/minami"
                     android:layout_width="300px"
                     android:layout_height="100px"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="50dp"
                     android:background="@drawable/radiobutton_hankyusetting"
                     android:button="@android:color/transparent"
                     android:gravity="center"
@@ -103,7 +103,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
@@ -149,7 +149,7 @@
                     android:id="@+id/japanese"
                     android:layout_width="115dp"
                     android:layout_height="100px"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="50dp"
                     android:background="@drawable/radiobutton_hankyusetting"
                     android:button="@android:color/transparent"
                     android:gravity="center"
@@ -171,8 +171,8 @@
 
         <Button
             android:id="@+id/confBtn"
-            android:layout_width="800px"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
