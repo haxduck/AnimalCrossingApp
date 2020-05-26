@@ -3,6 +3,8 @@ package com.example.animalcrossingapp.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.AllAdapter
@@ -38,6 +40,11 @@ class RealtimeListActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     fun searchRealTimeList(): MutableSet<AnimalVO> {

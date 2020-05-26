@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.example.animalcrossingapp.R
@@ -99,10 +100,10 @@ class MainActivity : AppCompatActivity() {
 
         val catchFishes = db.animalDao().selectCatchFish().size
         val catchBugs = db.animalDao().selectCatchBug().size
-        fish_progress.progress = catchFishes
-        bug_progress.progress = catchBugs
-        catch_fish_text.text = "" + "" + catchFishes + "/80"
-        catch_bug_text.text = "" + catchBugs + "/80"
+//        fish_progress.progress = catchFishes
+//        bug_progress.progress = catchBugs
+//        catch_fish_text.text = "" + "" + catchFishes + "/80"
+//        catch_bug_text.text = "" + catchBugs + "/80"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

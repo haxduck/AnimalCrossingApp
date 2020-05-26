@@ -8,5 +8,11 @@
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
-
+    <item
+        android:id="@+id/filter"
+        android:title="filter"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:iconTint="#FFFFFF"
+        app:showAsAction="always"
+        />
 </menu>
