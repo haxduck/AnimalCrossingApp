@@ -9,7 +9,7 @@
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`aid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `pic` TEXT, `shw` TEXT, `shwPic` TEXT, `price` INTEGER NOT NULL, `loc` TEXT, `nm` TEXT, `sm` TEXT, `time` TEXT, `sort` TEXT, `flag` TEXT, `nmonths` TEXT, `smonths` TEXT, `timeString` TEXT)",
         "fields": [
           {
-            "fieldPath": "aid",
+            "fieldPath": "id",
             "columnName": "aid",
             "affinity": "INTEGER",
             "notNull": true

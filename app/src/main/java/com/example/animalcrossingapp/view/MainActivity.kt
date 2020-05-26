@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
@@ -16,13 +17,18 @@ import androidx.appcompat.widget.SearchView
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val db = AnimalDB.getInstance(this)!!
+
+        var test = db.animalDao().test()
+        Log.d("1111", test.toString())
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
@@ -37,17 +43,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         textView2.setText(
-            "リアルタイム情報" + "\n" +
-                    MainController.currentTime()
+            "リアルタイム情報" + "\n" + MainController.currentTime()
         )
 
-//        textView5.setText(
-//            MainController.currentFishList().toString() + "\n"
-//            + MainController.currentBugList().toString() + "\n"
-//            + fishes.toString()
-//        )
-
-        /*textView5.setOnClickListener {
+        textView2.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
             val list = arrayListOf<AnimalVO>()
             searchRealTimeList().forEach{
@@ -55,19 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
             intent.putParcelableArrayListExtra("list", list)
             startActivity(intent)
-        }*/
-
-//        textView3.setText("" + MainController.catchFishList().size + "/" + MainController.currentFishList().size)
-//        textView4.setText("" + MainController.catchBugList().size + "/" + MainController.currentBugList().size)
-//
-//        settingBtn.setOnClickListener{
-//            val intent = Intent(this, SettingActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//        if(intent.hasExtra("msg")){
-//            hankyu.setText(intent.getStringExtra("msg"))
-//        }
+        }
 
         val img = arrayOf(
             R.drawable.icon_ray,
@@ -99,16 +86,25 @@ class MainActivity : AppCompatActivity() {
 
         )
 
-        val griviewAdapter = GridviewAdapter(this, img)
+        val realTimeList = searchRealTimeList()
+        var imgArr = Array(realTimeList.size, {0})
+        var idx = 0
+        realTimeList.forEach {
+            var id = "a" + it.aid
+            imgArr[idx] = this.getResources().getIdentifier(id, "drawable", this.getPackageName())
+            idx++
+        }
+        val griviewAdapter = GridviewAdapter(this, imgArr)
         gridView1.adapter = griviewAdapter
+
+        val catchFishes = db.animalDao().selectCatchFish().size
+        val catchBugs = db.animalDao().selectCatchBug().size
+        fish_progress.progress = catchFishes
+        bug_progress.progress = catchBugs
+        catch_fish_text.text = "" + "" + catchFishes + "/80"
+        catch_bug_text.text = "" + catchBugs + "/80"
     }
 
-        /*textView3.setText(
-            "" + db.animalDao().selectCatchFish().size + "/80"
-        )
-        textView4.setText(
-            "" + db.animalDao().selectCatchBug().size + "/80"
-        )*/
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         val inflater = menuInflater
@@ -148,7 +144,7 @@ class MainActivity : AppCompatActivity() {
     }
     //
 
-    fun searchRealTimeList(): MutableSet<AnimalVO> {
+    fun searchRealTimeList(): ArrayList<AnimalVO> {
         //실시간 현재 시간 / 반구 /
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val hemisphere = App.prefs.hemisphere
@@ -181,7 +177,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        return realTimeList
+        val list: ArrayList<AnimalVO> = arrayListOf()
+        realTimeList.forEach {
+            list.add(it)
+        }
+        return list
     }
 
 }

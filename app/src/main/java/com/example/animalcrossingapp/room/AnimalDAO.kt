@@ -23,4 +23,7 @@ interface AnimalDAO {
     @Query("SELECT * FROM animaldb WHERE sort IN ('F') AND flag = '1'")
     fun selectCatchBug(): List<AnimalVO>
 
+    @Query("SELECT name FROM animaldb")
+    fun test() : List<String>
+
 }
