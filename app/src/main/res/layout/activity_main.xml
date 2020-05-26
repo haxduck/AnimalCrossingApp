@@ -221,12 +221,12 @@
 
                 <GridView
                     android:id="@+id/gridView1"
-                    android:layout_width="340dp"
-                    android:layout_height="340dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:columnWidth="100dp"
                     android:gravity="center"
                     android:horizontalSpacing="10dp"
-                    android:numColumns="9"
+                    android:numColumns="3"
                     android:scrollbarAlwaysDrawHorizontalTrack="true"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
                     android:scrollbars="horizontal"
