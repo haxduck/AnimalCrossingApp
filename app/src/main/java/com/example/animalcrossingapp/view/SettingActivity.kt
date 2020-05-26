@@ -11,6 +11,7 @@ import com.example.animalcrossingapp.language.SettingLocales
 import kotlinx.android.synthetic.main.activity_initial.confBtn
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.util.*
+import kotlin.math.min
 
 class SettingActivity : AppCompatActivity() {
 
@@ -18,8 +19,20 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
-        var hemi = ""
-        var mLanguageCode = ""
+        var hemi = App.prefs.hemisphere
+        var mLanguageCode = App.prefs.language
+
+        if(mLanguageCode == "ko"){
+            Kankyo.setText("환경설정")
+            confBtn.setText("적용")
+            minami.setText("남반구")
+            kita.setText("북반구")
+        }else{
+            Kankyo.setText("環境設定")
+            confBtn.setText("適用")
+            minami.setText("南半球")
+            kita.setText("北半球")
+        }
 
         hankyu.setOnCheckedChangeListener{group, isChecked ->
            if(minami.isChecked == true){
@@ -46,7 +59,11 @@ class SettingActivity : AppCompatActivity() {
             //xml 저장
             App.prefs.hemisphere = hemi
             App.prefs.language = mLanguageCode
-            Toast.makeText(this@SettingActivity, "環境設定が適用されました", Toast.LENGTH_SHORT).show()
+            if(mLanguageCode == "ko"){
+                Toast.makeText(this@SettingActivity, "환경설정이 적용되었습니다", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(this@SettingActivity, "環境設定が適用されました", Toast.LENGTH_SHORT).show()
+            }
             startActivity(intent)
         }
     }

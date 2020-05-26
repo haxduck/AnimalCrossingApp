@@ -66,11 +66,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        if (intent.hasExtra("msg")) {
-            hankyu.setText(intent.getStringExtra("msg"))
-        } else {
-            hankyu.setText(App.prefs.hemisphere)
-        }
+//        if (intent.hasExtra("msg")) {
+//            hankyu.setText(intent.getStringExtra("msg"))
+//        } else {
+//            hankyu.setText(App.prefs.hemisphere)
+//        }
     }
 
     //test

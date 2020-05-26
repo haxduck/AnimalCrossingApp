@@ -26,6 +26,7 @@ class MySharedPreferences(context: Context) {
         get() = prefs.getString(PREF_KET_LANGUAGE, "")
         set(value) = prefs.edit().putString(PREF_KET_LANGUAGE, value).apply()
 
+
     //검색저장용
     var sname: String?
         get() = prefs.getString("sname", "")
