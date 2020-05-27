@@ -17,7 +17,9 @@ class InitialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_initial)
 
-        TextView.setText("")
+//        TextView.setText("구동횟수유무 : " + App.prefs.initialFlag + "\n" +
+//                         "반구설정 : " + App.prefs.hemisphere
+//        )
 
         // 반구설정
         var hemi: String = ""
@@ -32,8 +34,8 @@ class InitialActivity : AppCompatActivity() {
         )
 
         confBtn.setOnClickListener {
-            MainController.onInitialFlag()
-            MainController.setHemiSphere(hemi)
+            App.prefs.initialFlag = "1"
+            App.prefs.hemisphere = hemi
             val nextIntent = Intent(this, MainActivity::class.java)
             startActivity(nextIntent)
         }

@@ -1,30 +1,40 @@
 package com.example.animalcrossingapp.view
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.MainController
+import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.widget.SearchView
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val context = this
 
         val db = AnimalDB.getInstance(this)!!
 
-        val iniFlag = MainController.readIniFlag()
+        var test = db.animalDao().test()
+        Log.d("1111", test.toString())
+
+        //첫 실행 판단 prefs.xml 저장
+        val iniFlag = App.prefs.initialFlag
         Toast.makeText(this, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
 
-        if (iniFlag == "1") {
+        if(iniFlag == "1") {
             setContentView(R.layout.activity_main)
         } else {
             setContentView(R.layout.activity_main)
@@ -33,13 +43,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         textView2.setText(
-            "リアルタイム情報" + "\n" +
-                    MainController.currentTime()
+            "リアルタイム情報" + "\n" + MainController.currentTime()
         )
 
-        textView5.text = searchRealTimeList().toString()
-
-        textView5.setOnClickListener {
+        textView2.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
             val list = arrayListOf<AnimalVO>()
             searchRealTimeList().forEach{
@@ -49,28 +56,85 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        textView3.setText(
-            "" + db.animalDao().selectCatchFish().size + "/80"
+        val img = arrayOf(
+            R.drawable.icon_ray,
+            R.drawable.icon_redsnapper,
+            R.drawable.icon_ribboneel,
+            R.drawable.icon_saddledbichir,
+            R.drawable.icon_salmon,
+            R.drawable.icon_sawshark,
+            R.drawable.icon_seabass,
+            R.drawable.icon_seabutterfly,
+            R.drawable.icon_seahorse,
+            R.drawable.icon_snappingturtle,
+            R.drawable.icon_softshelledturtle,
+            R.drawable.icon_anchovy,
+            R.drawable.icon_angelfish,
+            R.drawable.icon_arapaima,
+            R.drawable.icon_arowana,
+            R.drawable.icon_barredknifejaw,
+            R.drawable.icon_barreleye,
+            R.drawable.icon_betta,
+            R.drawable.icon_bitterling,
+            R.drawable.icon_blackbass,
+            R.drawable.icon_blowfish,
+            R.drawable.icon_bluegill,
+            R.drawable.icon_bluemarlin,
+            R.drawable.icon_butterflyfish,
+            R.drawable.icon_carp,
+            R.drawable.icon_catfish
+
         )
-        textView4.setText(
-            "" + db.animalDao().selectCatchBug().size + "/80"
-        )
 
-        settingBtn.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
+        val realTimeList = searchRealTimeList()
+        var imgArr = Array(realTimeList.size, {0})
+        var idx = 0
+        realTimeList.forEach {
+            var id = "a" + it.aid
+            imgArr[idx] = this.getResources().getIdentifier(id, "drawable", this.getPackageName())
+            idx++
         }
+        val griviewAdapter = GridviewAdapter(this, imgArr)
+        gridView1.adapter = griviewAdapter
 
-        searchBtn.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
-        }
+        val catchFishes = db.animalDao().selectCatchFish().size
+        val catchBugs = db.animalDao().selectCatchBug().size
+        fish_progress.progress = catchFishes
+        bug_progress.progress = catchBugs
+        catch_fish_text.text = "" + "" + catchFishes + "/80"
+        catch_bug_text.text = "" + catchBugs + "/80"
+    }
 
-//        if (intent.hasExtra("msg")) {
-//            hankyu.setText(intent.getStringExtra("msg"))
-//        } else {
-//            hankyu.setText(App.prefs.hemisphere)
-//        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_top, menu)
+//        menuInflater.inflate(R.menu.menu_bottom, menu)
+//        bottomBar.setupWithNavController(menu!!, navController)
+
+        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchItem = menu?.findItem(R.id.search)
+        val searchView = searchItem?.actionView as SearchView
+
+        searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
+
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                searchView.setQuery("", false)
+                searchItem.collapseActionView()
+                Toast.makeText(this@MainActivity, "Looking for $query", Toast.LENGTH_LONG).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
+
+      return true
     }
 
     //test
@@ -80,7 +144,7 @@ class MainActivity : AppCompatActivity() {
     }
     //
 
-    fun searchRealTimeList(): MutableSet<AnimalVO> {
+    fun searchRealTimeList(): ArrayList<AnimalVO> {
         //실시간 현재 시간 / 반구 /
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val hemisphere = App.prefs.hemisphere
@@ -113,7 +177,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        return realTimeList
+        val list: ArrayList<AnimalVO> = arrayListOf()
+        realTimeList.forEach {
+            list.add(it)
+        }
+        return list
     }
 
 }

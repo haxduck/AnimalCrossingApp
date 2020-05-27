@@ -6,94 +6,182 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
+   <androidx.appcompat.widget.Toolbar
+        android:id="@+id/menu_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_top"
+        tools:ignore="MissingConstraints" />
+
+
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="333dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/layout_border"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
         android:text="Hello World"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/menu_top" />
 
-    <Button
-        android:id="@+id/clearBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:onClick="clearXml"
-        android:text="Clear"
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/radiobutton_hankyusetting2"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/Scroll">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="333dp"
-        android:layout_height="31dp"
-        android:background="@drawable/layout_border"
-        android:text="TextView"
+        <FrameLayout
+            android:id="@+id/progerss_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/radiobutton_hankyusetting2"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/progress_fish"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/fish02" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/fish_progress"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:max="80"
+                    android:progress="2"
+                    android:progressDrawable="@drawable/custom_green_progressbar" />
+
+                <TextView
+                    android:id="@+id/catch_fish_text"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="260dp"
+                    android:gravity="center"
+                    android:text="2/80"
+                    android:textSize="18dp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/progress_bug"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/bug02" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/bug_progress"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:max="80"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/custom_green_progressbar" />
+
+                <TextView
+                    android:id="@+id/catch_bug_text"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="260dp"
+                    android:gravity="center"
+                    android:text="8/80"
+                    android:textSize="18dp" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:backgroundColor="@color/colorPrimary"
+        app:textColor="#000000"
+        app:textSize="14sp"
+        app:iconSize="24dp"
+        app:indicatorColor="#2DFFFFFF"
+        app:indicatorRadius="10dp"
+        app:sideMargins="10dp"
+        app:itemPadding="10dp"
+        app:iconTint="#C8FFFFFF"
+        app:iconTintActive="#FFFFFF"
+        app:menu="@menu/menu_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <HorizontalScrollView
+        android:id="@+id/Scroll"
+        android:layout_width="340dp"
+        android:layout_height="340dp"
+        android:background="@drawable/radiobutton_hankyusetting2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="333dp"
-        android:layout_height="32dp"
-        android:background="@drawable/layout_border"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-    <Button
-        android:id="@+id/settingBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="100dp"
-        android:text="Setting"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            <GridView
+                android:id="@+id/gridView1"
+                android:layout_width="340dp"
+                android:layout_height="340dp"
+                android:columnWidth="100dp"
+                android:gravity="center"
+                android:horizontalSpacing="10dp"
+                android:numColumns="5"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbars="horizontal"
+                android:stretchMode="none"
+                android:verticalSpacing="10dp">
 
-    <TextView
-        android:id="@+id/hankyu"
-        android:layout_width="87dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="246dp"
-        android:layout_marginBottom="24dp"
-        android:textColor="#E91E63"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="1.0" />
+            </GridView>
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="333dp"
-        android:layout_height="213dp"
-        android:background="@drawable/layout_border"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="SEARCH"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
