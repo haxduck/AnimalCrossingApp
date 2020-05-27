@@ -1,4 +1,4 @@
-package com.example.animalcrossingapp.table
+package com.example.animalcrossingapp.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -11,6 +11,6 @@ import androidx.room.RoomDatabase
                                 Time::class,
                                 Time_Infomation::class
                                 ), version = 1)
-abstract class TestDB : RoomDatabase() {
-    abstract fun testDao(): TestDAO
+abstract class AnimalCrossingDB : RoomDatabase() {
+    abstract fun animalCrossingDao(): AnimalCrossingDAO
 }

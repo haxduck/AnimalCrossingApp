@@ -1,4 +1,4 @@
-package com.example.animalcrossingapp.table
+package com.example.animalcrossingapp.database
 
 import android.os.Parcelable
 import androidx.room.*

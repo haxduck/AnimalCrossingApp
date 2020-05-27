@@ -15,7 +15,7 @@ import com.example.animalcrossingapp.cache.Member
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
-import com.example.animalcrossingapp.table.TestDB
+import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_search.*
 import org.json.JSONArray
@@ -28,11 +28,11 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         //testcode
-        val testdb = Room.databaseBuilder(
+        val db = Room.databaseBuilder(
             this.applicationContext,
-            TestDB::class.java, "AnimalCrossing.db"
+            AnimalCrossingDB::class.java, "AnimalCrossing.db"
         ).allowMainThreadQueries().createFromAsset("AnimalCrossing.db").build()
-        val blob = testdb.testDao().selectJoin().get(0).picture
+        val blob = db.animalCrossingDao().selectJoin().get(0).picture
         val bitmap: Bitmap = BitmapFactory.decodeByteArray(blob, 0, blob!!.size)
         imageView.setImageBitmap(bitmap)
 
@@ -100,7 +100,7 @@ class SearchActivity : AppCompatActivity() {
 
     }
 
-    fun searchFB(vararg keywords: Any): MutableSet<AnimalVO> {
+    fun searchFB(): MutableSet<AnimalVO> {
         val testdb = AnimalDB.getInstance(this)!!
 
         val name: String

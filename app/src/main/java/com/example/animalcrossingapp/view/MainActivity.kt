@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
@@ -14,10 +13,8 @@ import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.MainController
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.appcompat.widget.SearchView
-import androidx.room.Room
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
-import com.example.animalcrossingapp.table.TestDB
 import java.util.*
 import kotlin.collections.ArrayList
 

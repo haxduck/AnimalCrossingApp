@@ -1,11 +1,11 @@
-package com.example.animalcrossingapp.table
+package com.example.animalcrossingapp.database
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 
 @Dao
-interface TestDAO {
+interface AnimalCrossingDAO {
     @Query("SELECT * FROM Information")
     fun selectAll() : List<Information>
 
