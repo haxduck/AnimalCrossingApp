@@ -15,5 +15,4 @@
         android:iconTint="#FFFFFF"
         app:showAsAction="always"
         />
-    <item android:title="Item" />
 </menu>

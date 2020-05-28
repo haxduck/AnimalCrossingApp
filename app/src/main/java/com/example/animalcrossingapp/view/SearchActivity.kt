@@ -84,9 +84,6 @@ class SearchActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_test.setOnClickListener{
-            expandable.expand()
-        }
 
 
     }
