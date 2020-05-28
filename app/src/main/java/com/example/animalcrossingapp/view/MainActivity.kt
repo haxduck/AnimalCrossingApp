@@ -1,5 +1,6 @@
 package com.example.animalcrossingapp.view
 
+import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -7,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
@@ -18,6 +21,9 @@ import androidx.room.Room
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
 import com.example.animalcrossingapp.table.TestDB
+import kotlinx.android.synthetic.main.item_animal.*
+import me.ibrahimsn.lib.OnItemSelectedListener
+import me.ibrahimsn.lib.SmoothBottomBar
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -40,10 +46,26 @@ class MainActivity : AppCompatActivity() {
             val nextIntent = Intent(this, InitialActivity::class.java)
             startActivity(nextIntent)
         }
+        if(App.prefs.language == "ko"){
+            textView2.setText(
+                "실시간 정보 " + "\n" + MainController.currentTime()
+            )
+        }else {
+            textView2.setText(
+                "リアルタイム情報" + "\n" + MainController.currentTime()
+            )
+        }
 
-        textView2.setText(
-            "リアルタイム情報" + "\n" + MainController.currentTime()
-        )
+        bottomBar.onItemSelected = {
+            if(it == 1){
+                val intent = Intent(this, ListActivity::class.java)
+                startActivity(intent)
+            }
+            if(it == 2){
+                val intent = Intent(this, SettingActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         textView2.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
@@ -104,12 +126,22 @@ class MainActivity : AppCompatActivity() {
         catch_bug_text.text = "" + catchBugs + "/80"
     }
 
+
+
+
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu_top, menu)
-//        menuInflater.inflate(R.menu.menu_bottom, menu)
-//        bottomBar.setupWithNavController(menu!!, navController)
+       inflater.inflate(R.menu.menu_top, menu)
+       menuInflater.inflate(R.menu.menu_bottom, menu)
+        //bottomBar.setupWithNavController(menu!!, navController)
+
+//        bottomBar.setOnItemSelectedListener{ id ->
+//            when (id){
+//                R.id.first_fragment -> intent(this, SettingActivity::class.java)
+//            }
+//        }
 
         val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchItem = menu?.findItem(R.id.search)
@@ -134,6 +166,13 @@ class MainActivity : AppCompatActivity() {
         })
 
       return true
+    }
+
+
+
+    @SuppressLint("SetTextI18n")
+    private fun showTab(i: Int) {
+        Log.d("MainActi  vity", "onTabSelected: $i")
     }
 
     //test
