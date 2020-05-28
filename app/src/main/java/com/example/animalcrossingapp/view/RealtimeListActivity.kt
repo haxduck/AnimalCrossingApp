@@ -42,10 +42,7 @@ class RealtimeListActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+
 
     fun searchRealTimeList(): MutableSet<AnimalVO> {
         //실시간 현재 시간 / 반구 /

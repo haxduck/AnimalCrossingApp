@@ -54,12 +54,17 @@ android {
 allprojects {
     repositories {
         maven{ url 'https://jitpack.io'}
+        jcenter()
     }
 
 }
 
 dependencies {
+    implementation 'com.github.Mirkoddd:Range-SeekBar:1.0.9'
+
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.5'
+
+    implementation "com.github.skydoves:expandablelayout:1.0.5"
 
 
 
@@ -105,4 +110,6 @@ dependencies {
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
 }
