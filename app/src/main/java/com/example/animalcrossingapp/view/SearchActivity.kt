@@ -88,6 +88,10 @@ class SearchActivity : AppCompatActivity() {
         price_rangeSeekbar.setRangeColor(Color.BLACK)
         time_rangeSeekbar.setRangeColor(Color.BLACK)
 
+        btn_test.setOnClickListener{
+            expandableLayout.toggle()
+        }
+
     }
 
     fun searchFB(vararg keywords: Any): MutableSet<AnimalVO> {

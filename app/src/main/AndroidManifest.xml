@@ -12,10 +12,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.ListActivity"></activity>
         <activity android:name=".view.SearchActivity">
-<!--           <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+           <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".dao.db">
             <!--
@@ -26,10 +26,10 @@
             -->
         </activity>
         <activity android:name=".view.SettingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".view.RealtimeListActivity" />
         <activity android:name=".view.InitialActivity" />
