@@ -1,14 +1,11 @@
-package com.example.animalcrossingapp.controller
+package com.example.animalcrossingapp.database
 
-import android.content.Context
-import com.example.animalcrossingapp.vo.AllVO
-import com.example.animalcrossingapp.vo.BugVO
-import com.example.animalcrossingapp.vo.FishVO
+import android.app.Application
+import com.example.animalcrossingapp.controller.App
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
-object MainController {
+object MainController: Application() {
 
     //initialactivity
     fun readIniFlag(): String? {

@@ -5,14 +5,17 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
-import com.example.animalcrossingapp.controller.MainController
+import com.example.animalcrossingapp.database.MainController
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.appcompat.widget.SearchView
+import com.example.animalcrossingapp.database.AnimalCrossingDB
+import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
 import java.util.*
@@ -25,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val db = AnimalDB.getInstance(this)!!
+        val pdb = AnimalCrossingDB.getInstance(this)!!
+
+        val hemishpere = App.prefs.hemisphere!!
+        val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
+        val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
+        val currentMonth = "" + thisMonth + "月"
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
@@ -44,57 +53,32 @@ class MainActivity : AppCompatActivity() {
 
         textView2.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
-            val list = arrayListOf<AnimalVO>()
-            searchRealTimeList().forEach{
+            val list = arrayListOf<Current>()
+
+            //
+            val plist = pdb.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
+            //
+
+            plist.forEach{
                 list.add(it)
             }
             intent.putParcelableArrayListExtra("list", list)
             startActivity(intent)
         }
 
-        val img = arrayOf(
-            R.drawable.icon_ray,
-            R.drawable.icon_redsnapper,
-            R.drawable.icon_ribboneel,
-            R.drawable.icon_saddledbichir,
-            R.drawable.icon_salmon,
-            R.drawable.icon_sawshark,
-            R.drawable.icon_seabass,
-            R.drawable.icon_seabutterfly,
-            R.drawable.icon_seahorse,
-            R.drawable.icon_snappingturtle,
-            R.drawable.icon_softshelledturtle,
-            R.drawable.icon_anchovy,
-            R.drawable.icon_angelfish,
-            R.drawable.icon_arapaima,
-            R.drawable.icon_arowana,
-            R.drawable.icon_barredknifejaw,
-            R.drawable.icon_barreleye,
-            R.drawable.icon_betta,
-            R.drawable.icon_bitterling,
-            R.drawable.icon_blackbass,
-            R.drawable.icon_blowfish,
-            R.drawable.icon_bluegill,
-            R.drawable.icon_bluemarlin,
-            R.drawable.icon_butterflyfish,
-            R.drawable.icon_carp,
-            R.drawable.icon_catfish
-
-        )
-
-        val realTimeList = searchRealTimeList()
+        val realTimeList = pdb.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
         var imgArr = Array(realTimeList.size, {0})
         var idx = 0
         realTimeList.forEach {
-            var id = "a" + it.aid
+            var id = it.information_code
             imgArr[idx] = this.getResources().getIdentifier(id, "drawable", this.getPackageName())
             idx++
         }
         val griviewAdapter = GridviewAdapter(this, imgArr)
         gridView1.adapter = griviewAdapter
 
-        val catchFishes = db.animalDao().selectCatchFish().size
-        val catchBugs = db.animalDao().selectCatchBug().size
+        val catchFishes = pdb.animalCrossingDao().viewCatchFish().size
+        val catchBugs = pdb.animalCrossingDao().viewCatchBug().size
         fish_progress.progress = catchFishes
         bug_progress.progress = catchBugs
         catch_fish_text.text = "" + "" + catchFishes + "/80"

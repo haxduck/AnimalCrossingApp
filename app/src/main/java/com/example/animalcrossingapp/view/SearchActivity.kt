@@ -3,7 +3,6 @@ package com.example.animalcrossingapp.view
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +10,6 @@ import android.view.View
 import android.widget.RadioButton
 import androidx.room.Room
 import com.example.animalcrossingapp.R
-import com.example.animalcrossingapp.cache.Member
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
@@ -19,7 +17,6 @@ import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_search.*
 import org.json.JSONArray
-import java.io.*
 
 class SearchActivity : AppCompatActivity() {
 
@@ -35,31 +32,6 @@ class SearchActivity : AppCompatActivity() {
         val blob = db.animalCrossingDao().selectJoin().get(0).picture
         val bitmap: Bitmap = BitmapFactory.decodeByteArray(blob, 0, blob!!.size)
         imageView.setImageBitmap(bitmap)
-
-
-        //캐쉬
-        val sharedPreference = getSharedPreferences("caches", 0)
-        val editor = sharedPreference.edit()
-        editor.putString("test", "ttt").apply()
-        val test = sharedPreference.getString("test", "")
-        editor.clear().apply()
-        val tmp = Uri.parse("cache")?.lastPathSegment?.let { filename ->
-            File.createTempFile(filename, null, this.cacheDir)
-        }!!
-        val fos = FileOutputStream(tmp)
-        val oos = ObjectOutputStream(fos)
-        val member = Member("td", listOf("1", "2"))
-        oos.writeObject(member)
-        oos.flush()
-
-        val fis = FileInputStream(tmp)
-        val ois = BufferedInputStream(fis)
-        val oin = ObjectInputStream(ois)
-        val mem = oin.readObject() as Member
-
-        Log.d("ttt", mem.id)
-        tmp.delete()
-        //
 
         searchFB()
 

@@ -8,7 +8,6 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
-import com.example.animalcrossingapp.controller.MainController
 import kotlinx.android.synthetic.main.activity_initial.*
 
 class InitialActivity : AppCompatActivity() {

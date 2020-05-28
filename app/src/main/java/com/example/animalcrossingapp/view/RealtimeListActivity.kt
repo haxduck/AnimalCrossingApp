@@ -5,13 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
-import com.example.animalcrossingapp.controller.AllAdapter
 import com.example.animalcrossingapp.controller.AnimalAdapter
 import com.example.animalcrossingapp.controller.App
-import com.example.animalcrossingapp.controller.MainController
 import com.example.animalcrossingapp.room.AnimalDB
 import com.example.animalcrossingapp.room.AnimalVO
-import com.example.animalcrossingapp.vo.AllVO
 import kotlinx.android.synthetic.main.activity_realtime_list.*
 import java.util.*
 import kotlin.collections.ArrayList

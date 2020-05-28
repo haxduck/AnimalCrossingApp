@@ -13,15 +13,15 @@ class Tables{
 data class Information (
     @PrimaryKey
     @NotNull
-    @ColumnInfo() val information_code: String,
-    @NotNull val habitat_code: String,
-    @NotNull val capture_code: String,
-    val name_japan: String?,
-    val name_korea: String?,
+    @ColumnInfo() val information_code: String = "",
+    @NotNull val habitat_code: String = "",
+    @NotNull var capture_code: String = "",
+    val name_japan: String? = "",
+    val name_korea: String? = "",
     @NotNull @ColumnInfo(defaultValue = "0") val price: Int = 0,
-    @NotNull @ColumnInfo(defaultValue = "c1") val catch_flag: String,
-    val size: String?,
-    val sortation: String?
+    @NotNull @ColumnInfo(defaultValue = "c1") val catch_flag: String = "",
+    val size: String? = "",
+    val sortation: String? = ""
 ) : Parcelable
 
 @Parcelize
@@ -97,4 +97,16 @@ data class MyObject(
     val sortation: String?,
     val months: String?,
     val times: String?
+) : Parcelable
+
+@Parcelize
+data class Current(
+    val information_code: String?,
+    val name: String?,
+    val price: Int,
+//    val picture: ByteArray?,
+    val time: String?,
+    val month: String?,
+    val flag: String?,
+    val habitat: String?
 ) : Parcelable
