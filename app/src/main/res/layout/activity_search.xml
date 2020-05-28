@@ -54,6 +54,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_wrap" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/type2_wrap"
             android:layout_width="match_parent"
@@ -130,6 +138,14 @@
             </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/type2_wrap" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -208,6 +224,14 @@
             </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/type_wrap" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -422,6 +446,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/month_wrap" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/time_wrap"
             android:layout_width="match_parent"
@@ -458,6 +490,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time_wrap" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/price_wrap"
             android:layout_width="match_parent"
@@ -492,6 +532,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price_wrap" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/FS"
@@ -609,6 +657,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/searchTgBtn5"
                 app:layout_constraintStart_toEndOf="@+id/searchTgBtn3"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.3dp"
+                android:background="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -755,6 +811,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/bugTgBtn9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.3dp"
+                android:background="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

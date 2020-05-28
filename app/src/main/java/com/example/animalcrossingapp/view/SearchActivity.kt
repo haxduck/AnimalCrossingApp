@@ -1,6 +1,7 @@
 package com.example.animalcrossingapp.view
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -84,7 +85,8 @@ class SearchActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        price_rangeSeekbar.setRangeColor(Color.BLACK)
+        time_rangeSeekbar.setRangeColor(Color.BLACK)
 
     }
 
@@ -324,4 +326,6 @@ class SearchActivity : AppCompatActivity() {
         list = gson.fromJson(json, Array<String>::class.java).toList()
         return list
     }
+
+
 }
