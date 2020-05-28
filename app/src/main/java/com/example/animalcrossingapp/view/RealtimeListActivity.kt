@@ -3,6 +3,8 @@ package com.example.animalcrossingapp.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.AllAdapter
@@ -39,6 +41,8 @@ class RealtimeListActivity : AppCompatActivity() {
         }
 
     }
+
+
 
     fun searchRealTimeList(): MutableSet<AnimalVO> {
         //실시간 현재 시간 / 반구 /

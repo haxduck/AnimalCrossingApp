@@ -120,10 +120,10 @@ class MainActivity : AppCompatActivity() {
 
         val catchFishes = db.animalDao().selectCatchFish().size
         val catchBugs = db.animalDao().selectCatchBug().size
-        fish_progress.progress = catchFishes
-        bug_progress.progress = catchBugs
-        catch_fish_text.text = "" + "" + catchFishes + "/80"
-        catch_bug_text.text = "" + catchBugs + "/80"
+//        fish_progress.progress = catchFishes
+//        bug_progress.progress = catchBugs
+//        catch_fish_text.text = "" + "" + catchFishes + "/80"
+//        catch_bug_text.text = "" + catchBugs + "/80"
     }
 
 
