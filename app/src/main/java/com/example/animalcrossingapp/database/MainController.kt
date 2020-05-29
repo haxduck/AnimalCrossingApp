@@ -25,8 +25,9 @@ object MainController: Application() {
         val date: Date = Date()
         val cal = Calendar.getInstance()
         cal.time = date
-        val hours = cal.get(Calendar.HOUR)
-        val sdf = SimpleDateFormat("yyyy/M/d/ H:00 ~ ${hours + 1}:00")
+        var hours = cal.get(Calendar.HOUR)
+        if (hours > 12 ) hours = hours + 12
+        val sdf = SimpleDateFormat("yyyy/M/d/ h:00 ~ ${hours + 1}:00")
         val currentDate = sdf.format(Date())
         return currentDate
     }

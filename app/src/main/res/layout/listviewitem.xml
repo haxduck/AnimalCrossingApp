@@ -6,6 +6,12 @@
         <variable
             name="current"
             type="com.example.animalcrossingapp.database.Current" />
+        <variable
+            name="time"
+            type="String" />
+        <variable
+            name="month"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -19,6 +25,7 @@
             android:id="@+id/grid_wrap"
             android:layout_width="350dp"
             android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
             android:layout_gravity="center"
             android:background='@{current.flag.equals("1") ? @drawable/list_wrap_c : @drawable/list_wrap}'
             android:orientation="horizontal">
@@ -32,8 +39,9 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/view_img"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background='@{current.flag.equals("1") ? @drawable/grid_wrap_r : @drawable/grid_wrap}'
                     android:src='@{"android.resource://com.example.animalcrossingapp/drawable/" + current.information_code}' />
             </FrameLayout>
 
@@ -47,7 +55,7 @@
                     android:layout_width="100dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="@{current.name + current.flag}"
+                    android:text="@{current.name}"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -62,7 +70,7 @@
                     android:layout_height="18dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="35dp"
-                    android:text="@{current.month}"
+                    android:text="@{month}"
                     android:textSize="12dp" />
 
 
@@ -79,7 +87,7 @@
                     android:layout_height="18dp"
                     android:layout_marginLeft="110dp"
                     android:layout_marginTop="35dp"
-                    android:text="@{current.time}"
+                    android:text="@{time}"
                     android:textSize="12dp" />
 
 

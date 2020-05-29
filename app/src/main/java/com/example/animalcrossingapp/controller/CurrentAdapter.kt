@@ -31,20 +31,62 @@ class CurrentAdapter(val items: ArrayList<Current>,
 
 
     override fun onBindViewHolder(holder: CurrentViewHolder, position: Int) {
+        var tarr = items[position].time!!.split(",")
+        var str = ""
+        var flist: ArrayList<Int> = arrayListOf(tarr[0].toInt())
+        var slist: ArrayList<Int> = arrayListOf()
+        var f = 0
+        for (i in 1..tarr.size - 1) {
+            if (tarr[i].toInt() - tarr[i-1].toInt() == 1 && f == 0) {
+                flist.add(tarr[i].toInt())
+            } else {
+                f = 1
+                slist.add(tarr[i].toInt())
+            }
+        }
+        if (slist.size == 0) {
+            str = flist[0].toString() + "時 ~ " + flist[flist.size - 1].toString() + "時"
+        } else {
+            str = flist[0].toString() + "時 ~ " + flist[flist.size - 1].toString() +
+                    "時, " + slist[0].toString() + "時 ~ " + slist[slist.size - 1].toString() + "時"
+        }
+        //
+        var marr = items[position].month!!.replace("月","").split(",")
+        var str1 = ""
+        var flist1: ArrayList<Int> = arrayListOf(marr[0].toInt())
+        var slist1: ArrayList<Int> = arrayListOf()
+        var fl = 0
+        for (i in 1..marr.size - 1) {
+            if (marr[i].toInt() - marr[i-1].toInt() == 1 && fl == 0) {
+                flist1.add(marr[i].toInt())
+            } else {
+                fl = 1
+                slist1.add(marr[i].toInt())
+            }
+        }
+        if (slist1.size == 0) {
+            str1 = flist1[0].toString() + "月 ~ " + flist1[flist1.size - 1].toString() + "月"
+        } else {
+            str1 = flist1[0].toString() + "月 ~ " + flist1[flist1.size - 1].toString() +
+                    "月, " + slist1[0].toString() + "月 ~ " + slist1[slist1.size - 1].toString() + "月"
+        }
+        Log.d("ttt", str)
+        Log.d("mmm", str1)
+        holder.binding.time = str
+        holder.binding.month = str1
         holder.binding.current = items[position]
         val db = AnimalCrossingDB.getInstance(holder.itemView.context)!!
         var flag = items[position].flag
-//        if (flag == "1") holder.itemView.view_img.setBackgroundColor(Color.parseColor("#B9E9DB"))
         holder.itemView.setOnClickListener {
             if (flag == "1") {
                 db.animalCrossingDao().updateCatchFlag(items[position].information_code!!, "0")
                 holder.itemView.grid_wrap.background = holder.itemView.resources.getDrawable(R.drawable.list_wrap)
-//                holder.itemView.view_img.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                holder.itemView.view_img.background = holder.itemView.resources.getDrawable(R.drawable.grid_wrap)
                 flag = "0"
             } else {
                 db.animalCrossingDao().updateCatchFlag(items[position].information_code!!, "1")
                 holder.itemView.grid_wrap.background = holder.itemView.resources.getDrawable(R.drawable.list_wrap_c)
-//                holder.itemView.view_img.setBackgroundColor(Color.parseColor("#B9E9DB"))
+                holder.itemView.view_img.background = holder.itemView.resources.getDrawable(R.drawable.grid_wrap_r)
                 flag = "1"
             }
         }
