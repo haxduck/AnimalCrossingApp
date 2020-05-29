@@ -107,6 +107,6 @@ data class Current(
 //    val picture: ByteArray?,
     val time: String?,
     val month: String?,
-    val flag: String?,
+    val flag: String,
     val habitat: String?
 ) : Parcelable

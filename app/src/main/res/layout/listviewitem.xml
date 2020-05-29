@@ -20,7 +20,7 @@
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:background="@drawable/list_wrap"
+            android:background='@{current.flag.equals("1") ? @drawable/list_wrap_c : @drawable/list_wrap}'
             android:orientation="horizontal">
 
             <FrameLayout
@@ -47,7 +47,7 @@
                     android:layout_width="100dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="@{current.name}"
+                    android:text="@{current.name + current.flag}"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="210dp"
-                     />
+                    />
 
 
             </FrameLayout>

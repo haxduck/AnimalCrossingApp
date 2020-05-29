@@ -79,10 +79,20 @@ class MainActivity : AppCompatActivity() {
 
         val catchFishes = pdb.animalCrossingDao().viewCatchFish().size
         val catchBugs = pdb.animalCrossingDao().viewCatchBug().size
-        fish_progress.progress = catchFishes
-        bug_progress.progress = catchBugs
-        catch_fish_text.text = "" + "" + catchFishes + "/80"
-        catch_bug_text.text = "" + catchBugs + "/80"
+        contentLoadingProgressBar.progress = catchFishes
+        contentLoadingProgressBar2.progress = catchBugs
+        textView3.text = "" + catchFishes + "/80"
+        textView4.text = "" + catchBugs + "/80"
+        frameLayout2.setOnClickListener {
+            val intent = Intent(this, ListActivity::class.java)
+            val list = arrayListOf<Current>()
+            val plist = pdb.animalCrossingDao().selectArrange()
+            plist.forEach{
+                list.add(it)
+            }
+            intent.putParcelableArrayListExtra("list", list)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
