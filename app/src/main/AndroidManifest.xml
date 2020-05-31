@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".test.TestActivity"></activity>
         <activity android:name=".view.ListActivity" />
         <activity android:name=".view.SearchActivity">
 
@@ -22,7 +21,6 @@
             -->
         </activity>
         <activity android:name=".view.SettingActivity" />
-        <activity android:name=".view.RealtimeListActivity" />
         <activity android:name=".view.InitialActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
