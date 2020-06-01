@@ -28,13 +28,13 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         //testcode
-        val testdb = Room.databaseBuilder(
-            this.applicationContext,
-            TestDB::class.java, "AnimalCrossing.db"
-        ).allowMainThreadQueries().createFromAsset("AnimalCrossing.db").build()
-        val blob = testdb.testDao().selectJoin().get(0).picture
-        val bitmap: Bitmap = BitmapFactory.decodeByteArray(blob, 0, blob!!.size)
-        imageView.setImageBitmap(bitmap)
+//        val testdb = Room.databaseBuilder(
+//            this.applicationContext,
+//            TestDB::class.java, "AnimalCrossing.db"
+//        ).allowMainThreadQueries().createFromAsset("AnimalCrossing.db").build()
+//        val blob = testdb.testDao().selectJoin().get(0).picture
+//        val bitmap: Bitmap = BitmapFactory.decodeByteArray(blob, 0, blob!!.size)
+//        imageView.setImageBitmap(bitmap)
 
 
         //캐쉬
@@ -134,43 +134,38 @@ class SearchActivity : AppCompatActivity() {
         if (searchTgBtn5.isChecked) habitat.add(searchTgBtn5.text.toString())
         if (searchTgBtn6.isChecked) habitat.add(searchTgBtn6.text.toString())
 
-        if (bugTgBtn1.isChecked) habitat.add(bugTgBtn1.text.toString())
-        if (bugTgBtn2.isChecked) habitat.add(bugTgBtn2.text.toString())
-        if (bugTgBtn3.isChecked) habitat.add(bugTgBtn3.text.toString())
+
         if (bugTgBtn4.isChecked) habitat.add(bugTgBtn4.text.toString())
-        if (bugTgBtn5.isChecked) habitat.add(bugTgBtn5.text.toString())
+
         if (bugTgBtn6.isChecked) habitat.add(bugTgBtn6.text.toString())
-        if (bugTgBtn7.isChecked) habitat.add(bugTgBtn7.text.toString())
-        if (bugTgBtn8.isChecked) habitat.add(bugTgBtn8.text.toString())
+
         if (bugTgBtn9.isChecked) habitat.add(bugTgBtn9.text.toString())
-        if (bugTgBtn10.isChecked) habitat.add(bugTgBtn10.text.toString())
-        if (bugTgBtn11.isChecked) habitat.add(bugTgBtn11.text.toString())
-        if (bugTgBtn12.isChecked) habitat.add(bugTgBtn12.text.toString())
-        if (bugTgBtn13.isChecked) habitat.add(bugTgBtn13.text.toString())
+
         if (bugTgBtn14.isChecked) habitat.add(bugTgBtn14.text.toString())
         if (bugTgBtn15.isChecked) habitat.add(bugTgBtn15.text.toString())
-        if (bugTgBtn16.isChecked) habitat.add(bugTgBtn16.text.toString())
-        if (bugTgBtn17.isChecked) habitat.add(bugTgBtn17.text.toString())
+
         if (bugTgBtn18.isChecked) habitat.add(bugTgBtn18.text.toString())
-        if (bugTgBtn19.isChecked) habitat.add(bugTgBtn19.text.toString())
-        if (bugTgBtn20.isChecked) habitat.add(bugTgBtn20.text.toString())
-        if (bugTgBtn21.isChecked) habitat.add(bugTgBtn21.text.toString())
+
         if (bugTgBtn22.isChecked) habitat.add(bugTgBtn22.text.toString())
         if (bugTgBtn23.isChecked) habitat.add(bugTgBtn23.text.toString())
-        if (bugTgBtn24.isChecked) habitat.add(bugTgBtn24.text.toString())
-        if (bugTgBtn25.isChecked) habitat.add(bugTgBtn25.text.toString())
+
 
         //초기 price 값
-        min = if (priceMinET.text.toString() == "") {
-            0
-        } else {
-            priceMinET.text.toString().toInt()
-        }
-        max = if (priceMaxET.text.toString() == "") {
-            999999
-        } else {
-            priceMaxET.text.toString().toInt()
-        }
+        min = 0
+
+//            if (priceMinET.text.toString() == "") {
+//            0
+//        } else {
+//            priceMinET.text.toString().toInt()
+//        }
+        max =  999999
+
+
+//            if (priceMaxET.text.toString() == "") {
+//            999999
+//        } else {
+//            priceMaxET.text.toString().toInt()
+//        }
 
         //종류초기값
         val arrSort: ArrayList<String> = arrayListOf()
@@ -280,10 +275,12 @@ class SearchActivity : AppCompatActivity() {
         }
 
         //시간 배열화 후 검색
-        val ns = minTime.text.toString()
+        val ns = "0"
+//        minTime.text.toString()
         var n = 0
         if (ns != "") n = ns.toInt()
-        val ms = maxTime.text.toString()
+        val ms = "24"
+//        maxTime.text.toString()
         var m = 24
         if (ms != "") m = ms.toInt()
         val rarr: ArrayList<Int> = arrayListOf()
@@ -304,7 +301,7 @@ class SearchActivity : AppCompatActivity() {
         aarr.forEach {
             str += "[ " + it.aid + ", " + it.name + ", " + it.sort + ", " + it.price + " ]" + "\n"
         }
-        testTV.text = str
+
         Log.d(
             "kw",
             name + arrSort.toString() + min.toString() + max.toString() + mlist + habitat + rarr
@@ -313,7 +310,7 @@ class SearchActivity : AppCompatActivity() {
         val tmp = "show"
         val id = this.getResources().getIdentifier(tmp, "drawable", this.getPackageName())
         Log.d("id", id.toString())
-//        imageView.setImageResource(id)
+
 
         return aarr
     }

@@ -57,6 +57,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottomBar.onItemSelected = {
+            if(it == 0){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+
             if(it == 1){
                 val intent = Intent(this, ListActivity::class.java)
                 startActivity(intent)
@@ -172,7 +177,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun showTab(i: Int) {
-        Log.d("MainActi  vity", "onTabSelected: $i")
+        Log.d("MainActivity", "onTabSelected: $i")
     }
 
     //test
