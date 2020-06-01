@@ -21,6 +21,7 @@ import java.io.*
 class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val view:View
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
@@ -88,10 +89,14 @@ class SearchActivity : AppCompatActivity() {
         price_rangeSeekbar.setRangeColor(Color.BLACK)
         time_rangeSeekbar.setRangeColor(Color.BLACK)
 
-        btn_test.setOnClickListener{
-            expandableLayout.toggle()
-        }
 
+
+        test2.setVisibility(View.GONE)
+
+    }
+
+    fun toggle_contents(v: View?) {
+        test2.setVisibility(if (test2.isShown()) View.GONE else View.VISIBLE)
     }
 
     fun searchFB(vararg keywords: Any): MutableSet<AnimalVO> {
