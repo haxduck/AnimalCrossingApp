@@ -4,19 +4,18 @@
 
     <item
         android:id="@+id/first_fragment"
-        android:title=""
         android:icon="@drawable/home"
-        />
+        android:title="" />
 
     <item
         android:id="@+id/second_fragment"
-        android:title=""
-        android:icon="@drawable/fish"/>
+        android:icon="@drawable/fish"
+        android:title="" />
 
     <item
         android:id="@+id/third_fragment"
-        android:title=""
-        android:icon="@drawable/setting"/>
+        android:icon="@drawable/setting"
+        android:title="" />
 
 
 

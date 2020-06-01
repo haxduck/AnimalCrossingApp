@@ -44,11 +44,13 @@ class CurrentAdapter(val items: ArrayList<Current>,
                 slist.add(tarr[i].toInt())
             }
         }
-        if (slist.size == 0) {
+        if (slist.size == 0 && flist.size != 1) {
             str = flist[0].toString() + "時 ~ " + flist[flist.size - 1].toString() + "時"
-        } else {
+        } else if (slist.size != 0) {
             str = flist[0].toString() + "時 ~ " + flist[flist.size - 1].toString() +
                     "時, " + slist[0].toString() + "時 ~ " + slist[slist.size - 1].toString() + "時"
+        } else {
+            str = flist[0].toString() + "時"
         }
         //
         var marr = items[position].month!!.replace("月","").split(",")
@@ -64,14 +66,14 @@ class CurrentAdapter(val items: ArrayList<Current>,
                 slist1.add(marr[i].toInt())
             }
         }
-        if (slist1.size == 0) {
+        if (slist1.size == 0 && flist1.size != 1) {
             str1 = flist1[0].toString() + "月 ~ " + flist1[flist1.size - 1].toString() + "月"
-        } else {
+        } else if (slist1.size != 0) {
             str1 = flist1[0].toString() + "月 ~ " + flist1[flist1.size - 1].toString() +
                     "月, " + slist1[0].toString() + "月 ~ " + slist1[slist1.size - 1].toString() + "月"
+        } else {
+            str1 = flist1[0].toString() + "月"
         }
-        Log.d("ttt", str)
-        Log.d("mmm", str1)
         holder.binding.time = str
         holder.binding.month = str1
         holder.binding.current = items[position]

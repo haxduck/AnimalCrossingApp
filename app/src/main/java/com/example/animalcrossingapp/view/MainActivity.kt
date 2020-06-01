@@ -1,113 +1,37 @@
 package com.example.animalcrossingapp.view
 
-import android.app.SearchManager
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
-import com.example.animalcrossingapp.database.MainController
+import com.example.animalcrossingapp.toolbar.FirstFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.appcompat.widget.SearchView
-import com.example.animalcrossingapp.database.AnimalCrossingDB
-import com.example.animalcrossingapp.database.Current
-import com.example.animalcrossingapp.room.AnimalDB
-import com.example.animalcrossingapp.room.AnimalVO
-import java.util.*
-import kotlin.collections.ArrayList
 
-
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        navController = findNavController(R.id.main_fragment)
+        setupActionBarWithNavController(navController)
 
-        val db = AnimalDB.getInstance(this)!!
-        val pdb = AnimalCrossingDB.getInstance(this)!!
-
-        val hemishpere = App.prefs.hemisphere!!
-        val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
-        val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
-        val currentMonth = "" + thisMonth + "月"
-
-        //첫 실행 판단 prefs.xml 저장
-        val iniFlag = App.prefs.initialFlag
-        Toast.makeText(this, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
-
-        if(iniFlag == "1") {
-            setContentView(R.layout.activity_main)
-        } else {
-            setContentView(R.layout.activity_main)
-            val nextIntent = Intent(this, InitialActivity::class.java)
-            startActivity(nextIntent)
-        }
-
-        textView2.setText(
-            "リアルタイム情報" + "\n" + MainController.currentTime()
-        )
-
-        textView2.setOnClickListener {
-            val intent = Intent(this, ListActivity::class.java)
-            val list = arrayListOf<Current>()
-
-            //
-            val plist = pdb.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
-            //
-
-            plist.forEach{
-                list.add(it)
-            }
-            intent.putParcelableArrayListExtra("list", list)
-            startActivity(intent)
-        }
-
-        val realTimeList = pdb.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
-        var imgArr = Array(realTimeList.size, {0})
-        var idx = 0
-        realTimeList.forEach {
-            var id = it.information_code
-            imgArr[idx] = this.getResources().getIdentifier(id, "drawable", this.getPackageName())
-            idx++
-        }
-        val griviewAdapter = GridviewAdapter(this, imgArr)
-        gridView1.adapter = griviewAdapter
-
-        val catchFishes = pdb.animalCrossingDao().viewCatchFish().size
-        val catchBugs = pdb.animalCrossingDao().viewCatchBug().size
-        contentLoadingProgressBar.progress = catchFishes
-        contentLoadingProgressBar2.progress = catchBugs
-        textView3.text = "" + catchFishes + "/80"
-        textView4.text = "" + catchBugs + "/80"
-        frameLayout2.setOnClickListener {
-            val intent = Intent(this, ListActivity::class.java)
-            val list = arrayListOf<Current>()
-            val plist = pdb.animalCrossingDao().selectArrange()
-            plist.forEach{
-                list.add(it)
-            }
-            intent.putParcelableArrayListExtra("list", list)
-            startActivity(intent)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_bottom,menu)
+        menuInflater.inflate(R.menu.menu_top,menu)
+        bottomBar.setupWithNavController(menu!!,navController)
 
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_top, menu)
-//        menuInflater.inflate(R.menu.menu_bottom, menu)
-//        bottomBar.setupWithNavController(menu!!, navController)
-
-        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        /*val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
 
         searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
-
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -122,56 +46,22 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
 
-        })
+        })*/
 
-      return true
+
+        return true
     }
 
-    //test
-    fun clearXml(view: View) {
-        App.prefs.initialFlag = ""
-        App.prefs.hemisphere = ""
+    override fun onSupportNavigateUp(): Boolean {
+        navController.navigateUp()
+        return true
     }
-    //
 
-    fun searchRealTimeList(): ArrayList<AnimalVO> {
-        //실시간 현재 시간 / 반구 /
-        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        val hemisphere = App.prefs.hemisphere
-        val db = AnimalDB.getInstance(this)!!
-        val allList = db.animalDao().selectAll()
-        val realTimeList = mutableSetOf<AnimalVO>()
-        val thisMonthList = mutableSetOf<AnimalVO>()
-        allList.forEach { animal ->
-            //월
-            val monthList =
-                animal.nm!!.replace("[", "").replace("]", "").split(", ").map { it.toInt() }
-            monthList.forEach {
-                if (it == Calendar.getInstance().get(Calendar.MONTH) + 1) {
-                    thisMonthList.add(animal)
-                }
-            }
-
-            //시간
-            thisMonthList.forEach { thisMonthAnimal ->
-                val timeList = arrayListOf<String>()
-                var intList: List<Int>
-                timeList.add(thisMonthAnimal.time!!)
-                timeList.forEach {
-                    intList = it.replace("[", "").replace("]", "").split(", ").map { it.toInt() }
-                    intList.forEach {
-                        if (it == currentHour) {
-                            realTimeList.add(thisMonthAnimal)
-                        }
-                    }
-                }
-            }
-        }
-        val list: ArrayList<AnimalVO> = arrayListOf()
-        realTimeList.forEach {
-            list.add(it)
-        }
-        return list
-    }
+    /*fun replaceFragment(fragment: Fragment, tag: String) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTranceaction = fragmentManager.beginTransaction()
+        fragmentTranceaction.replace(R.id.main_fragment, fragment).commit()
+    }*/
 
 }
+
