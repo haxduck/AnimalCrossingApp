@@ -58,7 +58,11 @@ class FirstFragment : Fragment() {
         }
 
         view.textView2.setText(
-            "リアルタイム情報" + "\n" + MainController.currentTime()
+            if(App.prefs.language =="ko"){
+                "실시간정보" + "\n" + MainController.currentTime()
+            }else {
+                "リアルタイム情報" + "\n" + MainController.currentTime()
+            }
         )
 
         view.textView2.setOnClickListener {
@@ -67,7 +71,7 @@ class FirstFragment : Fragment() {
             val bundle: Bundle = Bundle()
 
             //
-            val plist = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
+            val plist = db.animalCrossingDao().selectCurrentAnimal("北半球", "2", "2月")
             //
             plist.forEach {
                 list.add(it)
@@ -82,7 +86,8 @@ class FirstFragment : Fragment() {
                 .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
         }
 
-        val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
+        val realTimeList = db.animalCrossingDao().selectCurrentAnimal("北半球", "2", "2月")
+        Log.d("realt", realTimeList.toString())
         var imgArr = Array(realTimeList.size, {0})
         var idx = 0
         realTimeList.forEach {
