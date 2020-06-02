@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/first_fragment"
         android:name="com.example.animalcrossingapp.toolbar.FirstFragment"
-        android:label="First Fragment"
         tools:layout="@layout/fragment_first" >
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
@@ -17,7 +16,6 @@
     <fragment
         android:id="@+id/second_fragment"
         android:name="com.example.animalcrossingapp.toolbar.SecondFragment"
-        android:label="Second Fragment"
         tools:layout="@layout/fragment_second" >
         <action
             android:id="@+id/action_secondFragment_to_thirdFragment"
@@ -26,7 +24,6 @@
     <fragment
         android:id="@+id/third_fragment"
         android:name="com.example.animalcrossingapp.toolbar.ThirdFragment"
-        android:label="Third Fragment"
         tools:layout="@layout/fragment_third" />
 
 </navigation>

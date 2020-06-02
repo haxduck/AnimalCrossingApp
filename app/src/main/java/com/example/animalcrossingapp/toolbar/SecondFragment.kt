@@ -35,6 +35,7 @@ class SecondFragment : Fragment() {
 
         view.search_wrap.setOnClickListener{
             view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
+            view.recycler_view.setVisibility(if (view.recycler_view.isShown()) View.GONE else View.VISIBLE)
         }
 
         try{
@@ -55,6 +56,7 @@ class SecondFragment : Fragment() {
         }*/
 
         view.test2.setVisibility(View.GONE)
+        view.recycler_view.setVisibility(View.VISIBLE)
 
         view.price_rangeSeekbar.setRangeColor(Color.BLACK)
         view.time_rangeSeekbar.setRangeColor(Color.BLACK)

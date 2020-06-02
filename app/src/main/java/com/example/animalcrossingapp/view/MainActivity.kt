@@ -3,6 +3,7 @@ package com.example.animalcrossingapp.view
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navController = findNavController(R.id.main_fragment)
-        setupActionBarWithNavController(navController)
+//        setupActionBarWithNavController(navController)
+        setSupportActionBar(menu_top)
 
     }
 
