@@ -2,6 +2,7 @@ package com.example.animalcrossingapp.toolbar
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -32,6 +33,10 @@ class SecondFragment : Fragment() {
         val db = AnimalCrossingDB.getInstance(context)!!
         var list = arrayListOf<Current>()
 
+        view.search_wrap.setOnClickListener{
+            view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
+        }
+
         try{
             list.addAll(arguments?.getParcelableArrayList("list")!!)
         }catch(e: KotlinNullPointerException){
@@ -49,6 +54,11 @@ class SecondFragment : Fragment() {
             list.addAll(arguments?.getParcelableArrayList("list")!!)
         }*/
 
+        view.test2.setVisibility(View.GONE)
+
+        view.price_rangeSeekbar.setRangeColor(Color.BLACK)
+        view.time_rangeSeekbar.setRangeColor(Color.BLACK)
+
         view.recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = CurrentAdapter(list) { animal ->
@@ -57,6 +67,8 @@ class SecondFragment : Fragment() {
 
         return view
     }
+
+
     /*companion object {
         val TAG = SecondFragment::class.java.simpleName
         @JvmStatic
