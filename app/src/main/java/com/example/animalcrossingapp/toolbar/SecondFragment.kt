@@ -11,8 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.PagerAdapter
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.CurrentAdapter
+import com.example.animalcrossingapp.controller.TabLayoutAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.activity_list.*
@@ -33,19 +35,25 @@ class SecondFragment : Fragment() {
         val db = AnimalCrossingDB.getInstance(context)!!
         var list = arrayListOf<Current>()
 
+        val pageAdapter : PagerAdapter = TabLayoutAdapter(childFragmentManager)
+
+
+        view.tabLayoutViewPager.adapter = pageAdapter
+        view.tabLayout.setupWithViewPager(view.tabLayoutViewPager)
+
         view.search_wrap.setOnClickListener{
             view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
-            view.recycler_view.setVisibility(if (view.recycler_view.isShown()) View.GONE else View.VISIBLE)
+            view.test3.setVisibility(if (view.test3.isShown()) View.GONE else View.VISIBLE)
         }
 
-        try{
-            list.addAll(arguments?.getParcelableArrayList("list")!!)
-        }catch(e: KotlinNullPointerException){
-            var clist = db.animalCrossingDao().selectAll()
-            clist.forEach {
-                list.add(it)
-            }
-        }
+//        try{
+//            list.addAll(arguments?.getParcelableArrayList("list")!!)
+//        }catch(e: KotlinNullPointerException){
+//            var clist = db.animalCrossingDao().selectAll()
+//            clist.forEach {
+//                list.add(it)
+//            }
+//        }
         /*if (list.addAll(arguments?.getParcelableArrayList("list")!!) == null ){
             var clist = db.animalCrossingDao().selectAll()
             clist.forEach {
@@ -56,16 +64,16 @@ class SecondFragment : Fragment() {
         }*/
 
         view.test2.setVisibility(View.GONE)
-        view.recycler_view.setVisibility(View.VISIBLE)
+        view.test3.setVisibility(View.VISIBLE)
 
         view.price_rangeSeekbar.setRangeColor(Color.BLACK)
         view.time_rangeSeekbar.setRangeColor(Color.BLACK)
-
-        view.recycler_view.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = CurrentAdapter(list) { animal ->
-            }
-        }
+//
+//        view.recycler_view.apply {
+//            layoutManager = LinearLayoutManager(activity)
+//            adapter = CurrentAdapter(list) { animal ->
+//            }
+//        }
 
         return view
     }
