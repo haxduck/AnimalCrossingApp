@@ -17,10 +17,14 @@ import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.database.MainController
+import com.example.animalcrossingapp.tab.BlankFragment
+import com.example.animalcrossingapp.tab.DemoObjectFragment
 import com.example.animalcrossingapp.view.GridviewAdapter
 import com.example.animalcrossingapp.view.InitialActivity
 import com.example.animalcrossingapp.view.MainActivity
+import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.fragment_first.view.*
+import kotlinx.android.synthetic.main.fragment_first.view.first_fragment
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,26 +37,28 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_first, container, false)
         val context: Context = requireContext()
-
         val db = AnimalCrossingDB.getInstance(context)!!
-
         val hemishpere = App.prefs.hemisphere!!
         val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
         val currentMonth = "" + thisMonth + "月"
+
+        //
+        view.testbtn.setOnClickListener {
+            (activity as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_fragment, BlankFragment()).addToBackStack(null).commit()
+        }
+        //
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
         Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
 
         if(iniFlag == "1") {
-//            setContentView(R.layout.activity_main)
         } else {
-//            setContentView(R.layout.activity_main)
             val nextIntent = Intent(context, InitialActivity::class.java)
             startActivity(nextIntent)
         }
@@ -65,16 +71,10 @@ class FirstFragment : Fragment() {
             val intent = Intent(context, SecondFragment::class.java)
             val list = arrayListOf<Current>()
             val bundle: Bundle = Bundle()
-
-            //
             val plist = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
-            //
             plist.forEach {
                 list.add(it)
             }
-//            intent.putParcelableArrayListExtra("list", list)
-//            startActivity(intent)
-
             bundle.putParcelableArrayList("list", list)
             val frg = SecondFragment()
             frg.arguments = bundle
@@ -107,8 +107,6 @@ class FirstFragment : Fragment() {
             plist.forEach{
                 list.add(it)
             }
-            /*intent.putParcelableArrayListExtra("list", list)
-            startActivity(intent)*/
 
             bundle.putParcelableArrayList("list", list)
             val frg = SecondFragment()
@@ -119,14 +117,6 @@ class FirstFragment : Fragment() {
 
         return view
     }
-    /*fun onItemSelected() {
-        val frag = SecondFragment.newInstance()
-        (activity as MainActivity).replaceFragment(frag, SecondFragment.TAG)
-    }
-    companion object {
-        val TAG = FirstFragment::class.java.simpleName
-        @JvmStatic
-        fun newInstance() = FirstFragment()
-    }*/
+
 
 }

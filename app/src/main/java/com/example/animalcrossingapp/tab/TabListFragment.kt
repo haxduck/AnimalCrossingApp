@@ -1,4 +1,4 @@
-package com.example.animalcrossingapp.toolbar
+package com.example.animalcrossingapp.tab
 
 import android.content.Context
 import android.content.Intent
@@ -8,26 +8,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
-import kotlinx.android.synthetic.main.activity_list.*
+import com.example.animalcrossingapp.toolbar.SecondFragment
 import kotlinx.android.synthetic.main.fragment_second.view.*
+import kotlinx.android.synthetic.main.fragment_tab_list.view.*
 
-/**
- * A simple [Fragment] subclass.
- */
-class SecondFragment : Fragment() {
-
+class TabListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_second, container, false)
-        val intent = Intent (activity, SecondFragment::class.java)
+        val view = inflater.inflate(R.layout.fragment_tab_list, container, false)
         val context: Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
         var list = arrayListOf<Current>()
@@ -41,7 +36,7 @@ class SecondFragment : Fragment() {
             }
         }
 
-        view.recycler_view.apply {
+        view.tab_recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = CurrentAdapter(list) { animal ->
             }
@@ -49,7 +44,4 @@ class SecondFragment : Fragment() {
 
         return view
     }
-
-
-
 }

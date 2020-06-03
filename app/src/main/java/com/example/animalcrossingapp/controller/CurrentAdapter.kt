@@ -31,6 +31,7 @@ class CurrentAdapter(val items: ArrayList<Current>,
 
 
     override fun onBindViewHolder(holder: CurrentViewHolder, position: Int) {
+        Log.d("In apdater", position.toString()) //todo
         var tarr = items[position].time!!.split(",")
         var str = ""
         var flist: ArrayList<Int> = arrayListOf(tarr[0].toInt())

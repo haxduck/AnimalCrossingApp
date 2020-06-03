@@ -5,17 +5,26 @@
     <item
         android:id="@+id/first_fragment"
         android:icon="@drawable/home"
-        android:title="" />
+        android:title=""
+        android:visible="false"/>
 
     <item
         android:id="@+id/second_fragment"
         android:icon="@drawable/fish"
-        android:title="" />
+        android:title=""
+        android:visible="false"/>
 
     <item
         android:id="@+id/third_fragment"
         android:icon="@drawable/setting"
-        android:title="" />
+        android:title=""
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/blank_fragment"
+        android:icon="@drawable/setting"
+        android:title=""
+        android:visible="false"/>
 
 
 
