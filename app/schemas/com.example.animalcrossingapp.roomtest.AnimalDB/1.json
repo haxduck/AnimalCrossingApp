@@ -1,0 +1,70 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "63108b31d0d664250bb4b1b27ba00f57",
+    "entities": [
+      {
+        "tableName": "animals",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`aid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `price` INTEGER, `catch_flag` TEXT, `sort` TEXT, `month` TEXT, `habitant` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "aid",
+            "columnName": "aid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "catch_flag",
+            "columnName": "catch_flag",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sort",
+            "columnName": "sort",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "month",
+            "columnName": "month",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "habitant",
+            "columnName": "habitant",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "aid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '63108b31d0d664250bb4b1b27ba00f57')"
+    ]
+  }
+}

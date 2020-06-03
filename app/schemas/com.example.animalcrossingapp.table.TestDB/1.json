@@ -1,0 +1,270 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "553ff6a3905aacd020387ed520d80354",
+    "entities": [
+      {
+        "tableName": "Information",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`information_code` TEXT NOT NULL, `habitat_code` TEXT NOT NULL, `capture_code` TEXT NOT NULL, `name_japan` TEXT, `name_korea` TEXT, `price` INTEGER NOT NULL DEFAULT 0, `catch_flag` TEXT NOT NULL DEFAULT 'c1', `size` TEXT, `sortation` TEXT, PRIMARY KEY(`information_code`))",
+        "fields": [
+          {
+            "fieldPath": "information_code",
+            "columnName": "information_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "habitat_code",
+            "columnName": "habitat_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "capture_code",
+            "columnName": "capture_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name_japan",
+            "columnName": "name_japan",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_korea",
+            "columnName": "name_korea",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "catch_flag",
+            "columnName": "catch_flag",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'c1'"
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sortation",
+            "columnName": "sortation",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "information_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Capture",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`capture_code` TEXT NOT NULL, `picture` BLOB, `shilhouette` BLOB, PRIMARY KEY(`capture_code`))",
+        "fields": [
+          {
+            "fieldPath": "capture_code",
+            "columnName": "capture_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "picture",
+            "columnName": "picture",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shilhouette",
+            "columnName": "shilhouette",
+            "affinity": "BLOB",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "capture_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Habitat",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`habitat_code` TEXT NOT NULL, `name_japan` TEXT, `name_korea` TEXT, PRIMARY KEY(`habitat_code`))",
+        "fields": [
+          {
+            "fieldPath": "habitat_code",
+            "columnName": "habitat_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name_japan",
+            "columnName": "name_japan",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_korea",
+            "columnName": "name_korea",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "habitat_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Month",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`month_code` TEXT NOT NULL, `month` TEXT, `location` TEXT, PRIMARY KEY(`month_code`))",
+        "fields": [
+          {
+            "fieldPath": "month_code",
+            "columnName": "month_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "month",
+            "columnName": "month",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "location",
+            "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "month_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Month_Information",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`month_information_seq` INTEGER NOT NULL, `information_code` TEXT NOT NULL, `month_code` TEXT NOT NULL, PRIMARY KEY(`month_information_seq`))",
+        "fields": [
+          {
+            "fieldPath": "month_information_seq",
+            "columnName": "month_information_seq",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "information_code",
+            "columnName": "information_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "month_code",
+            "columnName": "month_code",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "month_information_seq"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Time",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`time_code` TEXT NOT NULL, `time` TEXT, PRIMARY KEY(`time_code`))",
+        "fields": [
+          {
+            "fieldPath": "time_code",
+            "columnName": "time_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "time_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Time_Information",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`time_information_seq` INTEGER NOT NULL, `information_code` TEXT, `time_code` TEXT, PRIMARY KEY(`time_information_seq`))",
+        "fields": [
+          {
+            "fieldPath": "time_information_seq",
+            "columnName": "time_information_seq",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "information_code",
+            "columnName": "information_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "time_code",
+            "columnName": "time_code",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "time_information_seq"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '553ff6a3905aacd020387ed520d80354')"
+    ]
+  }
+}
