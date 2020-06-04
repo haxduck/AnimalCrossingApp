@@ -146,7 +146,7 @@ interface AnimalCrossingDAO {
             AND t.time = :currentHour
             AND m.month = :currentMonth
             AND i.sortation = :currentSortation
-            AND i.catch_flag = '0'
+
         GROUP BY i.information_code        
         """)
     fun selectCurrentTablayoutAnimal(hemisphere: String, currentHour: String, currentMonth: String, currentSortation: String): List<Current>

@@ -41,10 +41,10 @@ class SecondFragment : Fragment() {
         view.tabLayoutViewPager.adapter = pageAdapter
         view.tabLayout.setupWithViewPager(view.tabLayoutViewPager)
 
-        view.search_wrap.setOnClickListener{
-            view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
-            view.test3.setVisibility(if (view.test3.isShown()) View.GONE else View.VISIBLE)
-        }
+//        view.search_wrap.setOnClickListener{
+//            view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
+//            view.test3.setVisibility(if (view.test3.isShown()) View.GONE else View.VISIBLE)
+//        }
 
 //        try{
 //            list.addAll(arguments?.getParcelableArrayList("list")!!)
@@ -63,11 +63,11 @@ class SecondFragment : Fragment() {
             list.addAll(arguments?.getParcelableArrayList("list")!!)
         }*/
 
-        view.test2.setVisibility(View.GONE)
-        view.test3.setVisibility(View.VISIBLE)
-
-        view.price_rangeSeekbar.setRangeColor(Color.BLACK)
-        view.time_rangeSeekbar.setRangeColor(Color.BLACK)
+//        view.test2.setVisibility(View.GONE)
+//        view.test3.setVisibility(View.VISIBLE)
+//
+//        view.price_rangeSeekbar.setRangeColor(Color.BLACK)
+//        view.time_rangeSeekbar.setRangeColor(Color.BLACK)
 //
 //        view.recycler_view.apply {
 //            layoutManager = LinearLayoutManager(activity)
