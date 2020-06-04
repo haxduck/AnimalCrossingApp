@@ -11,8 +11,8 @@ class TabLayoutAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
     override fun getItem(position: Int): Fragment {
         when(position){
             0 -> {return TabLayoutAllListFragment()}
-            1 -> {return TabLayoutInsectListFragment()}
-            2 -> {return TabLayoutFishListFragment()}
+            1 -> {return TabLayoutFishListFragment()}
+            2 -> {return TabLayoutInsectListFragment()}
             else -> {return TabLayoutAllListFragment()}
         }
 
@@ -21,8 +21,8 @@ class TabLayoutAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
     override fun getPageTitle(position: Int): CharSequence? {
         when(position){
             0 -> {return "All"}
-            1 -> {return "Insect"}
-            2 -> {return "Fish"}
+            1 -> {return "Fish"}
+            2 -> {return "Insect"}
         }
 
      return super.getPageTitle(position)

@@ -13,8 +13,11 @@ import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.view.GridviewAdapter
 import com.example.animalcrossingapp.view.GridviewAdapter2
+import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.toggleButton2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.m2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.m2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.tabLayoutInsectList
@@ -51,7 +54,7 @@ class TabLayoutInsectListFragment : Fragment() {
         val context : Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
         val dbList = arrayListOf<Current>()
-        val clist = db.animalCrossingDao().selectCurrentTablayoutAnimal("北半球", "8", "5月", "虫")
+        val clist = db.animalCrossingDao().selectTablayoutAllInsect()
         clist.forEach{dbList.add(it)}
 
         view.tabLayoutInsectList.apply {
@@ -63,7 +66,7 @@ class TabLayoutInsectListFragment : Fragment() {
 
         val pdb = AnimalCrossingDB.getInstance(requireContext())!!
 
-        val realTimeList = pdb.animalCrossingDao().selectCurrentTablayoutAnimal("北半球", "8", "5月", "虫")
+        val realTimeList = pdb.animalCrossingDao().selectTablayoutAllInsect()
         var imgArr = Array(realTimeList.size, {0})
         var idx = 0
         realTimeList.forEach {

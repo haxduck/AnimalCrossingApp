@@ -11,7 +11,17 @@ import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
+import com.example.animalcrossingapp.view.GridviewAdapter2
+import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.m3
+import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.tabLayoutAllList
+import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.toggleButton2
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.m4
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.tabLayoutFishList
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.toggleButton3
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,20 +51,48 @@ class TabLayoutFishListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_tab_layout_all_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_tab_layout_fish_list, container, false)
 
 
 
         val context : Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
         val dbList = arrayListOf<Current>()
-        val clist = db.animalCrossingDao().selectCurrentTablayoutAnimal("北半球", "8", "5月","魚")
+        val clist = db.animalCrossingDao().selectTablayoutAllFish()
         clist.forEach{dbList.add(it)}
 
-        view.tabLayoutAllList.apply {
+        view.tabLayoutFishList.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = CurrentAdapter(dbList){
                     animal ->
+            }
+        }
+
+        val pdb = AnimalCrossingDB.getInstance(requireContext())!!
+
+        val realTimeList = pdb.animalCrossingDao().selectTablayoutAllFish()
+        var imgArr = Array(realTimeList.size, {0})
+        var idx = 0
+        realTimeList.forEach {
+            var id = it.information_code
+            imgArr[idx] = this.getResources().getIdentifier(id, "drawable", requireContext().getPackageName())
+            idx++
+        }
+
+        val griviewAdapter = GridviewAdapter2(requireContext(), imgArr)
+        view.gridView5.adapter = griviewAdapter
+
+        view.m4.setVisibility(View.GONE)
+
+        view.toggleButton3.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
+                tabLayoutFishList.setVisibility(View.GONE)
+                m4.setVisibility(View.VISIBLE)
+            } else {
+                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
+                tabLayoutFishList.setVisibility(View.VISIBLE)
+                m4.setVisibility(View.GONE)
             }
         }
 
