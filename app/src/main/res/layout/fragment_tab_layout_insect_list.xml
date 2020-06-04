@@ -17,8 +17,8 @@
 
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/toggleButton1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
@@ -31,6 +31,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
              />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0.5dp"
+                        android:background="#E4E4E4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0.5dp"
+                        android:background="#E4E4E4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -90,7 +106,7 @@
 
                     <GridView
                         android:id="@+id/gridView3"
-                        android:layout_width="1400dp"
+                        android:layout_width="1350dp"
                         android:layout_height="match_parent"
                         android:columnWidth="75dp"
                         android:gravity="center"

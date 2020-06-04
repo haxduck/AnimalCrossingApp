@@ -17,8 +17,8 @@
 
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/toggleButton3"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
@@ -90,7 +90,7 @@
 
                     <GridView
                         android:id="@+id/gridView5"
-                        android:layout_width="1400dp"
+                        android:layout_width="1350dp"
                         android:layout_height="match_parent"
                         android:columnWidth="75dp"
                         android:gravity="center"

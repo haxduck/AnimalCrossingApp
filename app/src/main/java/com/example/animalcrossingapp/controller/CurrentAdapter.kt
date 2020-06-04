@@ -45,10 +45,10 @@ class CurrentAdapter(val items: ArrayList<Current>,
             }
         }
         if (slist.size == 0 && flist.size != 1) {
-            str = flist[0].toString() + "時 ~ " + flist[flist.size - 1].toString() + "時"
+            str = flist[0].toString() + " ~ " + flist[flist.size - 1].toString() + "時"
         } else if (slist.size != 0) {
-            str = flist[0].toString() + "時 ~ " + flist[flist.size - 1].toString() +
-                    "時, " + slist[0].toString() + "時 ~ " + slist[slist.size - 1].toString() + "時"
+            str = flist[0].toString() + " ~ " + flist[flist.size - 1].toString() +
+                    "時, " + slist[0].toString() + " ~ " + slist[slist.size - 1].toString() + "時"
         } else {
             str = flist[0].toString() + "時"
         }
@@ -67,10 +67,10 @@ class CurrentAdapter(val items: ArrayList<Current>,
             }
         }
         if (slist1.size == 0 && flist1.size != 1) {
-            str1 = flist1[0].toString() + "月 ~ " + flist1[flist1.size - 1].toString() + "月"
+            str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() + "月"
         } else if (slist1.size != 0) {
-            str1 = flist1[0].toString() + "月 ~ " + flist1[flist1.size - 1].toString() +
-                    "月, " + slist1[0].toString() + "月 ~ " + slist1[slist1.size - 1].toString() + "月"
+            str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() +
+                    "月, " + slist1[0].toString() + " ~ " + slist1[slist1.size - 1].toString() + "月"
         } else {
             str1 = flist1[0].toString() + "月"
         }

@@ -21,9 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:background='@{current.flag.equals("1") ? @drawable/list_wrap_c : @drawable/list_wrap}'>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -127,6 +127,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:text="@{current.name}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -138,6 +140,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+                android:textSize="12dp"
                 android:text="@{month}"
                 app:layout_constraintStart_toEndOf="@+id/icon_month"
                 app:layout_constraintTop_toBottomOf="@+id/name_text" />
@@ -149,6 +152,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+                android:textSize="12dp"
                 android:text='@{current.habitat}'
                 app:layout_constraintStart_toEndOf="@+id/icon_loc"
                 app:layout_constraintTop_toBottomOf="@+id/month_text" />
@@ -160,6 +164,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+                android:textSize="12dp"
                 android:text='@{"" + current.price}'
                 app:layout_constraintStart_toEndOf="@+id/icon_bell"
                 app:layout_constraintTop_toBottomOf="@+id/time_text" />
@@ -171,6 +176,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+                android:textSize="12dp"
                 android:text="@{time}"
                 app:layout_constraintStart_toEndOf="@+id/icon_time"
                 app:layout_constraintTop_toBottomOf="@+id/name_text" />

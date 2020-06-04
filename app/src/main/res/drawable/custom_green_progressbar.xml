@@ -4,8 +4,8 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="10dp" />
-            <solid android:color="#FFFFFF" />
-            <stroke android:color="#B0B0B0"/>
+            <solid android:color="#EEEEEE" />
+            <stroke android:color="#EEEEEE"/>
         </shape>
     </item>
 

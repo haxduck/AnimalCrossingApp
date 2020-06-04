@@ -14,6 +14,7 @@ class GridviewAdapter(val context: Context, val img_list : Array<Int>):BaseAdapt
 
         view.gridView_img.setImageResource(img_list[p0])
 
+
         return view
     }
 

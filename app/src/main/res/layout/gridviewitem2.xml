@@ -11,12 +11,12 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_gravity="center"
-        android:background="@drawable/grid_wrap">
+        android:background="@drawable/grid_wrap2">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/gridView_img"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:src="@drawable/icon_anchovy" />
     </FrameLayout>

@@ -38,11 +38,15 @@ class SecondFragment : Fragment() {
         val pageAdapter : PagerAdapter = TabLayoutAdapter(childFragmentManager)
 
 
+
+
         view.tabLayoutViewPager.adapter = pageAdapter
         view.tabLayout.setupWithViewPager(view.tabLayoutViewPager)
         view.tabLayout.getTabAt(0)?.setIcon(R.drawable.ic_all)
         view.tabLayout.getTabAt(1)?.setIcon(R.drawable.ic_fish)
         view.tabLayout.getTabAt(2)?.setIcon(R.drawable.ic_bug)
+
+
 
 //        view.search_wrap.setOnClickListener{
 //            view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
