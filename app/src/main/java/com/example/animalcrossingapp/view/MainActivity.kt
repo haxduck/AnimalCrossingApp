@@ -11,6 +11,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -30,12 +31,18 @@ import me.ibrahimsn.lib.OnItemReselectedListener
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var navController: NavController
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navController = findNavController(R.id.main_fragment)
 //      setupActionBarWithNavController(navController)
         setSupportActionBar(menu_top)
+        val db = AnimalCrossingDB.getInstance(this)!!
+
+        //LiveData
+        /*val mainObserver = Observer<List<Current>> { animal ->
+            Log.d("change", animal.toString())
+        }
+        var list = db.animalCrossingDao().selectAll().observe(this, mainObserver)*/
 
     }
 
@@ -43,9 +50,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         menuInflater.inflate(R.menu.menu_bottom,menu)
         menuInflater.inflate(R.menu.menu_top,menu)
         bottomBar.setupWithNavController(menu!!,navController)
-        var db = AnimalCrossingDB.getInstance(this)!!
+        val db = AnimalCrossingDB.getInstance(this)!!
 
-        /*val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
 
@@ -82,6 +89,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 frg.arguments = bundle
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
+                bottomBar.setActiveItem(1)
                 return true
             }
 
@@ -104,14 +112,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         menu?.getItem(2)?.setVisible(false)
         return super.onPrepareOptionsMenu(menu)
     }
-
-    /*fun replaceFragment(fragment: Fragment, tag: String) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTranceaction = fragmentManager.beginTransaction()
-        fragmentTranceaction.replace(R.id.main_fragment, fragment).commit()
-    }*/
-
-
 
 }
 

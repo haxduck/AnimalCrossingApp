@@ -11,6 +11,7 @@ import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
+import com.example.animalcrossingapp.view.ClickableGridviewAdapter
 import com.example.animalcrossingapp.view.GridviewAdapter2
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
@@ -59,7 +60,9 @@ class TabLayoutFishListFragment : Fragment() {
         val db = AnimalCrossingDB.getInstance(context)!!
         val dbList = arrayListOf<Current>()
         val clist = db.animalCrossingDao().selectTablayoutAllFish()
-        clist.forEach{dbList.add(it)}
+        val list = arguments?.getParcelableArrayList<Current>("flist")!!
+        if (list.size == 0) clist.forEach{dbList.add(it)}
+        else { dbList.addAll(list) }
 
         view.tabLayoutFishList.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -68,18 +71,17 @@ class TabLayoutFishListFragment : Fragment() {
             }
         }
 
-        val pdb = AnimalCrossingDB.getInstance(requireContext())!!
-
-        val realTimeList = pdb.animalCrossingDao().selectTablayoutAllFish()
-        var imgArr = Array(realTimeList.size, {0})
+        /*var imgArr = Array(dbList.size, {0})
         var idx = 0
-        realTimeList.forEach {
+        dbList.forEach {
             var id = it.information_code
             imgArr[idx] = this.getResources().getIdentifier(id, "drawable", requireContext().getPackageName())
             idx++
-        }
+        }*/
 
-        val griviewAdapter = GridviewAdapter2(requireContext(), imgArr)
+        /*val griviewAdapter = GridviewAdapter2(requireContext(), imgArr)
+        view.gridView4.adapter = griviewAdapter*/
+        val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
         view.gridView5.adapter = griviewAdapter
 
         view.m4.setVisibility(View.GONE)

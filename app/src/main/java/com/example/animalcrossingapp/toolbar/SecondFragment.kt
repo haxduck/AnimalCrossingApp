@@ -34,8 +34,12 @@ class SecondFragment : Fragment() {
         val context: Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
         var list = arrayListOf<Current>()
+        var plist = arguments?.getParcelableArrayList<Current>("list")
+        if (plist != null) {
+            plist.forEach { list.add(it) }
+        }
 
-        val pageAdapter : PagerAdapter = TabLayoutAdapter(childFragmentManager)
+        val pageAdapter : PagerAdapter = TabLayoutAdapter(childFragmentManager, list, context)
 
 
 

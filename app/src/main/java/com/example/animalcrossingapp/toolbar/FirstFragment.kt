@@ -47,13 +47,7 @@ class FirstFragment : Fragment() {
         val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
         val currentMonth = "" + thisMonth + "月"
-
-        //
-        view.testbtn.setOnClickListener {
-            (activity as MainActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.main_fragment, BlankFragment()).addToBackStack(null).commit()
-        }
-        //
+        val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
@@ -73,8 +67,7 @@ class FirstFragment : Fragment() {
             val intent = Intent(context, SecondFragment::class.java)
             val list = arrayListOf<Current>()
             val bundle: Bundle = Bundle()
-            val plist = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
-            plist.forEach {
+            realTimeList.forEach {
                 list.add(it)
             }
             bundle.putParcelableArrayList("list", list)
@@ -83,10 +76,10 @@ class FirstFragment : Fragment() {
             (activity as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
             (activity as MainActivity).bottomBar.setActiveItem(1)
-            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
+//            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
         }
 
-        val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
+
         var imgArr = Array(realTimeList.size, {0})
         var idx = 0
         realTimeList.forEach {
@@ -106,12 +99,11 @@ class FirstFragment : Fragment() {
         view.frameLayout2.setOnClickListener {
             val intent = Intent(context, SecondFragment::class.java)
             val list = arrayListOf<Current>()
-            val plist = db.animalCrossingDao().selectArrange()
+            val plist = db.animalCrossingDao().selectArrange(hemishpere)
             val bundle: Bundle = bundleOf()
             plist.forEach{
                 list.add(it)
             }
-
             bundle.putParcelableArrayList("list", list)
             val frg = SecondFragment()
             frg.arguments = bundle

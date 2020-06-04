@@ -1,5 +1,6 @@
 package com.example.animalcrossingapp.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
@@ -14,6 +15,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -72,6 +74,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -107,6 +110,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -118,11 +122,11 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
             LEFT JOIN Time t ON t.time_code = ti.time_code
         WHERE 
-            m.location = '北半球'
+            m.location = :hemisphere
         GROUP BY i.information_code
         ORDER BY i.catch_flag DESC
         """)
-    fun selectArrange(): List<Current>
+    fun selectArrange(hemisphere: String): List<Current>
 
     @Query("""
         SELECT
@@ -131,6 +135,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -154,6 +159,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -177,6 +183,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -200,6 +207,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -226,6 +234,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 
@@ -251,6 +260,7 @@ interface AnimalCrossingDAO {
             i.price AS price,
             h.name_japan AS habitat,
             i.catch_flag AS flag,
+            i.sortation AS sortation,
             group_concat(DISTINCT m.month) AS month, 
             group_concat(DISTINCT t.time) AS time
         FROM 

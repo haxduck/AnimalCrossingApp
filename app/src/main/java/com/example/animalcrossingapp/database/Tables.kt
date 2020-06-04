@@ -108,5 +108,6 @@ data class Current(
     val time: String?,
     val month: String?,
     val flag: String,
-    val habitat: String?
+    val habitat: String?,
+    val sortation: String?
 ) : Parcelable
