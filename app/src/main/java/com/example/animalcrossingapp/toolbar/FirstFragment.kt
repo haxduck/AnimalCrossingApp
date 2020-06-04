@@ -66,10 +66,10 @@ class FirstFragment : Fragment() {
         }
 
         view.textView2.setText(
-            "リアルタイム情報" + "\n" + MainController.currentTime()
+            MainController.currentTime()
         )
 
-        view.textView2.setOnClickListener {
+        view.real_time_wrap.setOnClickListener {
             val intent = Intent(context, SecondFragment::class.java)
             val list = arrayListOf<Current>()
             val bundle: Bundle = Bundle()

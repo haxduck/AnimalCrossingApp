@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navController = findNavController(R.id.main_fragment)
-        setupActionBarWithNavController(navController)
+//      setupActionBarWithNavController(navController)
+        setSupportActionBar(menu_top)
 
     }
 
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         bottomBar.setupWithNavController(menu!!,navController)
         var db = AnimalCrossingDB.getInstance(this)!!
 
-        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        /*val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
 

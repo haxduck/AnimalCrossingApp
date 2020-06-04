@@ -10,6 +10,7 @@ class MySharedPreferences(context: Context) {
     val PREF_KEY_MY_EDITTEXT = "myEditText"
     val PREF_KET_INITIAL_FLAG = "initialFlag"
     val PREF_KET_HEMISPHERE = "hemisphere"
+    val PREF_KET_LANGUAGE = "language"
     val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
 
     var myEditText: String?
@@ -21,7 +22,9 @@ class MySharedPreferences(context: Context) {
     var hemisphere: String?
         get() = prefs.getString(PREF_KET_HEMISPHERE, "")
         set(value) = prefs.edit().putString(PREF_KET_HEMISPHERE, value).apply()
-
+    var language: String?
+        get() = prefs.getString(PREF_KET_LANGUAGE, "")
+        set(value) = prefs.edit().putString(PREF_KET_LANGUAGE, value).apply()
     //검색저장용
     var sname: String?
         get() = prefs.getString("sname", "")

@@ -192,6 +192,80 @@ interface AnimalCrossingDAO {
         GROUP BY i.information_code
         """)
     fun selectBugs(): List<Current>
+    //tabLayout Insect 가져오는 쿼리
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE 
+            i.sortation = '虫'
+
+        GROUP BY i.information_code        
+        """)
+    fun selectTablayoutAllInsect(): List<Current>
+
+
+    //tabLayout fish  가져오는 쿼리
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE 
+            i.sortation = '魚'
+
+        GROUP BY i.information_code        
+        """)
+    fun selectTablayoutAllFish(): List<Current>
+
+    //tabLayout animal  가져오는 쿼리
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        
+
+        GROUP BY i.information_code        
+        """)
+      fun selectTablayoutAllAnimalList(): List<Current>
 
 
 }

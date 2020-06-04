@@ -8,12 +8,11 @@ import android.widget.BaseAdapter
 import com.example.animalcrossingapp.R
 import kotlinx.android.synthetic.main.gridviewitem1.view.*
 
-class GridviewAdapter(val context: Context, val img_list : Array<Int>):BaseAdapter(){
+class GridviewAdapter2(val context: Context, val img_list : Array<Int>):BaseAdapter(){
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.gridviewitem1,null)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.gridviewitem2,null)
 
         view.gridView_img.setImageResource(img_list[p0])
-
 
         return view
     }

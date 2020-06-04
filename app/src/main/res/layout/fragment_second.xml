@@ -7,14 +7,842 @@
     android:background="#ffffff"
     tools:context=".toolbar.SecondFragment">
 
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/search_wrap"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/test3">-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/test1"-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:src="@drawable/ic_filter"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.0" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/test3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:outlineAmbientShadowColor="#0DB694"
+            android:outlineSpotShadowColor="#0DB694"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayoutViewPager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/tabLayoutViewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/test2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:backgroundTint="#000000"-->
+<!--            android:backgroundTintMode="add"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/type2_wrap"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView10"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:text="caught/uncaught"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <Switch-->
+<!--                android:id="@+id/switch1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:switchMinWidth="50dp"-->
+<!--                android:thumb="@drawable/switch_thumb_selector"-->
+<!--                android:track="@drawable/switch_track_selector"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/type_wrap"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/type2_wrap">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView9"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="種類"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/sortRG"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView9">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/fishRB"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="15dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginRight="15dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/button_search"-->
+<!--                    android:button="@android:color/transparent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="魚" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/bugRB"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginRight="20dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/button_search"-->
+<!--                    android:button="@android:color/transparent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="虫" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/BothRB"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="15dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginRight="15dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/button_search"-->
+<!--                    android:button="@android:color/transparent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="すべて" />-->
+<!--            </RadioGroup>-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/month_wrap"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/type_wrap">-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView6"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="月"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="1月"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/monthCB7"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB2"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB2"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="2月"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/monthCB8"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB3"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB1"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB3"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="3月"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/monthCB9"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB4"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB2"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB4"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="4月"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/monthCB10"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB3"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB5"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="5月"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/monthCB11"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB6"-->
+<!--                app:layout_constraintLeft_toRightOf="@id/monthCB4"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB4"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
+
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB6"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="6月"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/monthCB12"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB5"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB7"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="7月"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB8"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/monthCB1" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB8"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="8月"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB9"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB7"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/monthCB2" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB9"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="9月"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB10"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB8"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/monthCB3" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB10"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="10月"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB11"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB9"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/monthCB4" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB11"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="11月"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/monthCB12"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB10"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/monthCB5" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/monthCB12"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="12月"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/monthCB11"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/monthCB6" />-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/time_wrap"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/month_wrap">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="値段"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
+<!--            <it.mirko.rangeseekbar.RangeSeekBar-->
+<!--                android:id="@+id/time_rangeSeekbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="15dp"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView5" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/price_wrap"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/time_wrap">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="時間帯"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <it.mirko.rangeseekbar.RangeSeekBar-->
+<!--                android:id="@+id/price_rangeSeekbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="15dp"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/BS"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/FS">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView8"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="生息地"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn4"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="切り株"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/bugTgBtn14"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/bugTgBtn22"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn9"-->
+<!--                app:layout_constraintVertical_bias="0.0" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn6"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="岩"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/bugTgBtn14"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/bugTgBtn15"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/bugTgBtn9"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView8" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn9"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="木"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/bugTgBtn4"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/bugTgBtn6"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/bugTgBtn23"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView8" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn14"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="空中"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/bugTgBtn18"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/bugTgBtn4"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn6" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn15"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="花"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/bugTgBtn18"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/bugTgBtn6"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView8" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn18"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="ゴミ"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/bugTgBtn14"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn15" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn22"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="池"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/bugTgBtn4"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn23" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/bugTgBtn23"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="川"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/bugTgBtn22"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/bugTgBtn9"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView8" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/FS"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/price_wrap">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView7"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="生息地"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/searchTgBtn1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="海"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/searchTgBtn2"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/searchTgBtn2"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="川"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/searchTgBtn3"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/searchTgBtn1"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/searchTgBtn3"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="池"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/searchTgBtn4"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/searchTgBtn2"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/searchTgBtn5"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="崖の上"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/searchTgBtn6"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/searchTgBtn4"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/searchTgBtn6"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="桟橋"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/searchTgBtn5"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/searchTgBtn4"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/button_search"-->
+<!--                android:button="@android:color/transparent"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                android:text="河口"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/searchTgBtn5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/searchTgBtn3"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="0.3dp"-->
+<!--                android:background="#E4E4E4"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
