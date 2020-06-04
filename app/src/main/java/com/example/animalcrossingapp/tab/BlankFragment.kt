@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.google.android.material.tabs.TabLayoutMediator
@@ -74,6 +75,7 @@ class DemoCollectionAdapter(fragment: Fragment, contenxt: Context) : FragmentSta
 
 private const val ARG_OBJECT = "object"
 
+/*
 class DemoObjectFragment: Fragment() {
 
     override fun onCreateView(
@@ -90,4 +92,4 @@ class DemoObjectFragment: Fragment() {
             textView.text = getInt(ARG_OBJECT).toString()
         }
     }
-}
+}*/

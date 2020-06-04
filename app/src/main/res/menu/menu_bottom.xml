@@ -20,11 +20,11 @@
         android:title=""
         android:visible="false"/>
 
-    <item
-        android:id="@+id/blank_fragment"
+    <!--<item
+        android:id="@+id/collection_demo_fragmnet"
         android:icon="@drawable/setting"
         android:title=""
-        android:visible="false"/>
+        android:visible="false"/>-->
 
 
 

@@ -28,10 +28,10 @@
         android:name="com.example.animalcrossingapp.toolbar.ThirdFragment"
         android:label="Third Fragment"
         tools:layout="@layout/fragment_third" />
-    <fragment
-        android:id="@+id/blank_fragment"
-        android:name="com.example.animalcrossingapp.tab.BlankFragment"
-        android:label="Blank Fragment"
-        tools:layout="@layout/blank_fragment" />
+   <!-- <fragment
+        android:id="@+id/collection_demo_fragmnet"
+        android:name="com.example.animalcrossingapp.tab.CollectionDemoFragment"
+        android:label="Collection Demo Fragment"
+        tools:layout="@layout/collection_demo" />-->
 
 </navigation>

@@ -22,6 +22,8 @@ import com.example.animalcrossingapp.tab.DemoObjectFragment
 import com.example.animalcrossingapp.view.GridviewAdapter
 import com.example.animalcrossingapp.view.InitialActivity
 import com.example.animalcrossingapp.view.MainActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.fragment_first.view.first_fragment
@@ -80,6 +82,8 @@ class FirstFragment : Fragment() {
             frg.arguments = bundle
             (activity as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
+            (activity as MainActivity).bottomBar.setActiveItem(1)
+            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
         }
 
         val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
@@ -113,6 +117,7 @@ class FirstFragment : Fragment() {
             frg.arguments = bundle
             (activity as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
+            (activity as MainActivity).bottomBar.setActiveItem(1)
         }
 
         return view

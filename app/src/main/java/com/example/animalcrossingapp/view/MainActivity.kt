@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
         }
 
-
         searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
