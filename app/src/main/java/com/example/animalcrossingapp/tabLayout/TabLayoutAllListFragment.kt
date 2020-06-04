@@ -85,11 +85,11 @@ class TabLayoutAllListFragment : Fragment() {
 
         view.toggleButton2.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
+                toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
                 tabLayoutAllList.setVisibility(View.GONE)
                 m3.setVisibility(View.VISIBLE)
             } else {
-                toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
+                toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
                 tabLayoutAllList.setVisibility(View.VISIBLE)
                 m3.setVisibility(View.GONE)
             }

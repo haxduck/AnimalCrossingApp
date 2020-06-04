@@ -82,11 +82,11 @@ class TabLayoutInsectListFragment : Fragment() {
 
         view.toggleButton1.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
+                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
                 tabLayoutInsectList.setVisibility(View.GONE)
                 m2.setVisibility(View.VISIBLE)
             } else {
-                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
+                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
                 tabLayoutInsectList.setVisibility(View.VISIBLE)
                 m2.setVisibility(View.GONE)
             }
