@@ -2,15 +2,19 @@ package com.example.animalcrossingapp.view
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
 import kotlinx.android.synthetic.main.gridviewitem1.view.*
+import kotlinx.android.synthetic.main.gridviewitem1.view.gridView_img
+import kotlinx.android.synthetic.main.gridviewitem2.view.*
 
 class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current>):BaseAdapter(){
 
@@ -24,7 +28,25 @@ class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current
             idx++
         }
         view.gridView_img.setImageResource(img_list[p0])
+        //시작시 잡은거 안잡은거 체크
         if (list[p0].flag == "1" ) view.gridView_img.setBackgroundColor(Color.parseColor("#B9E9DB"))
+
+        //클릭 함수
+        var db = AnimalCrossingDB.getInstance(context)!!
+        var flag = list[p0].flag
+        var info = list[p0].information_code!!
+        view.gridView_img.setOnClickListener {
+            if (flag == "1") {
+                db.animalCrossingDao().updateCatchFlag(info , "0")
+                view.gridView_img.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                flag = "0"
+            } else {
+                db.animalCrossingDao().updateCatchFlag(info , "1")
+                view.gridView_img.setBackgroundColor(Color.parseColor("#B9E9DB"))
+                flag = "1"
+            }
+        }
+
         return view
     }
 
