@@ -37,6 +37,9 @@ class CurrentAdapter(val items: ArrayList<Current>,
         return viewHolder
     }
 
+    override fun getItemId(position: Int): Long {
+        return items.get(position).hashCode().toLong()
+    }
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: CurrentViewHolder, position: Int) {

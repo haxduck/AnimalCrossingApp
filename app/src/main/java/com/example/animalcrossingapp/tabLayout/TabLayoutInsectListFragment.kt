@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.CurrentAdapter
@@ -76,6 +78,13 @@ class TabLayoutInsectListFragment : Fragment() {
             "search" -> liveList = db.animalCrossingDao().selectLiveSearch(keyword)
             else -> liveList = db.animalCrossingDao().selectAll()
         }
+
+        view.tabLayoutInsectList.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = CurrentAdapter(dbList, context, view){ animal -> }
+        }
+        val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
+        view.gridView3.adapter = griviewAdapter
 //        var liveList = db.animalCrossingDao().selectAll()
 //        Log.d("live", liveList.)
         val mainObserver = Observer<List<Current>> { animals ->
@@ -83,22 +92,19 @@ class TabLayoutInsectListFragment : Fragment() {
             animals.forEach {
                 if (it.sortation == "虫") dbList.add(it)
             }
-//            if (view.toggleButton1.isChecked) {
+            if (view.toggleButton1.isChecked) {
                 view.tabLayoutInsectList.apply {
                     layoutManager = LinearLayoutManager(activity)
                     adapter = CurrentAdapter(dbList, context, view){ animal -> }
                 }
-//            } else {
+            } else {
                 val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
                 view.gridView3.adapter = griviewAdapter
-//            }
+            }
         }
         liveList.observe(viewLifecycleOwner, mainObserver)
         //
-        view.tabLayoutInsectList.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = CurrentAdapter(dbList, context, view){ animal -> }
-        }
+
 
         /*var imgArr = Array(dbList.size, {0})
         var idx = 0
@@ -110,8 +116,7 @@ class TabLayoutInsectListFragment : Fragment() {
 
         /*val griviewAdapter = GridviewAdapter2(requireContext(), imgArr)
          view.gridView4.adapter = griviewAdapter*/
-        val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
-        view.gridView3.adapter = griviewAdapter
+
 
         view.m2.setVisibility(View.GONE)
 
@@ -126,7 +131,6 @@ class TabLayoutInsectListFragment : Fragment() {
                 m2.setVisibility(View.GONE)
             }
         }
-
 
         return view
 
