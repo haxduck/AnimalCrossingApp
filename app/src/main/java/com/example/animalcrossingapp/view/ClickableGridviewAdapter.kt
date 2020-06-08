@@ -15,6 +15,7 @@ import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
 import kotlinx.android.synthetic.main.gridviewitem1.view.gridView_img
+import kotlinx.android.synthetic.main.gridviewitem2.view.*
 
 class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current>):BaseAdapter(){
 
@@ -38,11 +39,11 @@ class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current
         view.gridView_img.setOnClickListener {
             if (flag == "1") {
                 db.animalCrossingDao().updateCatchFlag(info , "0")
-                view.gridView_img.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2)
                 flag = "0"
             } else {
                 db.animalCrossingDao().updateCatchFlag(info , "1")
-                view.gridView_img.setBackgroundColor(Color.parseColor("#B9E9DB"))
+                view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2_r)
                 flag = "1"
             }
         }
