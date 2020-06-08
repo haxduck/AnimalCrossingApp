@@ -30,7 +30,7 @@ class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current
         }
         view.gridView_img.setImageResource(img_list[p0])
         //시작시 잡은거 안잡은거 체크
-        if (list[p0].flag == "1" ) view.gridView_img.setBackgroundColor(Color.parseColor("#B9E9DB"))
+        if (list[p0].flag == "1" ) view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2_r)
 
         //클릭 함수
         var db = AnimalCrossingDB.getInstance(context)!!
@@ -39,6 +39,7 @@ class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current
         view.gridView_img.setOnClickListener {
             if (flag == "1") {
                 db.animalCrossingDao().updateCatchFlag(info , "0")
+//                view.gridView_img.setBackgroundColor(Color.WHITE)
                 view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2)
                 flag = "0"
             } else {
