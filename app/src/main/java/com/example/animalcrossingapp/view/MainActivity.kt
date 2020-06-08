@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -44,7 +45,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
         var list = db.animalCrossingDao().selectAll().observe(this, mainObserver)*/
 
+
+
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_bottom,menu)
@@ -55,6 +59,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
+
 
         bottomBar.onItemReselected = {
             when (it) {
