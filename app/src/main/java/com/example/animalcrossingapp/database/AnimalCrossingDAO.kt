@@ -28,7 +28,7 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time t ON t.time_code = ti.time_code
         GROUP BY i.information_code
         """)
-    fun selectAll() : List<Current>
+    fun selectAll() : LiveData<List<Current>>
 
 
     @Query("""
@@ -277,5 +277,102 @@ interface AnimalCrossingDAO {
         """)
       fun selectTablayoutAllAnimalList(): List<Current>
 
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            i.sortation AS sortation,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        GROUP BY i.information_code
+        """)
+    fun selectLive() : LiveData<List<Current>>
+
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            i.sortation AS sortation,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE 
+            m.location = :hemisphere
+            AND t.time = :currentHour
+            AND m.month = :currentMonth
+            AND i.catch_flag = '0'
+        GROUP BY i.information_code        
+        """)
+    fun selectLiveCurrentAnimal(hemisphere: String, currentHour: String, currentMonth: String): LiveData<List<Current>>
+
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            i.sortation AS sortation,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE 
+            m.location = :hemisphere
+        GROUP BY i.information_code
+        ORDER BY i.catch_flag DESC
+        """)
+    fun selectLiveArrange(hemisphere: String): LiveData<List<Current>>
+
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            i.sortation AS sortation,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE 
+            i.name_japan LIKE :name
+        GROUP BY i.information_code
+        """)
+    fun selectLiveSearch(name: String): LiveData<List<Current>>
 
 }

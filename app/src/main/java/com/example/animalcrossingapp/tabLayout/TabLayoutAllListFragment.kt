@@ -2,29 +2,19 @@ package com.example.animalcrossingapp.tabLayout
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
-import com.example.animalcrossingapp.view.GridviewAdapter2
-import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.tabLayoutAllList
-
-import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.tabLayoutInsectList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +37,7 @@ class TabLayoutAllListFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -55,29 +46,29 @@ class TabLayoutAllListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_tab_layout_all_list, container, false)
-
-
-
         val context : Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
         val dbList = arrayListOf<Current>()
         val list = arguments?.getParcelableArrayList<Current>("list")!!
         dbList.addAll(list)
 
+
+
+
         view.tabLayoutAllList.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = CurrentAdapter(dbList){
+            adapter = CurrentAdapter(dbList, context, view){
                 animal ->
             }
         }
 
-        var imgArr = Array(dbList.size, {0})
+        /*var imgArr = Array(dbList.size, {0})
         var idx = 0
         dbList.forEach {
             var id = it.information_code
             imgArr[idx] = this.getResources().getIdentifier(id, "drawable", requireContext().getPackageName())
             idx++
-        }
+        }*/
 
         /*val griviewAdapter = GridviewAdapter2(requireContext(), imgArr)
         view.gridView4.adapter = griviewAdapter*/

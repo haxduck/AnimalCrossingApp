@@ -64,13 +64,13 @@ class FirstFragment : Fragment() {
         )
 
         view.real_time_wrap.setOnClickListener {
-            val intent = Intent(context, SecondFragment::class.java)
             val list = arrayListOf<Current>()
             val bundle: Bundle = Bundle()
             realTimeList.forEach {
                 list.add(it)
             }
             bundle.putParcelableArrayList("list", list)
+            bundle.putString("selector", "current")
             val frg = SecondFragment()
             frg.arguments = bundle
             (activity as MainActivity).supportFragmentManager.beginTransaction()
@@ -97,7 +97,6 @@ class FirstFragment : Fragment() {
         view.textView3.text = "" + catchFishes + "/80"
         view.textView4.text = "" + catchBugs + "/80"
         view.frameLayout2.setOnClickListener {
-            val intent = Intent(context, SecondFragment::class.java)
             val list = arrayListOf<Current>()
             val plist = db.animalCrossingDao().selectArrange(hemishpere)
             val bundle: Bundle = bundleOf()
@@ -105,6 +104,7 @@ class FirstFragment : Fragment() {
                 list.add(it)
             }
             bundle.putParcelableArrayList("list", list)
+            bundle.putString("selector", "arrange")
             val frg = SecondFragment()
             frg.arguments = bundle
             (activity as MainActivity).supportFragmentManager.beginTransaction()

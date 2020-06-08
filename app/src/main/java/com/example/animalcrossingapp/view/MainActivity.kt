@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 Toast.makeText(this@MainActivity, "Looking for $query", Toast.LENGTH_LONG).show()
 
                 val searchList = db.animalCrossingDao().selectSearch("%" + query!! + "%")
-                Log.d("searList", query + "/" +searchList.toString())
+//                Log.d("searList", query + "/" +searchList.toString())
                 var list = arrayListOf<Current>()
 
                 val bundle: Bundle = Bundle()
@@ -85,6 +85,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                     list.add(it)
                 }
                 bundle.putParcelableArrayList("list", list)
+                bundle.putString("selector", "search")
+                bundle.putString("keyword", "%" + query!! + "%")
                 val frg = SecondFragment()
                 frg.arguments = bundle
                 supportFragmentManager.beginTransaction()

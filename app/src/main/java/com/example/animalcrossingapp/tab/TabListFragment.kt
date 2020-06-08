@@ -28,7 +28,7 @@ class TabListFragment : Fragment() {
         val db = AnimalCrossingDB.getInstance(context)!!
         var list = arrayListOf<Current>()
 
-        try{
+        /*try{
             list.addAll(arguments?.getParcelableArrayList("list")!!)
         }catch(e: KotlinNullPointerException){
             val mainObserver = Observer<List<Current>> { animal ->
@@ -38,11 +38,11 @@ class TabListFragment : Fragment() {
             clist.forEach {
                 list.add(it)
             }
-        }
+        }*/
 
         view.tab_recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = CurrentAdapter(list) { animal ->
+            adapter = CurrentAdapter(list, context, view) { animal ->
             }
         }
 

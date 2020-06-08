@@ -1,18 +1,28 @@
 package com.example.animalcrossingapp.controller
 
+import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.databinding.ItemCurrentBinding
 import com.example.animalcrossingapp.databinding.ListviewitemBinding
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
+import kotlinx.android.synthetic.main.gridviewitem1.view.*
 import kotlinx.android.synthetic.main.listviewitem.view.*
+import kotlinx.android.synthetic.main.listviewitem.view.grid_wrap
 
 class CurrentAdapter(val items: ArrayList<Current>,
+                     val context: Context,
+                     val view: View,
                      private val clickListener: (current: Current) -> Unit) :
     RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>() {
     class CurrentViewHolder(val binding: ListviewitemBinding): RecyclerView.ViewHolder(binding.root)
@@ -29,9 +39,8 @@ class CurrentAdapter(val items: ArrayList<Current>,
 
     override fun getItemCount(): Int = items.size
 
-
     override fun onBindViewHolder(holder: CurrentViewHolder, position: Int) {
-//        Log.d("In apdater", position.toString()) //todo
+//        Log.d("dddd", view.findViewById<ToggleButton>(R.id.toggleButton3).toString())
         var tarr = items[position].time!!.split(",")
         var str = ""
         var flist: ArrayList<Int> = arrayListOf(tarr[0].toInt())
@@ -92,6 +101,9 @@ class CurrentAdapter(val items: ArrayList<Current>,
                 holder.itemView.view_img.background = holder.itemView.resources.getDrawable(R.drawable.grid_wrap_r)
                 flag = "1"
             }
+            val view: View = LayoutInflater.from(context).inflate(R.layout.gridviewitem2,null)
+            view.gridView_img.setBackgroundColor(Color.parseColor("#000000"))
+            
         }
 
     }

@@ -2,26 +2,27 @@ package com.example.animalcrossingapp.tabLayout
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
-import com.example.animalcrossingapp.view.GridviewAdapter
-import com.example.animalcrossingapp.view.GridviewAdapter2
-import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.toggleButton2
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.m2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.m2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.tabLayoutInsectList
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +45,7 @@ class TabLayoutInsectListFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -59,12 +61,43 @@ class TabLayoutInsectListFragment : Fragment() {
         val list = arguments?.getParcelableArrayList<Current>("blist")!!
         if (list.size == 0) clist.forEach{dbList.add(it)}
         else { dbList.addAll(list) }
+        //라이브
+        val selector = arguments?.getString("selector")
+        val keyword = arguments?.getString("keyword")!!
+        val hemishpere = App.prefs.hemisphere!!
+        val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
+        val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
+        val currentMonth = "" + thisMonth + "月"
+        var liveList: LiveData<List<Current>>
 
+        when(selector){
+            "current" -> liveList = db.animalCrossingDao().selectLiveCurrentAnimal(hemishpere, currentTime, currentMonth)
+            "arrange" -> liveList = db.animalCrossingDao().selectLiveArrange(hemishpere)
+            "search" -> liveList = db.animalCrossingDao().selectLiveSearch(keyword)
+            else -> liveList = db.animalCrossingDao().selectAll()
+        }
+//        var liveList = db.animalCrossingDao().selectAll()
+//        Log.d("live", liveList.)
+        val mainObserver = Observer<List<Current>> { animals ->
+            dbList.clear()
+            animals.forEach {
+                if (it.sortation == "虫") dbList.add(it)
+            }
+//            if (view.toggleButton1.isChecked) {
+                view.tabLayoutInsectList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(dbList, context, view){ animal -> }
+                }
+//            } else {
+                val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
+                view.gridView3.adapter = griviewAdapter
+//            }
+        }
+        liveList.observe(viewLifecycleOwner, mainObserver)
+        //
         view.tabLayoutInsectList.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = CurrentAdapter(dbList){
-                    animal ->
-            }
+            adapter = CurrentAdapter(dbList, context, view){ animal -> }
         }
 
         /*var imgArr = Array(dbList.size, {0})

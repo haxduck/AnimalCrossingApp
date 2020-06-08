@@ -14,13 +14,16 @@ import com.example.animalcrossingapp.tabLayout.TabLayoutFishListFragment
 import com.example.animalcrossingapp.tabLayout.TabLayoutInsectListFragment
 import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.view.MainActivity
+import kotlinx.coroutines.selects.select
 import java.util.concurrent.ConcurrentNavigableMap
 
-class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, context: Context) : FragmentPagerAdapter(fm){
+class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, selector: String, keyword: String, context: Context) : FragmentPagerAdapter(fm){
 
     private val bundle: Bundle = Bundle()
     private var alist: ArrayList<Current> = list
     private val context = context
+    private val selector = selector
+    private val keyword = keyword
 
     override fun getItem(position: Int): Fragment {
         /*when(position){
@@ -31,10 +34,9 @@ class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, context:
         }*/
         val db = AnimalCrossingDB.getInstance(context)
         if (alist.size == 0){
-            alist.addAll(db?.animalCrossingDao()?.selectAll()!!)
+//            alist.addAll(db?.animalCrossingDao()?.selectAll()!!)
         }
         var flist = arrayListOf<Current>()
-        Log.d("logg", alist.toString())
         alist.forEach{
             if (it.sortation == "魚") flist.add(it)
         }
@@ -45,27 +47,23 @@ class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, context:
         var frg = TabLayoutAllListFragment()
         when(position){
             0 -> {
-//                val frg = TabLayoutAllListFragment()
-                bundle.putParcelableArrayList("list", alist)
+                val frg = TabLayoutFishListFragment()
+                bundle.putParcelableArrayList("flist", flist)
+                bundle.putString("selector", selector)
+                bundle.putString("keyword", keyword)
                 frg.arguments = bundle
-//                return frg
+                return frg
             }
             1 -> {
-//                val frg = TabLayoutFishListFragment()
-                bundle.putParcelableArrayList("list", flist)
+                val frg = TabLayoutInsectListFragment()
+                bundle.putParcelableArrayList("blist", blist)
+                bundle.putString("selector", selector)
+                bundle.putString("keyword", keyword)
                 frg.arguments = bundle
-//                return frg
-            }
-            2 -> {
-//                val frg = TabLayoutInsectListFragment()
-                bundle.putParcelableArrayList("list", blist)
-                frg.arguments = bundle
-//                return frg
+                return frg
             }
             else -> {return TabLayoutAllListFragment()}
         }
-
-        return frg
 
     }
 
@@ -73,14 +71,13 @@ class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, context:
         when(position){
             0 -> {return ""}
             1 -> {return ""}
-            2 -> {return ""}
         }
 
      return super.getPageTitle(position)
     }
 
     override fun getCount(): Int {
-       return 3
+       return 2
 
     }
 
