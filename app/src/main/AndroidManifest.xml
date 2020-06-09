@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme">
         <!--android:theme="@android:style/Theme.Dialog"-->
         <activity android:name=".view.PopActivity"
-            ></activity>
+            android:theme="@style/popupTheme"
+            android:screenOrientation="portrait"></activity>
 
         <receiver android:name=".alarm.AlarmReceiver">
 

@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             Log.d("change", animal.toString())
         }
         var list = db.animalCrossingDao().selectAll().observe(this, mainObserver)*/
-        test2.visibility = View.GONE
+//        test2.visibility = View.GONE
 
 
     }
