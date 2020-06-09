@@ -1,5 +1,8 @@
 package com.example.animalcrossingapp.toolbar
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,26 +12,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.MutableLiveData
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.alarm.AlarmReceiver
 import com.example.animalcrossingapp.controller.App
+import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
-import com.example.animalcrossingapp.database.MainController
-import com.example.animalcrossingapp.tab.BlankFragment
-import com.example.animalcrossingapp.tab.DemoObjectFragment
 import com.example.animalcrossingapp.view.GridviewAdapter
 import com.example.animalcrossingapp.view.InitialActivity
 import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.fragment_first.view.*
-import kotlinx.android.synthetic.main.fragment_first.view.first_fragment
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -39,7 +38,6 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_first, container, false)
         val context: Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
@@ -59,9 +57,32 @@ class FirstFragment : Fragment() {
             startActivity(nextIntent)
         }
 
-        view.textView2.setText(
+        /*view.reBtn.setOnClickListener {
+            this.refreshList()
+        }*/
+        //알람
+        /*var alarmMgr: AlarmManager? = null
+        var alarmIntent: PendingIntent
+        alarmMgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(context, 0, intent, 0)
+        }
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, Calendar.HOUR_OF_DAY - 1)
+            set(Calendar.MINUTE, 0)
+        }
+        alarmMgr?.setInexactRepeating(
+            AlarmManager.RTC,
+            calendar.timeInMillis,
+            1000 * 60 * 1,
+            alarmIntent
+        )*/
+        //
+
+        /*view.textView2.setText(
             MainController.currentTime()
-        )
+        )*/
 
         view.real_time_wrap.setOnClickListener {
             val list = arrayListOf<Current>()
@@ -87,8 +108,14 @@ class FirstFragment : Fragment() {
             imgArr[idx] = this.getResources().getIdentifier(id, "drawable", context.getPackageName())
             idx++
         }
-        val griviewAdapter = GridviewAdapter(context, imgArr)
-        view.gridView1.adapter = griviewAdapter
+        var list = arrayListOf<Current>()
+        list.addAll(realTimeList)
+        /*val griviewAdapter = GridviewAdapter(context, imgArr)
+        view.gridView1.adapter = griviewAdapter*/
+        view.gridView1.apply{
+            layoutManager = GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
+            adapter = GridAdapter(list, context) { animal -> }
+        }
 
         val catchFishes = db.animalCrossingDao().viewCatchFish().size
         val catchBugs = db.animalCrossingDao().viewCatchBug().size
@@ -113,6 +140,12 @@ class FirstFragment : Fragment() {
         }
 
         return view
+    }
+
+    fun refreshList() {
+        val ft = fragmentManager?.beginTransaction()
+        ft?.detach(this)?.attach(this)?.commit()
+        Log.d("실행", this.toString())
     }
 
 

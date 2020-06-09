@@ -22,11 +22,7 @@ import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.toolbar.FirstFragment
 import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.toolbar.ThirdFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.blank_fragment.*
-import me.ibrahimsn.lib.OnItemReselectedListener
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var navController: NavController

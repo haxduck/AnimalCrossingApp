@@ -7,19 +7,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.CurrentAdapter
+import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
-import com.example.animalcrossingapp.livedata.AnimalViewModel
+import com.example.animalcrossingapp.toolbar.ErrorFragment
+import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
+import com.example.animalcrossingapp.view.MainActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.m4
@@ -80,7 +86,21 @@ class TabLayoutFishListFragment : Fragment() {
             "current" -> liveList = db.animalCrossingDao()
                 .selectLiveCurrentAnimal(hemishpere, currentTime, currentMonth)
             "arrange" -> liveList = db.animalCrossingDao().selectLiveArrange(hemishpere)
-            "search" -> liveList = db.animalCrossingDao().selectLiveSearch(keyword)
+            "search" -> {
+                liveList = db.animalCrossingDao().selectLiveSearch(keyword)
+                liveList.observe(viewLifecycleOwner, Observer { animals ->
+                    if (animals.size == 0) {
+                        val bundle: Bundle = bundleOf()
+                        bundle.putString("ErrorCode", "0")
+                        val frg = ErrorFragment()
+                        frg.arguments = bundle
+                        (activity as MainActivity).supportFragmentManager.beginTransaction()
+                            .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
+                        (activity as MainActivity).bottomBar.setActiveItem(1)
+                    }
+                    else liveList = db.animalCrossingDao().selectLiveSearch(keyword)
+                })
+            }
             else -> liveList = db.animalCrossingDao().selectAll()
         }
 //        val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
@@ -90,8 +110,12 @@ class TabLayoutFishListFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             adapter = CurrentAdapter(dbList, context, view){ animal -> }
         }
-        val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
-        view.gridView5.adapter = griviewAdapter
+        /*val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
+        view.gridView5.adapter = griviewAdapter*/
+        view.m4.apply {
+            layoutManager = GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
+            adapter = GridAdapter(dbList, context) { animal -> }
+        }
 
         val mainObserver = Observer<List<Current>> { animals ->
             dbList.clear()
@@ -104,8 +128,12 @@ class TabLayoutFishListFragment : Fragment() {
                 adapter = CurrentAdapter(dbList, context, view) { animal -> }
             }
             } else {
-            val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
-            view.gridView5.adapter = griviewAdapter
+            /*val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
+            view.gridView5.adapter = griviewAdapter*/
+                view.m4.apply {
+                    layoutManager = GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
+                    adapter = GridAdapter(dbList, context) { animal -> }
+                }
             }
         }
         liveList.observe(viewLifecycleOwner, mainObserver)

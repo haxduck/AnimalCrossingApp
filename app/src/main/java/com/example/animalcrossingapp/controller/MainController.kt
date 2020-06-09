@@ -1,4 +1,4 @@
-package com.example.animalcrossingapp.database
+package com.example.animalcrossingapp.controller
 
 import android.app.Application
 import com.example.animalcrossingapp.controller.App

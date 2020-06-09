@@ -104,9 +104,7 @@ class CurrentAdapter(val items: ArrayList<Current>,
                 holder.itemView.view_img.background = holder.itemView.resources.getDrawable(R.drawable.grid_wrap_r)
                 flag = "1"
             }
-            val view: View = LayoutInflater.from(context).inflate(R.layout.gridviewitem2,null)
-            view.gridView_img.setBackgroundColor(Color.parseColor("#000000"))
-            
+
         }
 
     }

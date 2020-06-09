@@ -8,6 +8,12 @@
     android:background="#ffffff"
     tools:context=".toolbar.FirstFragment">
 
+    <!--<Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/reBtn"
+            android:text="REFRESH"
+            tools:ignore="MissingConstraints" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -50,12 +56,22 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView2" />
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hello World"
                     android:textSize="35dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />-->
+
+                <TextClock
+                    android:id="@+id/clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="35dp"
+                    android:format12Hour="M月 HH:mm:ss"
+                    android:format24Hour=""
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -91,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center">
 
-                        <GridView
+                        <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/gridView1"
                             android:layout_width="310dp"
                             android:layout_height="310dp"
@@ -107,7 +123,7 @@
                             android:stretchMode="none"
                             android:verticalSpacing="12dp">
 
-                        </GridView>
+                        </androidx.recyclerview.widget.RecyclerView>
                     </FrameLayout>
 
                 </LinearLayout>

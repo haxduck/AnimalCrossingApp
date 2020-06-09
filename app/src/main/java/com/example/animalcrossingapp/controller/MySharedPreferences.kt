@@ -13,9 +13,6 @@ class MySharedPreferences(context: Context) {
     val PREF_KET_LANGUAGE = "language"
     val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
 
-    var myEditText: String?
-        get() = prefs.getString(PREF_KEY_MY_EDITTEXT, "")
-        set(value) = prefs.edit().putString(PREF_KEY_MY_EDITTEXT, value).apply()
     var initialFlag: String?
         get() = prefs.getString(PREF_KET_INITIAL_FLAG, "")
         set(value) = prefs.edit().putString(PREF_KET_INITIAL_FLAG, value).apply()

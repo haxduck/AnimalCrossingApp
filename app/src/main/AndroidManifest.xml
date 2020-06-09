@@ -10,16 +10,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ListActivity" />
-        <activity android:name=".view.SearchActivity">
-
-            <!--
-            <intent-filter>
+        <receiver android:name=".alarm.AlarmReceiver">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>-->
+        </receiver>
+        <activity android:name=".grid.GridTestActivity">
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+            </intent-filter>-->
         </activity>
+        <activity android:name=".view.ListActivity" />
+        <activity android:name=".view.SearchActivity" />
         <activity android:name=".view.SettingActivity" />
         <activity android:name=".view.InitialActivity" />
         <activity android:name=".view.MainActivity">
