@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
 
+//        Log.d("mm", menu.getItem(0).toString())
 
         bottomBar.onItemReselected = {
             when (it) {

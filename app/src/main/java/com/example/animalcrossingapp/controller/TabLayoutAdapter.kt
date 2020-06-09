@@ -78,7 +78,6 @@ class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, selector
 
     override fun getCount(): Int {
        return 2
-
     }
 
 }
