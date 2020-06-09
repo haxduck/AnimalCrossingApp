@@ -110,12 +110,12 @@ class FirstFragment : Fragment() {
         }
         var list = arrayListOf<Current>()
         list.addAll(realTimeList)
-        /*val griviewAdapter = GridviewAdapter(context, imgArr)
-        view.gridView1.adapter = griviewAdapter*/
-        view.gridView1.apply{
+        val griviewAdapter = GridviewAdapter(context, imgArr)
+        view.gridView1.adapter = griviewAdapter
+        /*view.gridView1.apply{
             layoutManager = GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
             adapter = GridAdapter(list, context) { animal -> }
-        }
+        }*/
 
         val catchFishes = db.animalCrossingDao().viewCatchFish().size
         val catchBugs = db.animalCrossingDao().viewCatchBug().size
