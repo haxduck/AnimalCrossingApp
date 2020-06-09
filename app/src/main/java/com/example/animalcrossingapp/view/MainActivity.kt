@@ -2,9 +2,11 @@ package com.example.animalcrossingapp.view
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -40,11 +42,19 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             Log.d("change", animal.toString())
         }
         var list = db.animalCrossingDao().selectAll().observe(this, mainObserver)*/
-
+        test2.visibility = View.GONE
 
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.btn_filter) {
+            var intent = Intent(this, PopActivity::class.java)
+            startActivityForResult(intent, 1)
+//            test2.visibility = View.VISIBLE
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_bottom,menu)

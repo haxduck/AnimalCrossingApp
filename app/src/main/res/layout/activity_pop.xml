@@ -4,63 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.MainActivity">
+    tools:context=".view.PopActivity">
 
-    <fragment
-        android:id="@+id/main_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menu_top"
-        app:layout_constraintVertical_bias="0.0"
-        app:navGraph='@navigation/nav_graph' />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/menu_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_top"
-        app:titleTextColor="@color/colorPrimary" />
-
-    <!-- 검색창 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/test2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menu_top">
+        app:layout_constraintTop_toTopOf="parent">-->
         <!---->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="#000000"
-            android:backgroundTintMode="add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
         <!---->
         <!---->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/type2_wrap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="parent">
             <!---->
             <TextView
                 android:id="@+id/textView10"
@@ -798,27 +760,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!-- 검색창 -->
 
-
-
-
-    <me.ibrahimsn.lib.SmoothBottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:backgroundColor="@color/colorPrimary"
-        app:iconSize="24dp"
-        app:iconTint="#C8FFFFFF"
-        app:iconTintActive="#FFFFFF"
-        app:indicatorColor="#2DFFFFFF"
-        app:indicatorRadius="10dp"
-        app:itemPadding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom"
-        app:sideMargins="10dp"
-        app:textColor="#000000"
-        app:textSize="14sp" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--
+</androidx.constraintlayout.widget.ConstraintLayout>-->
