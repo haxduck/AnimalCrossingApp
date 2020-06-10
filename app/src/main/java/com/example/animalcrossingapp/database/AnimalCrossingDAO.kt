@@ -30,6 +30,33 @@ interface AnimalCrossingDAO {
         """)
     fun selectAll() : LiveData<List<Current>>
 
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+             i.price AS price,
+            h.name_japan AS habitat,
+            i.catch_flag AS flag,
+            group_concat(DISTINCT Month.month) AS month,
+            group_concat(DISTINCT t.time) AS time
+        FROM
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month ON Month.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE
+            Month.location = :hemi
+            AND i.sortation = :arrSort
+            AND h.name_japan = :habitat
+            AND i.price >= :min
+            AND i.price <= :max
+        GROUP BY i.information_code
+        """)
+
+    fun select(hemi: String?, arrSort: String, min: Int, max: Int, habitat: ArrayList<String>): List<Current>
 
     @Query("""
             select *
@@ -39,6 +66,10 @@ interface AnimalCrossingDAO {
             """)
     @Transaction
     fun selectAllJ() : List<JoinTest>
+
+
+
+
 
     @Query(
         """

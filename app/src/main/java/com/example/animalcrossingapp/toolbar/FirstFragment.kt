@@ -116,7 +116,7 @@ class FirstFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
             adapter = GridAdapter(list, context) { animal -> }
         }*/
-
+        if(App.prefs.language == "ko") view.textView1.setText("실시간 정보")
         val catchFishes = db.animalCrossingDao().viewCatchFish().size
         val catchBugs = db.animalCrossingDao().viewCatchBug().size
         view.contentLoadingProgressBar.progress = catchFishes
