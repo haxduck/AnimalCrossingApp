@@ -2,6 +2,7 @@ package com.example.animalcrossingapp.toolbar
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
@@ -35,6 +37,7 @@ import kotlin.collections.ArrayList
  */
 class FirstFragment : Fragment() {
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,10 +51,15 @@ class FirstFragment : Fragment() {
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
         val currentMonth = "" + thisMonth + "月"
         val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
-
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
         Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
+
+//        view.real_time_wrap.apply {
+//            measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+//            clipToOutline= true
+//        }
+
 
         if(iniFlag == "1") {
         } else {
@@ -78,6 +86,7 @@ class FirstFragment : Fragment() {
             (activity as MainActivity).bottomBar.setActiveItem(1)
 //            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
         }
+
 
 
         var imgArr = Array(realTimeList.size, {0})
