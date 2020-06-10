@@ -7,7 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProviders
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.model.AnimalViewModel
 import com.example.animalcrossingapp.toolbar.FirstFragment
 import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.view.MainActivity

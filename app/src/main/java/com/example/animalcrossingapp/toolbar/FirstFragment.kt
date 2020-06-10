@@ -88,10 +88,6 @@ class FirstFragment : Fragment() {
         )*/
         //
 
-        /*view.textView2.setText(
-            MainController.currentTime()
-        )*/
-
         if (App.prefs.language == "ko") view.textView1.text = "실시간 정보"
 
         view.real_time_wrap.setOnClickListener {
