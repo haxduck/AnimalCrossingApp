@@ -154,12 +154,6 @@
                 android:layout_height="wrap_content"
                 android:text="Bug" />
 
-            <RadioButton
-                android:id="@+id/BothRB"
-                android:layout_width="155dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Both" />
         </RadioGroup>
 
         <CheckBox
