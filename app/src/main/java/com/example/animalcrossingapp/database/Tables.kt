@@ -103,11 +103,12 @@ data class MyObject(
 data class Current(
     val information_code: String?,
     val name: String?,
+    val namek: String?,
     val price: Int,
 //    val picture: ByteArray?,
     val time: String?,
     val month: String?,
     val flag: String,
-    val habitat: String?,
+    val habitat: String?, val habitatk: String?,
     val sortation: String?
 ) : Parcelable

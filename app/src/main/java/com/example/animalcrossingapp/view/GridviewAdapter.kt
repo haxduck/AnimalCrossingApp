@@ -6,13 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.gridviewitem1.view.*
 
-class GridviewAdapter(val context: Context, val img_list : Array<Int>):BaseAdapter(){
+class GridviewAdapter(val context: Context, val list: List<Current>):BaseAdapter(){
+    private var imgArr = arrayOf(Int)
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val view: View = LayoutInflater.from(context).inflate(R.layout.gridviewitem1,null)
 
-        view.gridView_img.setImageResource(img_list[p0])
+
+        var imgArr = Array(list.size, { 0 })
+        var idx = 0
+        list.forEach {
+            var id = it.information_code
+            imgArr[idx] =
+                context.getResources().getIdentifier(id, "drawable", context.getPackageName())
+            idx++
+        }
+        view.gridView_img.setImageResource(imgArr[p0])
 
 
         return view
@@ -27,7 +38,7 @@ class GridviewAdapter(val context: Context, val img_list : Array<Int>):BaseAdapt
     }
 
     override fun getCount(): Int {
-        return img_list.size
+        return list.size
     }
 
 }

@@ -14,19 +14,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.alarm.AlarmReceiver
 import com.example.animalcrossingapp.controller.App
+import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
+import com.example.animalcrossingapp.model.AnimalViewModel
 import com.example.animalcrossingapp.view.GridviewAdapter
 import com.example.animalcrossingapp.view.InitialActivity
 import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_first.view.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
 import java.util.*
 
 /**
@@ -45,13 +50,16 @@ class FirstFragment : Fragment() {
         val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
         val currentMonth = "" + thisMonth + "月"
-        val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
+        var realTimeList =
+            db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
+        val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
+
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
         Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
 
-        if(iniFlag == "1") {
+        if (iniFlag == "1") {
         } else {
             val nextIntent = Intent(context, InitialActivity::class.java)
             startActivity(nextIntent)
@@ -84,6 +92,8 @@ class FirstFragment : Fragment() {
             MainController.currentTime()
         )*/
 
+        if (App.prefs.language == "ko") view.textView1.text = "실시간 정보"
+
         view.real_time_wrap.setOnClickListener {
             val list = arrayListOf<Current>()
             val bundle: Bundle = Bundle()
@@ -101,7 +111,7 @@ class FirstFragment : Fragment() {
         }
 
 
-        var imgArr = Array(realTimeList.size, {0})
+        /*var imgArr = Array(realTimeList.size, {0})
         var idx = 0
         realTimeList.forEach {
             var id = it.information_code
@@ -111,23 +121,51 @@ class FirstFragment : Fragment() {
         var list = arrayListOf<Current>()
         list.addAll(realTimeList)
         val griviewAdapter = GridviewAdapter(context, imgArr)
-        view.gridView1.adapter = griviewAdapter
+        view.gridView1.adapter = griviewAdapter*/
+
         /*view.gridView1.apply{
             layoutManager = GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
             adapter = GridAdapter(list, context) { animal -> }
         }*/
+        //리얼라임 그리드
+        model.currentAnimals.observe(viewLifecycleOwner, androidx.lifecycle.Observer { animals ->
+            /*realTimeList = animals
+            var imgArr = Array(realTimeList.size, { 0 })
+            var idx = 0
+            realTimeList.forEach {
+                var id = it.information_code
+                imgArr[idx] =
+                    this.getResources().getIdentifier(id, "drawable", context.getPackageName())
+                idx++
+            }*/
+            val griviewAdapter = GridviewAdapter(context, animals)
+            view.gridView1.adapter = griviewAdapter
+        })
 
-        val catchFishes = db.animalCrossingDao().viewCatchFish().size
+
+       /* val catchFishes = db.animalCrossingDao().viewCatchFish().size
         val catchBugs = db.animalCrossingDao().viewCatchBug().size
         view.contentLoadingProgressBar.progress = catchFishes
         view.contentLoadingProgressBar2.progress = catchBugs
         view.textView3.text = "" + catchFishes + "/80"
-        view.textView4.text = "" + catchBugs + "/80"
+        view.textView4.text = "" + catchBugs + "/80"*/
+
+        model.animals.observe(viewLifecycleOwner, androidx.lifecycle.Observer { animals ->
+            var catchFishes = 0
+            var catchBugs = 0
+            animals.forEach {
+                if (it.sortation == "魚" && it.flag == "1") { catchFishes++ }
+                else if (it.sortation == "虫" && it.flag == "1") { catchBugs++ }
+            }
+            view.textView3.text = "" + catchFishes + "/80"
+            view.textView4.text = "" + catchBugs + "/80"
+        })
+
         view.frameLayout2.setOnClickListener {
             val list = arrayListOf<Current>()
             val plist = db.animalCrossingDao().selectArrange(hemishpere)
             val bundle: Bundle = bundleOf()
-            plist.forEach{
+            plist.forEach {
                 list.add(it)
             }
             bundle.putParcelableArrayList("list", list)

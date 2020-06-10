@@ -57,13 +57,29 @@ class CurrentAdapter(val items: ArrayList<Current>,
                 slist.add(tarr[i].toInt())
             }
         }
+        var hourStr: String
+        var monthStr: String
+        when (App.prefs.language) {
+            "ja" -> {
+                hourStr = "時"
+                monthStr = "月"
+            }
+            "ko" -> {
+                hourStr = "시"
+                monthStr = "월"
+            }
+            else -> {
+                hourStr = "時"
+                monthStr = "月"
+            }
+        }
         if (slist.size == 0 && flist.size != 1) {
-            str = flist[0].toString() + " ~ " + flist[flist.size - 1].toString() + "時"
+            str = flist[0].toString() + " ~ " + flist[flist.size - 1].toString() + hourStr
         } else if (slist.size != 0) {
             str = flist[0].toString() + " ~ " + flist[flist.size - 1].toString() +
-                    "時, " + slist[0].toString() + " ~ " + slist[slist.size - 1].toString() + "時"
+                    hourStr + ", " + slist[0].toString() + " ~ " + slist[slist.size - 1].toString() + hourStr
         } else {
-            str = flist[0].toString() + "時"
+            str = flist[0].toString() + hourStr
         }
         //
         var marr = items[position].month!!.replace("月","").split(",")
@@ -80,16 +96,17 @@ class CurrentAdapter(val items: ArrayList<Current>,
             }
         }
         if (slist1.size == 0 && flist1.size != 1) {
-            str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() + "月"
+            str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() + monthStr
         } else if (slist1.size != 0) {
             str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() +
-                    "月, " + slist1[0].toString() + " ~ " + slist1[slist1.size - 1].toString() + "月"
+                    monthStr +", " + slist1[0].toString() + " ~ " + slist1[slist1.size - 1].toString() + monthStr
         } else {
-            str1 = flist1[0].toString() + "月"
+            str1 = flist1[0].toString() + monthStr
         }
         holder.binding.time = str
         holder.binding.month = str1
         holder.binding.current = items[position]
+        holder.binding.lang = App.prefs.language
         val db = AnimalCrossingDB.getInstance(holder.itemView.context)!!
         var flag = items[position].flag
         holder.itemView.setOnClickListener {

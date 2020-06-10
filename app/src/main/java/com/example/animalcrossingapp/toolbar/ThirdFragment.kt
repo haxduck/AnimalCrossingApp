@@ -39,11 +39,17 @@ class ThirdFragment : Fragment() {
             view.confBtn.setText("적용")
             view.minami.setText("남반구")
             view.kita.setText("북반구")
+            view.textView1.text = "반구설정"
+            view.textView2.text = "언어설정"
+            view.japanese.text = "일본어"
+            view.korean.text = "한국어"
         } else {
             view.Kankyo.setText("環境設定")
             view.confBtn.setText("適用")
             view.minami.setText("南半球")
             view.kita.setText("北半球")
+            view.japanese.text = "日本語"
+            view.korean.text = "韓国語"
         }
 
         view.hankyu.setOnCheckedChangeListener { group, isChecked ->

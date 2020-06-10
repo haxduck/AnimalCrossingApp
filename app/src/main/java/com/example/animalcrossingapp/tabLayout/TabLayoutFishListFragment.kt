@@ -8,10 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.lifecycle.LiveData
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.*
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -21,6 +20,7 @@ import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
+import com.example.animalcrossingapp.model.AnimalViewModel
 import com.example.animalcrossingapp.toolbar.ErrorFragment
 import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
@@ -45,18 +45,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class TabLayoutFishListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,12 +55,12 @@ class TabLayoutFishListFragment : Fragment() {
         val context: Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
         val dbList = arrayListOf<Current>()
-        val clist = db.animalCrossingDao().selectTablayoutAllFish()
+        /*val clist = db.animalCrossingDao().selectTablayoutAllFish()
         val list = arguments?.getParcelableArrayList<Current>("flist")!!
         if (list.size == 0) clist.forEach { dbList.add(it) }
         else {
             dbList.addAll(list)
-        }
+        }*/
         //라이브
         val selector = arguments?.getString("selector")
         val keyword = arguments?.getString("keyword")!!
@@ -81,11 +69,10 @@ class TabLayoutFishListFragment : Fragment() {
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
         val currentMonth = "" + thisMonth + "月"
         var liveList: LiveData<List<Current>>
-
+        val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
         when (selector) {
-            "current" -> liveList = db.animalCrossingDao()
-                .selectLiveCurrentAnimal(hemishpere, currentTime, currentMonth)
-            "arrange" -> liveList = db.animalCrossingDao().selectLiveArrange(hemishpere)
+            "current" -> liveList = model.currentAnimals
+            "arrange" -> liveList = model.arrangeAnimals
             "search" -> {
                 liveList = db.animalCrossingDao().selectLiveSearch(keyword)
                 liveList.observe(viewLifecycleOwner, Observer { animals ->
@@ -101,7 +88,7 @@ class TabLayoutFishListFragment : Fragment() {
                     else liveList = db.animalCrossingDao().selectLiveSearch(keyword)
                 })
             }
-            else -> liveList = db.animalCrossingDao().selectAll()
+            else -> liveList = model.animals
         }
 //        val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
 //        var liveList = db.animalCrossingDao().selectAll()
@@ -169,23 +156,4 @@ class TabLayoutFishListFragment : Fragment() {
         return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TabLayoutFishListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TabLayoutFishListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
