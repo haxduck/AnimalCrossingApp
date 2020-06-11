@@ -62,6 +62,7 @@ class TabLayoutInsectListFragment : Fragment() {
         //라이브
         val selector = arguments?.getString("selector")
         val keyword = arguments?.getString("keyword")!!
+        val searchMap = arguments?.getSerializable("searchMap") as HashMap<String, Any>
         val hemishpere = App.prefs.hemisphere!!
         val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
@@ -85,6 +86,9 @@ class TabLayoutInsectListFragment : Fragment() {
                     }
                     else liveList = db.animalCrossingDao().selectLiveSearch(keyword)
                 })
+            }
+            "detail" -> {
+                liveList = model.getDetail(searchMap)
             }
             else -> liveList = model.animals
         }

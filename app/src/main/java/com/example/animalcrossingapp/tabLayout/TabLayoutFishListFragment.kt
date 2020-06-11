@@ -67,7 +67,6 @@ class TabLayoutFishListFragment : Fragment() {
         val selector = arguments?.getString("selector")
         val keyword = arguments?.getString("keyword")!!
         val searchMap = arguments?.getSerializable("searchMap") as HashMap<String, Any>
-        Log.d("sear", searchMap.toString())
         val hemishpere = App.prefs.hemisphere!!
         val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
