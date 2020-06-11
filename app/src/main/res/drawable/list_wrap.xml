@@ -21,7 +21,7 @@
             <corners
                 android:radius="10dp" />
             <solid
-                android:color="#FFF" />
+                android:color="#FFF9E4" />
             <stroke
                 android:width="2dp"
                 android:color="#7C6839" />

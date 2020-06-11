@@ -9,15 +9,25 @@
             name="grid"
             type="com.example.animalcrossingapp.database.Current" />
     </data>
-
-
-
-    <ImageView
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/grid_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:id="@+id/grid_img"
         android:layout_marginRight="10dp"
-        android:background='@{grid.flag.equals("1") ? @drawable/grid_wrap_r : @drawable/grid_wrap}'
-        android:src='@{"android.resource://com.example.animalcrossingapp/drawable/" + grid.information_code}'/>
+        android:background='@{grid.flag.equals("1") ? @drawable/grid_wrap_r : @drawable/grid_wrap}'>
+
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src='@{"android.resource://com.example.animalcrossingapp/drawable/" + grid.information_code}'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>
