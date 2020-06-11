@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/first_fragment"
-        android:icon="@drawable/home"
+        android:icon="@drawable/home_copy"
         android:title=""
         android:visible="false"/>
 

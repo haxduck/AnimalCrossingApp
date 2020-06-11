@@ -150,11 +150,11 @@ class TabLayoutFishListFragment : Fragment() {
 
         view.toggleButton3.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
+                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list_2))
                 tabLayoutFishList.setVisibility(View.GONE)
                 m4.setVisibility(View.VISIBLE)
             } else {
-                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
+                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid_2))
                 tabLayoutFishList.setVisibility(View.VISIBLE)
                 m4.setVisibility(View.GONE)
             }

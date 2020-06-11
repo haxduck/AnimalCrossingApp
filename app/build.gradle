@@ -57,15 +57,16 @@ android {
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
+        mavenCentral()
     }
 
 }
 
 dependencies {
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.5'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     implementation 'com.github.Mirkoddd:Range-SeekBar:1.0.9'
-
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

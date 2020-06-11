@@ -5,14 +5,14 @@
     <item
         android:id="@+id/search"
         android:title="Search"
-        android:icon="@drawable/ic_search_white_24dp"
+        android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
     <item
         android:id="@+id/btn_filter"
         android:title="filter"
-        android:icon="@drawable/ic_filter"
+        android:icon="@drawable/ic_filter_2"
         app:showAsAction="always"
         />
 
