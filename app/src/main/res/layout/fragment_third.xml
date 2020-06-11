@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/pattern"
     tools:context=".toolbar.ThirdFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/radiobutton_hankyusetting3"
+        android:background="@drawable/radiobutton_hankyusetting2"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,24 +23,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Kankyo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#0DB694"
-            android:backgroundTint="#0DB694"
-            android:gravity="center"
-            android:text="環境設定"
-            android:textColor="@android:color/white"
-            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/radiobutton_hankyusetting4">
+
+
+            <TextView
+                android:id="@+id/kankyo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="環境設定"
+                android:textStyle="bold"
+                android:textColor="#7C6839"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
@@ -56,10 +66,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="半球設定"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,9 +92,9 @@
 
                 <RadioButton
                     android:id="@+id/minami"
-                    android:layout_width="300px"
-                    android:layout_height="100px"
-                    android:layout_marginRight="50dp"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/radiobutton_hankyusetting"
                     android:button="@android:color/transparent"
                     android:gravity="center"
@@ -91,8 +103,8 @@
 
                 <RadioButton
                     android:id="@+id/kita"
-                    android:layout_width="300px"
-                    android:layout_height="100px"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/radiobutton_hankyusetting"
                     android:button="@android:color/transparent"
                     android:gravity="center"
@@ -104,7 +116,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
@@ -121,10 +133,12 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="言語設定"
+                android:textStyle="bold"
+                android:textColor="#7C6839"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,7 +148,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
@@ -147,9 +160,9 @@
 
                 <RadioButton
                     android:id="@+id/japanese"
-                    android:layout_width="115dp"
-                    android:layout_height="100px"
-                    android:layout_marginRight="50dp"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/radiobutton_hankyusetting"
                     android:button="@android:color/transparent"
                     android:gravity="center"
@@ -158,8 +171,8 @@
 
                 <RadioButton
                     android:id="@+id/korean"
-                    android:layout_width="300px"
-                    android:layout_height="100px"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/radiobutton_hankyusetting"
                     android:button="@android:color/transparent"
                     android:gravity="center"
@@ -179,8 +192,9 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#0DB694"
+            android:button="@android:color/transparent"
             android:text="適用"
+            android:background="@drawable/radiobutton_hankyusetting6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.467"

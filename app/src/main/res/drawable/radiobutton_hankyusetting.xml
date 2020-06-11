@@ -6,12 +6,12 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="rectangle" >
             <corners
-                android:radius="10dp" />
+                android:radius="5dp" />
             <solid
-                android:color="#E9E9E9" />
+                android:color="#CAC2AF" />
             <stroke
                 android:width="3dp"
-                android:color="#E9E9E9" />
+                android:color="#CAC2AF" />
         </shape>
     </item>
     <!-- SELECTED -->
@@ -23,12 +23,12 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:shape="rectangle" >
                     <corners
-                        android:radius="10dp" />
+                        android:radius="5dp" />
                     <solid
                         android:color="#fff" />
                     <stroke
                         android:width="3dp"
-                        android:color="#0DB694" />
+                        android:color="#7C6839" />
                 </shape>
             </item>
 

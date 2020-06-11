@@ -38,7 +38,7 @@ class ThirdFragment : Fragment() {
         else view.hankyu.check(R.id.kita)
 
         if (mLanguageCode == "ko") {
-            view.Kankyo.setText("환경설정")
+            view.kankyo1.setText("환경설정")
             view.confBtn.setText("적용")
             view.minami.setText("남반구")
             view.kita.setText("북반구")
@@ -48,7 +48,7 @@ class ThirdFragment : Fragment() {
             view.korean.text = "한국어"
             view.language.check(R.id.korean)
         } else {
-            view.Kankyo.setText("環境設定")
+            view.kankyo1.setText("環境設定")
             view.confBtn.setText("適用")
             view.minami.setText("南半球")
             view.kita.setText("北半球")
