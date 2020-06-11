@@ -23,9 +23,9 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:shape="rectangle" >
                     <corners
-                        android:radius="3dp" />
+                        android:radius="2dp" />
                     <solid
-                        android:color="#fff" />
+                        android:color="#DCFFF5" />
                     <stroke
                         android:width="3dp"
                         android:color="#7C6839" />

@@ -535,7 +535,7 @@
                 android:button="@android:color/transparent"
                 android:gravity="center"
                 android:paddingVertical="5dp"
-                android:text="切り株"
+                android:text="海岸"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/bugTgBtn14"
                 app:layout_constraintStart_toEndOf="@+id/bugTgBtn22"

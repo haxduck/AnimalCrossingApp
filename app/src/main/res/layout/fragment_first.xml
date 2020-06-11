@@ -291,7 +291,7 @@
                     android:layout_marginBottom="4dp"
                     android:max="80"
                     android:progress="10"
-                    android:progressDrawable="@drawable/custom_green_progressbar2"
+                    android:progressDrawable="@drawable/custom_green_progressbar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView4"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"

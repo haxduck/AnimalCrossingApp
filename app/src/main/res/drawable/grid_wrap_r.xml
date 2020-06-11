@@ -8,10 +8,10 @@
             <corners
                 android:radius="10dp" />
             <solid
-                android:color="#EEE1C8" />
+                android:color="#DCFFF5" />
             <stroke
                 android:width="2dp"
-                android:color="#FFFFFF" />
+                android:color="#7C6839" />
         </shape>
     </item>
 
