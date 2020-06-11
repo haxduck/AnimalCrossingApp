@@ -99,7 +99,8 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="南半球" />
+                    android:text="南半球"
+                    />
 
                 <RadioButton
                     android:id="@+id/kita"
@@ -109,7 +110,8 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="北半球" />
+                    android:text="北半球"
+                    />
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -167,7 +169,8 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="日本語" />
+                    android:text="日本語"
+                    />
 
                 <RadioButton
                     android:id="@+id/korean"
@@ -177,7 +180,8 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="한국어" />
+                    android:text="한국어"
+                    />
             </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -192,8 +196,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:button="@android:color/transparent"
             android:text="適用"
+            android:button="@android:color/transparent"
             android:background="@drawable/radiobutton_hankyusetting6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
