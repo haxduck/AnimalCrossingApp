@@ -153,6 +153,8 @@ class FirstFragment : Fragment() {
                 if (it.sortation == "魚" && it.flag == "1") { catchFishes++ }
                 else if (it.sortation == "虫" && it.flag == "1") { catchBugs++ }
             }
+            view.contentLoadingProgressBar.progress = catchFishes
+            view.contentLoadingProgressBar2.progress = catchBugs
             view.textView3.text = "" + catchFishes + "/80"
             view.textView4.text = "" + catchBugs + "/80"
         })
