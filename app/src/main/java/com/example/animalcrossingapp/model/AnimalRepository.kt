@@ -15,7 +15,7 @@ class AnimalRepository(dao: AnimalCrossingDAO) {
     private val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
     private val currentMonth = "" + thisMonth + "月"
     fun getAnimals(): LiveData<List<Current>> {
-        return dao.selectAll()
+        return dao.selectAll(hemishpere)
     }
     fun getCurrent(): LiveData<List<Current>> {
         return dao.selectLiveCurrentAnimal(hemishpere, currentTime, currentMonth)

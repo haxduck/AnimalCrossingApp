@@ -87,6 +87,7 @@ class CurrentAdapter(val items: ArrayList<Current>,
         var flist1: ArrayList<Int> = arrayListOf(marr[0].toInt())
         var slist1: ArrayList<Int> = arrayListOf()
         var fl = 0
+        Log.d("marr", marr.toString())
         for (i in 1..marr.size - 1) {
             if (marr[i].toInt() - marr[i-1].toInt() == 1 && fl == 0) {
                 flist1.add(marr[i].toInt())
