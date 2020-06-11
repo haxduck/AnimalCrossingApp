@@ -17,13 +17,14 @@ import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.coroutines.selects.select
 import java.util.concurrent.ConcurrentNavigableMap
 
-class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, selector: String, keyword: String, context: Context) : FragmentPagerAdapter(fm){
+class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, selector: String, keyword: String, searchMap: HashMap<String, Any>, context: Context) : FragmentPagerAdapter(fm){
 
     private val bundle: Bundle = Bundle()
     private var alist: ArrayList<Current> = list
     private val context = context
     private val selector = selector
     private val keyword = keyword
+    private val searchMap = searchMap
 
     override fun getItem(position: Int): Fragment {
         /*when(position){
@@ -51,6 +52,7 @@ class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, selector
                 bundle.putParcelableArrayList("flist", flist)
                 bundle.putString("selector", selector)
                 bundle.putString("keyword", keyword)
+                bundle.putSerializable("searchMap", searchMap)
                 frg.arguments = bundle
                 return frg
             }
@@ -59,6 +61,7 @@ class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, selector
                 bundle.putParcelableArrayList("blist", blist)
                 bundle.putString("selector", selector)
                 bundle.putString("keyword", keyword)
+                bundle.putSerializable("searchMap", searchMap)
                 frg.arguments = bundle
                 return frg
             }

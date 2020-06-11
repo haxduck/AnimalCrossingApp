@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
@@ -33,6 +34,7 @@ import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.tabLayo
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.toggleButton3
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*
 import java.util.*
+import kotlin.collections.HashMap
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,6 +66,8 @@ class TabLayoutFishListFragment : Fragment() {
         //라이브
         val selector = arguments?.getString("selector")
         val keyword = arguments?.getString("keyword")!!
+        val searchMap = arguments?.getSerializable("searchMap") as HashMap<String, Any>
+        Log.d("sear", searchMap.toString())
         val hemishpere = App.prefs.hemisphere!!
         val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
@@ -87,6 +91,10 @@ class TabLayoutFishListFragment : Fragment() {
                     }
                     else liveList = db.animalCrossingDao().selectLiveSearch(keyword)
                 })
+
+            }
+            "detail" -> {
+                liveList = model.getDetail(searchMap)
             }
             else -> liveList = model.animals
         }
