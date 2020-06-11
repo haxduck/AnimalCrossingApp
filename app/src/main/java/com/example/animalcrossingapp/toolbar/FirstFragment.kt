@@ -53,12 +53,14 @@ class FirstFragment : Fragment() {
         var realTimeList =
             db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
         val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
-
-        var time: Int = Calendar.getInstance().get(Calendar.MONTH) + 6 + 1
-        Toast.makeText(activity, time.toString(), Toast.LENGTH_LONG).show()
+        model.animals.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            Log.d("modle", it.toString())
+        })
+        Log.d("bug", db.animalCrossingDao().selectBugs().toString())
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
+//        App.prefs.initialFlag = "0"
         /*Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()*/
 
         if (iniFlag == "1") {
@@ -178,7 +180,7 @@ class FirstFragment : Fragment() {
             frg.arguments = bundle
             (activity as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-            (activity as MainActivity).bottomBar.setActiveItem(1)
+            /*(activity as MainActivity).bottomBar.setActiveItem(1)*/
         }
 
         return view

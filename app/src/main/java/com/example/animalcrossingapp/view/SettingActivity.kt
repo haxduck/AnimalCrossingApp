@@ -19,7 +19,7 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
-        var hemi = ""
+        /*var hemi = ""
        hankyu.setOnCheckedChangeListener{arg0, isChecked ->
            if(minami.isChecked == true){
                hemi = "南半球"
@@ -36,6 +36,6 @@ class SettingActivity : AppCompatActivity() {
             //xml 저장
             App.prefs.hemisphere = hemi
             startActivity(intent)
-        }
+        }*/
     }
 }

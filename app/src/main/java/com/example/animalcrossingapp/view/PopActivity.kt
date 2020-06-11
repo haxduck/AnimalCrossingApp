@@ -1,6 +1,5 @@
 package com.example.animalcrossingapp.view
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,23 +7,18 @@ import android.util.Log
 import android.view.Window
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
-import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
-import com.example.animalcrossingapp.room.AnimalVO
-import com.example.animalcrossingapp.toolbar.SecondFragment
 import it.mirko.rangeseekbar.OnRangeSeekBarListener
 import it.mirko.rangeseekbar.RangeSeekBar
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_pop.*
 import kotlinx.android.synthetic.main.activity_pop.bugRB
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn14
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn15
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn18
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn22
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn23
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn7
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn4
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn8
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn5
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn6
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn9
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn3
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn2
 import kotlinx.android.synthetic.main.activity_pop.fishRB
 import kotlinx.android.synthetic.main.activity_pop.monthCB1
 import kotlinx.android.synthetic.main.activity_pop.monthCB10
@@ -45,8 +39,6 @@ import kotlinx.android.synthetic.main.activity_pop.searchTgBtn4
 import kotlinx.android.synthetic.main.activity_pop.searchTgBtn5
 import kotlinx.android.synthetic.main.activity_pop.searchTgBtn6
 import kotlinx.android.synthetic.main.activity_pop.sortRG
-import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.activity_test.*
 
 class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,34 +115,88 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
 
         fun getPlaces(): ArrayList<String> {
             var pla = ArrayList<String>()
-            if (searchTgBtn1.isChecked == true) pla.add("海")
-            if (searchTgBtn2.isChecked == true) pla.add("川")
-            if (searchTgBtn3.isChecked == true) pla.add("池")
-            if (searchTgBtn4.isChecked == true) pla.add("河口")
-            if (searchTgBtn5.isChecked == true) pla.add("崖の上")
-            if (searchTgBtn6.isChecked == true) pla.add("桟橋")
-            if (bugTgBtn4.isChecked == true) pla.add("切り株")
-            if (bugTgBtn6.isChecked == true) pla.add("岩")
-            if (bugTgBtn9.isChecked == true) pla.add("木")
-            if (bugTgBtn14.isChecked == true) pla.add("空中")
-            if (bugTgBtn15.isChecked == true) pla.add("花")
-            if (bugTgBtn18.isChecked == true) pla.add("ゴミ")
-            if (bugTgBtn22.isChecked == true) pla.add("池")
-            if (bugTgBtn23.isChecked == true) pla.add("川")
-            if (pla.size == 0) {
+            if (searchTgBtn1.isChecked) pla.add("海")
+            if (searchTgBtn2.isChecked) {
+                pla.add("川")
+                pla.add("川の近くの空中")
+            }
+            if (searchTgBtn3.isChecked) pla.add("池")
+            if (searchTgBtn4.isChecked) pla.add("河口")
+            if (searchTgBtn5.isChecked) pla.add("崖の上")
+            if (searchTgBtn6.isChecked) pla.add("桟橋")
+
+            if (bugTgBtn1.isChecked) {
+                pla.add("海岸")
+                pla.add("砂浜の岩")
+                pla.add("砂浜")
+            }
+            if (bugTgBtn2.isChecked) {
+                pla.add("木")
+                pla.add("木、ヤシの木")
+                pla.add("木揺")
+                pla.add("切り株")
+                pla.add("ヤシの木")
+            }
+            if (bugTgBtn3.isChecked) {
+                pla.add("岩")
+                pla.add("雨の日の切り株、岩")
+            }
+            if (bugTgBtn4.isChecked) {
+                pla.add("花")
+                pla.add("黒・青・紫の花の周辺")
+                pla.add("白い花")
+            }
+            if (bugTgBtn5.isChecked) {
+                pla.add("地")
+                pla.add("地面の家具のマーク")
+                pla.add("土の中")
+                pla.add("住人")
+                pla.add("雪玉")
+                pla.add("地面")
+            }
+            if (bugTgBtn6.isChecked) pla.add("切り株")
+            if (bugTgBtn7.isChecked) {
+                pla.add("空中")
+                pla.add("街灯")
+            }
+            if (bugTgBtn8.isChecked) {
+                pla.add("ゴミ")
+                pla.add("カブ")
+                pla.add("長靴、缶、タイヤ、腐ったカブ")
+            }
+            if ( pla.size == 0 ) {
                 pla.add("海")
                 pla.add("川")
+                pla.add("川の近くの空中")
                 pla.add("池")
                 pla.add("河口")
                 pla.add("崖の上")
                 pla.add("桟橋")
-                pla.add("切り株")
+                pla.add("海岸")
+                pla.add("砂浜の岩")
+                pla.add("砂浜")
                 pla.add("木")
-                pla.add("空中")
+                pla.add("木、ヤシの木")
+                pla.add("木揺")
+                pla.add("切り株")
+                pla.add("ヤシの木")
+                pla.add("岩")
+                pla.add("雨の日の切り株、岩")
                 pla.add("花")
+                pla.add("黒・青・紫の花の周辺")
+                pla.add("白い花")
+                pla.add("地")
+                pla.add("地面の家具のマーク")
+                pla.add("土の中")
+                pla.add("住人")
+                pla.add("雪玉")
+                pla.add("地面")
+                pla.add("切り株")
+                pla.add("空中")
+                pla.add("街灯")
                 pla.add("ゴミ")
-                pla.add("池")
-                pla.add("川")
+                pla.add("カブ")
+                pla.add("長靴、缶、タイヤ、腐ったカブ")
             }
             return pla
         }
@@ -219,14 +265,14 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
             textView.setText("시간대")
             textView7.setText("서식지")
             textView8.setText("서식지")
-            bugTgBtn23.setText("강")
-            bugTgBtn9.setText("나무")
-            bugTgBtn6.setText("바위")
-            bugTgBtn15.setText("꽃")
-            bugTgBtn22.setText("연못")
-            bugTgBtn4.setText("그루터기")
-            bugTgBtn14.setText("공중")
-            bugTgBtn18.setText("쓰레기")
+            bugTgBtn1.setText("강")
+            bugTgBtn2.setText("나무")
+            bugTgBtn3.setText("바위")
+            bugTgBtn4.setText("꽃")
+            bugTgBtn5.setText("땅")
+            bugTgBtn6.setText("그루터기")
+            bugTgBtn7.setText("공중")
+            bugTgBtn8.setText("쓰레기")
             searchTgBtn1.setText("바다")
             searchTgBtn2.setText("강")
             searchTgBtn3.setText("연못")
