@@ -54,10 +54,12 @@ class FirstFragment : Fragment() {
             db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
         val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
 
+        var time: Int = Calendar.getInstance().get(Calendar.MONTH) + 6 + 1
+        Toast.makeText(activity, time.toString(), Toast.LENGTH_LONG).show()
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
-        Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
+        /*Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()*/
 
         if (iniFlag == "1") {
         } else {
@@ -88,7 +90,11 @@ class FirstFragment : Fragment() {
         )*/
         //
 
-        if (App.prefs.language == "ko") view.textView1.text = "실시간 정보"
+        if (App.prefs.language == "ko") {
+            view.textView1.text = "실시간 정보"
+            view.textView5.text = "진행상황"
+        }
+
 
         view.real_time_wrap.setOnClickListener {
             val list = arrayListOf<Current>()
@@ -102,7 +108,7 @@ class FirstFragment : Fragment() {
             frg.arguments = bundle
             (activity as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-            (activity as MainActivity).bottomBar.setActiveItem(1)
+           /* (activity as MainActivity).bottomBar.setActiveItem(1)*/
 //            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
         }
 

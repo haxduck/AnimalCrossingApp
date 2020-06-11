@@ -32,7 +32,8 @@ class GridviewAdapter(val context: Context, val list: List<Current>):BaseAdapter
         view.gridView_img.setImageResource(imgArr[p0])
 
         var db = AnimalCrossingDB.getInstance(context)!!
-        val nextMonth = Calendar.getInstance().get(Calendar.MONTH) + 2
+        var nextMonth = Calendar.getInstance().get(Calendar.MONTH) + 2
+        if (nextMonth > 11) nextMonth = nextMonth - 11
 
         var animal = db.animalCrossingDao().selectCode(list[p0].information_code!!.toUpperCase())
         var marr = animal.month!!.replace("月","").split(",")

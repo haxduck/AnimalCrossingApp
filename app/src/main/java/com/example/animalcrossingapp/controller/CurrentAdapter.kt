@@ -96,11 +96,16 @@ class CurrentAdapter(val items: ArrayList<Current>,
                 slist1.add(marr[i].toInt())
             }
         }
+
         if (slist1.size == 0 && flist1.size != 1) {
             str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() + monthStr
         } else if (slist1.size != 0) {
-            str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() +
-                    monthStr +", " + slist1[0].toString() + " ~ " + slist1[slist1.size - 1].toString() + monthStr
+            if (flist1[0] == 1 && slist1[slist1.size - 1] == 12 && marr.size < 12 ) {
+                str1 = slist1[0].toString() + " ~ 来年" + flist1[flist1.size - 1] + monthStr
+            } else {
+                str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() +
+                        monthStr + ", " + slist1[0].toString() + " ~ " + slist1[slist1.size - 1].toString() + monthStr
+            }
         } else {
             str1 = flist1[0].toString() + monthStr
         }
