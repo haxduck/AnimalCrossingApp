@@ -40,7 +40,39 @@ class TabLayoutAdapter(fm : FragmentManager, list : ArrayList<Current>, selector
         var flist = arrayListOf<Current>()
         alist.forEach{
             if (it.sortation == "魚") flist.add(it)
+
         }
+
+        fun sortByName(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
+
+
+        fun sortByPrice(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].price > plist[j].price){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
         var blist = arrayListOf<Current>()
         alist.forEach{
             if (it.sortation == "虫") blist.add(it)

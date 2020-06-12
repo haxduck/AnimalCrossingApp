@@ -54,6 +54,36 @@ class TabLayoutFishListFragment : Fragment() {
         else {
             dbList.addAll(list)
         }*/
+        fun sortByName(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
+
+
+        fun sortByPrice(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].price > plist[j].price){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
         //라이브
         val selector = arguments?.getString("selector")
         val keyword = arguments?.getString("keyword")!!
@@ -116,6 +146,7 @@ class TabLayoutFishListFragment : Fragment() {
         liveList.observe(viewLifecycleOwner, mainObserver)
         //
 
+
         /*var imgArr = Array(dbList.size, {0})
         var idx = 0
         dbList.forEach {
@@ -141,8 +172,142 @@ class TabLayoutFishListFragment : Fragment() {
                 m4.setVisibility(View.GONE)
             }
         }
+        view.fsort_wrap.setVisibility(View.GONE)
+
+        view.sortBtn.setOnClickListener {
+            view.fsort_wrap.setVisibility(View.VISIBLE)
+            view.sortBtn.setOnClickListener {
+                view.fsort_wrap.setVisibility(View.GONE)
+                view.sortBtn.setOnClickListener{
+                    view.fsort_wrap.setVisibility(View.VISIBLE)
+                    view.sortBtn.setOnClickListener {
+                        view.fsort_wrap.setVisibility(View.GONE)
+                    }
+                }
+            }
+            view.fpriceBtn.setOnCheckedChangeListener {_, isChecked ->
+
+                if(isChecked){
+                    var plist = sortByPriceDown(dbList)
+                    fpriceBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_down_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                }else{
+                    var plist = sortByPriceUp(dbList)
+                    fpriceBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_up_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                    Log.d("ddd", "qqweq")
+                }
+
+
+                var plist = sortByPrice(dbList)
+
+                view.tabLayoutFishList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+            }
+
+            view.fnameBtn.setOnCheckedChangeListener {_, isChecked ->
+
+                if(isChecked){
+                    var plist = sortByNameDown(dbList)
+                    fnameBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_down_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                }else{
+                    var plist = sortByNameUp(dbList)
+                    fnameBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_up_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                    Log.d("ddd", "qqweq")
+                }
+
+
+                var plist = sortByName(dbList)
+
+                view.tabLayoutFishList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+            }
+        }
+
+
+
+
+
+
 
         return view
     }
+
+    fun sortByPriceUp(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+            for (i in 0 until plist.size) {
+                for (j in i until plist.size - 1) {
+                    if (plist[i].price < plist[j].price) {
+                        var temp: Current = plist[i]
+                        plist[i] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+        return plist
+        }
+
+    fun sortByPriceDown(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+            for (i in 0 until plist.size) {
+                for (j in i until plist.size - 1) {
+                    if (plist[i].price > plist[j].price) {
+                        var temp: Current = plist[i]
+                        plist[i] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+        return plist
+    }
+
+    fun sortByNameDown(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+        for (i in 0 until plist.size) {
+            for (j in i until plist.size - 1) {
+                if (plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()) {
+                    var temp: Current = plist[i]
+                    plist[i] = plist[j]
+                    plist[j] = temp
+                }
+            }
+        }
+        return plist
+    }
+
+    fun sortByNameUp(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+        for (i in 0 until plist.size) {
+            for (j in i until plist.size - 1) {
+                if (plist[i].name.toString()[0].toInt() < plist[j].name.toString()[0].toInt()) {
+                    var temp: Current = plist[i]
+                    plist[i] = plist[j]
+                    plist[j] = temp
+                }
+            }
+        }
+        return plist
+    }
+
+
+
 
 }
