@@ -37,6 +37,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="保有 / 未保有"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +76,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="種類"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -167,6 +171,8 @@
                 android:layout_marginTop="10dp"
                 android:text="月"
                 android:textSize="15dp"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -406,6 +412,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="30dp"
                 android:text="0"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/time_rangeSeekbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -417,6 +425,8 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:text="0"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/time_rangeSeekbar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -429,6 +439,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:text="時間帯"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -477,6 +489,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="30dp"
                 android:text="0"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/price_rangeSeekbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -488,6 +502,8 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:text="0"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/price_rangeSeekbar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -500,6 +516,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:text="値段"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -521,6 +539,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="生息地"
+                android:textColor="#7C6839"
+                android:textStyle="bold"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

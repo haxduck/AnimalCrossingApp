@@ -1,13 +1,19 @@
 package com.example.animalcrossingapp.view
 
 import android.content.Context
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.gridviewitem1.view.*
+import kotlinx.android.synthetic.main.gridviewitem1.view.gridView_img
+import kotlinx.android.synthetic.main.gridviewitem2.view.*
+import java.util.*
 
 class GridviewAdapter(val context: Context, val list: List<Current>):BaseAdapter(){
     private var imgArr = arrayOf(Int)
@@ -25,7 +31,21 @@ class GridviewAdapter(val context: Context, val list: List<Current>):BaseAdapter
         }
         view.gridView_img.setImageResource(imgArr[p0])
 
+        var db = AnimalCrossingDB.getInstance(context)!!
+        var nextMonth = Calendar.getInstance().get(Calendar.MONTH) + 2
+        if (nextMonth > 11) nextMonth = nextMonth - 11
 
+        var animal = db.animalCrossingDao().selectCode(list[p0].information_code!!.toUpperCase())
+        var marr = animal.month!!.replace("月","").split(",")
+        for (i in (0..marr.size - 1)) {
+            if (marr[i] == nextMonth.toString()) {
+                view.grid_wrap.setBackgroundResource(R.drawable.grid_wrap3)
+                break
+            }
+            else {
+                view.grid_wrap.setBackgroundResource(R.drawable.grid_wrap3_uc)
+            }
+        }
         return view
     }
 
