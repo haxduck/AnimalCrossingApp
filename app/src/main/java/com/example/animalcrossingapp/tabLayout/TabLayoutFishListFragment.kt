@@ -37,16 +37,6 @@ import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*
 import java.util.*
 import kotlin.collections.HashMap
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TabLayoutFishListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TabLayoutFishListFragment : Fragment() {
 
     override fun onCreateView(
@@ -102,11 +92,11 @@ class TabLayoutFishListFragment : Fragment() {
             }
             if (dbList.size == 0 ) {
                 if( App.prefs.language == "ko"){
-                    view.ExceptionText.visibility = View.VISIBLE
-                    view.ExceptionText.text = "0건"
+                    view.ExceptionTextF.visibility = View.VISIBLE
+                    view.ExceptionTextF.text = "0건"
                 } else {
-                    view.ExceptionText.visibility = View.VISIBLE
-                    view.ExceptionText.text = "0件"
+                    view.ExceptionTextF.visibility = View.VISIBLE
+                    view.ExceptionTextF.text = "0件"
                 }
             }
             if (view.toggleButton3.isChecked) {
@@ -125,6 +115,7 @@ class TabLayoutFishListFragment : Fragment() {
         }
         liveList.observe(viewLifecycleOwner, mainObserver)
         //
+        Log.d("fdsfsf", dbList.toString())
 
 
         /*var imgArr = Array(dbList.size, {0})

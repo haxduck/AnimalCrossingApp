@@ -144,11 +144,11 @@ class FirstFragment : Fragment() {
             }*/
             if (animals.size == 0) {
                 if( App.prefs.language == "ko"){
-                    view.ExceptionText1.visibility = View.VISIBLE
-                    view.ExceptionText1.text = "0건"
+                    view.ExceptionTextM.visibility = View.VISIBLE
+                    view.ExceptionTextM.text = "0건"
                 } else {
-                    view.ExceptionText1.visibility = View.VISIBLE
-                    view.ExceptionText1.text = "0件"
+                    view.ExceptionTextM.visibility = View.VISIBLE
+                    view.ExceptionTextM.text = "0件"
                 }
             } else {
                 val griviewAdapter = GridviewAdapter(context, animals)

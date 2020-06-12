@@ -12,11 +12,10 @@ import it.mirko.rangeseekbar.OnRangeSeekBarListener
 import it.mirko.rangeseekbar.RangeSeekBar
 import kotlinx.android.synthetic.main.activity_pop.*
 import kotlinx.android.synthetic.main.activity_pop.bugRB
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn7
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn4
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn1
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn6
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn8
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn5
-import kotlinx.android.synthetic.main.activity_pop.bugTgBtn6
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn3
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn2
 import kotlinx.android.synthetic.main.activity_pop.fishRB
@@ -41,13 +40,17 @@ import kotlinx.android.synthetic.main.activity_pop.searchTgBtn6
 import kotlinx.android.synthetic.main.activity_pop.sortRG
 
 class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
+
+    override fun onStart() {
+        super.onStart()
+
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_pop)
-
-        Log.d("this", this.toString())
-
 
         time_rangeSeekbar.setMax(24)
         time_rangeSeekbar.setMinDifference(1)
@@ -64,7 +67,7 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
         minPriceText.text = price_rangeSeekbar.startProgress.toString()
         maxPriceText.text = price_rangeSeekbar.endProgress.toString()
 
-        var sort = "%%"
+        var sort = "1"
         var list = arrayListOf<Current>()
         val hemi = App.prefs.hemisphere
         val loc = App.prefs.language
@@ -141,7 +144,7 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
                 pla.add("岩")
                 pla.add("雨の日の切り株、岩")
             }
-            if (bugTgBtn4.isChecked) {
+            if (bugTgBtn6.isChecked) {
                 pla.add("花")
                 pla.add("黒・青・紫の花の周辺")
                 pla.add("白い花")
@@ -154,7 +157,7 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
                 pla.add("雪玉")
                 pla.add("地面")
             }
-            if (bugTgBtn6.isChecked) pla.add("切り株")
+            if (bugTgBtn3.isChecked) pla.add("切り株")
             if (bugTgBtn7.isChecked) {
                 pla.add("空中")
                 pla.add("街灯")
@@ -268,9 +271,9 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
             bugTgBtn1.setText("강")
             bugTgBtn2.setText("나무")
             bugTgBtn3.setText("바위")
-            bugTgBtn4.setText("꽃")
+            bugTgBtn6.setText("꽃")
             bugTgBtn5.setText("땅")
-            bugTgBtn6.setText("그루터기")
+            bugTgBtn3.setText("그루터기")
             bugTgBtn7.setText("공중")
             bugTgBtn8.setText("쓰레기")
             searchTgBtn1.setText("바다")

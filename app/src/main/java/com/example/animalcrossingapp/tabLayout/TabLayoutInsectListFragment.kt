@@ -34,16 +34,6 @@ import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.m2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.tabLayoutInsectList
 import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TabLayoutInsectListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TabLayoutInsectListFragment : Fragment() {
 
     override fun onCreateView(

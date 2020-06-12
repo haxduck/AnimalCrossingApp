@@ -392,7 +392,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ToggleButton
-                android:id="@+id/bugTgBtn6"
+                android:id="@+id/bugTgBtn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="切り株"
@@ -409,7 +409,7 @@
                 android:text="土の中"
                 android:textOff="土の中"
                 android:textOn="土の中"
-                app:layout_constraintStart_toEndOf="@+id/bugTgBtn6"
+                app:layout_constraintStart_toEndOf="@+id/bugTgBtn3"
                 app:layout_constraintTop_toBottomOf="@+id/bugTgBtn2" />
 
             <ToggleButton
@@ -430,7 +430,7 @@
                 android:textOff="岩場"
                 android:textOn="岩場"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn6" />
+                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn3" />
 
             <ToggleButton
                 android:id="@+id/bugTgBtn8"
@@ -504,7 +504,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/bugTgBtn11" />
 
             <ToggleButton
-                android:id="@+id/bugTgBtn4"
+                android:id="@+id/bugTgBtn6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="花"
@@ -542,7 +542,7 @@
                 android:textOff="長靴、缶、タイヤ、腐ったカブ"
                 android:textOn="長靴、缶、タイヤ、腐ったカブ"
                 app:layout_constraintStart_toEndOf="@+id/bugTgBtn17"
-                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn4" />
+                app:layout_constraintTop_toBottomOf="@+id/bugTgBtn6" />
 
             <ToggleButton
                 android:id="@+id/bugTgBtn19"
