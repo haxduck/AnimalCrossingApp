@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/sButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="10dp"
@@ -25,7 +25,7 @@
             android:background="@drawable/ic_baseline_sort_24"
             android:button="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/toggleButton3"
+            app:layout_constraintEnd_toStartOf="@+id/toggleButton1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatToggleButton
@@ -89,7 +89,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sort_wrap"
+        android:id="@+id/bsort_wrap"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
@@ -123,7 +123,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ToggleButton
-                android:id="@+id/toggleButton"
+                android:id="@+id/bNameBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginEnd="10dp"
@@ -173,7 +173,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ToggleButton
-                android:id="@+id/toggleButton4"
+                android:id="@+id/bPriceBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginEnd="10dp"

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/sortBtn"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="10dp"
@@ -43,17 +43,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
-
-        <ToggleButton
-            android:id="@+id/name_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="323dp"
-            android:layout_marginLeft="323dp"
-            android:text="ToggleButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -95,18 +84,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_wrap" />
 
-    <ToggleButton
-        android:id="@+id/price_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/tabLayoutFishList"
-        app:layout_constraintEnd_toStartOf="@+id/button_wrap"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sort_wrap"
+        android:id="@+id/fsort_wrap"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
@@ -140,7 +120,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ToggleButton
-                android:id="@+id/toggleButton"
+                android:id="@+id/fnameBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginEnd="10dp"
@@ -190,7 +170,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ToggleButton
-                android:id="@+id/toggleButton4"
+                android:id="@+id/fpriceBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginEnd="10dp"

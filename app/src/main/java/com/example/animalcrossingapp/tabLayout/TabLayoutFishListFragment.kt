@@ -174,69 +174,88 @@ class TabLayoutFishListFragment : Fragment() {
 
         view.toggleButton3.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
+                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list_2))
                 tabLayoutFishList.setVisibility(View.GONE)
                 m4.setVisibility(View.VISIBLE)
             } else {
-                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
+                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid_2))
                 tabLayoutFishList.setVisibility(View.VISIBLE)
                 m4.setVisibility(View.GONE)
             }
         }
+        view.fsort_wrap.setVisibility(View.GONE)
 
-        view.price_btn.setOnCheckedChangeListener {_, isChecked ->
+        view.sortBtn.setOnClickListener {
+            view.fsort_wrap.setVisibility(View.VISIBLE)
+            view.sortBtn.setOnClickListener {
+                view.fsort_wrap.setVisibility(View.GONE)
+                view.sortBtn.setOnClickListener{
+                    view.fsort_wrap.setVisibility(View.VISIBLE)
+                    view.sortBtn.setOnClickListener {
+                        view.fsort_wrap.setVisibility(View.GONE)
+                    }
+                }
+            }
+            view.fpriceBtn.setOnCheckedChangeListener {_, isChecked ->
 
-            if(isChecked){
-                var plist = sortByPriceDown(dbList)
-                Log.d("plist", sortByPriceDown(dbList).toString())
+                if(isChecked){
+                    var plist = sortByPriceDown(dbList)
+                    fpriceBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_down_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                }else{
+                    var plist = sortByPriceUp(dbList)
+                    fpriceBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_up_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                    Log.d("ddd", "qqweq")
+                }
+
+
+                var plist = sortByPrice(dbList)
+
                 view.tabLayoutFishList.apply {
                     layoutManager = LinearLayoutManager(activity)
                     adapter = CurrentAdapter(plist, context, view) { animal -> }
                 }
-            }else{
-                var plist = sortByPriceUp(dbList)
-                view.tabLayoutFishList.apply {
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = CurrentAdapter(plist, context, view) { animal -> }
-                }
-                Log.d("ddd", "qqweq")
             }
 
+            view.fnameBtn.setOnCheckedChangeListener {_, isChecked ->
 
-            var plist = sortByPrice(dbList)
+                if(isChecked){
+                    var plist = sortByNameDown(dbList)
+                    fnameBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_down_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                }else{
+                    var plist = sortByNameUp(dbList)
+                    fnameBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_up_24))
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                    Log.d("ddd", "qqweq")
+                }
+
+
+                var plist = sortByName(dbList)
 
                 view.tabLayoutFishList.apply {
                     layoutManager = LinearLayoutManager(activity)
                     adapter = CurrentAdapter(plist, context, view) { animal -> }
                 }
+            }
         }
 
-        view.name_btn.setOnCheckedChangeListener {_, isChecked ->
-
-            if(isChecked){
-                var plist = sortByNameDown(dbList)
-                Log.d("plist", sortByNameDown(dbList).toString())
-                view.tabLayoutFishList.apply {
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = CurrentAdapter(plist, context, view) { animal -> }
-                }
-            }else{
-                var plist = sortByNameUp(dbList)
-                view.tabLayoutFishList.apply {
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = CurrentAdapter(plist, context, view) { animal -> }
-                }
-                Log.d("ddd", "qqweq")
-            }
 
 
-            var plist = sortByName(dbList)
 
-            view.tabLayoutFishList.apply {
-                layoutManager = LinearLayoutManager(activity)
-                adapter = CurrentAdapter(plist, context, view) { animal -> }
-            }
-        }
 
 
 

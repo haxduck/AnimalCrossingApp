@@ -26,7 +26,9 @@ import com.example.animalcrossingapp.toolbar.ErrorFragment
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
 import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
+import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.fnameBtn
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.m2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*
@@ -95,13 +97,13 @@ class TabLayoutInsectListFragment : Fragment() {
                 if (it.sortation == "虫") dbList.add(it)
             }
             if (dbList.size == 0 ) {
-                if( App.prefs.language == "ko"){
-                    view.ExceptionTextB.visibility = View.VISIBLE
-                    view.ExceptionTextB.text = "0건"
-                } else {
-                    view.ExceptionTextB.visibility = View.VISIBLE
-                    view.ExceptionTextB.text = "0件"
-                }
+//                if( App.prefs.language == "ko"){
+//                    view.ExceptionTextB.visibility = View.VISIBLE
+//                    view.ExceptionTextB.text = "0건"
+//                } else {
+//                    view.ExceptionTextB.visibility = View.VISIBLE
+//                    view.ExceptionTextB.text = "0件"
+//                }
             }
             if (view.toggleButton1.isChecked) {
                 view.tabLayoutInsectList.apply {
@@ -120,6 +122,35 @@ class TabLayoutInsectListFragment : Fragment() {
         liveList.observe(viewLifecycleOwner, mainObserver)
         //
 
+        fun sortByName(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
+
+
+        fun sortByPrice(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].price > plist[j].price){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
 
         /*var imgArr = Array(dbList.size, {0})
         var idx = 0
@@ -147,8 +178,133 @@ class TabLayoutInsectListFragment : Fragment() {
             }
         }
 
+        view.bsort_wrap.setVisibility(View.GONE)
+
+        view.sButton.setOnClickListener {
+            view.bsort_wrap.setVisibility(View.VISIBLE)
+            view.sButton.setOnClickListener {
+                view.bsort_wrap.setVisibility(View.GONE)
+                view.sButton.setOnClickListener{
+                    view.bsort_wrap.setVisibility(View.VISIBLE)
+                    view.sButton.setOnClickListener {
+                        view.bsort_wrap.setVisibility(View.GONE)
+                    }
+                }
+            }
+            view.bPriceBtn.setOnCheckedChangeListener {_, isChecked ->
+
+                if(isChecked){
+                    var plist = sortByPriceDown(dbList)
+                    bPriceBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_down_24))
+                    view.tabLayoutInsectList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                }else{
+                    var plist = sortByPriceUp(dbList)
+                    bPriceBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_up_24))
+                    view.tabLayoutInsectList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                    Log.d("ddd", "qqweq")
+                }
+
+
+                var plist = sortByPrice(dbList)
+
+                view.tabLayoutInsectList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+            }
+
+            view.bNameBtn.setOnCheckedChangeListener { _, isChecked ->
+
+                if (isChecked) {
+                    var plist = sortByNameDown(dbList)
+                    bNameBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_down_24))
+                    view.tabLayoutInsectList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                } else {
+                    var plist = sortByNameUp(dbList)
+                    bNameBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_up_24))
+                    view.tabLayoutInsectList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(plist, context, view) { animal -> }
+                    }
+                    Log.d("ddd", "qqweq")
+                }
+
+
+                var plist = sortByName(dbList)
+
+                view.tabLayoutInsectList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+            }
+            }
         return view
 
     }
 
+
+            fun sortByPriceUp(klist : ArrayList<Current>): ArrayList<Current>{
+                var plist : ArrayList<Current> = klist
+                for (i in 0 until plist.size) {
+                    for (j in i until plist.size - 1) {
+                        if (plist[i].price < plist[j].price) {
+                            var temp: Current = plist[i]
+                            plist[i] = plist[j]
+                            plist[j] = temp
+                        }
+                    }
+                }
+                return plist
+            }
+
+            fun sortByPriceDown(klist : ArrayList<Current>): ArrayList<Current>{
+                var plist : ArrayList<Current> = klist
+                for (i in 0 until plist.size) {
+                    for (j in i until plist.size - 1) {
+                        if (plist[i].price > plist[j].price) {
+                            var temp: Current = plist[i]
+                            plist[i] = plist[j]
+                            plist[j] = temp
+                        }
+                    }
+                }
+                return plist
+            }
+
+            fun sortByNameDown(klist : ArrayList<Current>): ArrayList<Current>{
+                var plist : ArrayList<Current> = klist
+                for (i in 0 until plist.size) {
+                    for (j in i until plist.size - 1) {
+                        if (plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()) {
+                            var temp: Current = plist[i]
+                            plist[i] = plist[j]
+                            plist[j] = temp
+                        }
+                    }
+                }
+                return plist
+            }
+
+            fun sortByNameUp(klist : ArrayList<Current>): ArrayList<Current>{
+                var plist : ArrayList<Current> = klist
+                for (i in 0 until plist.size) {
+                    for (j in i until plist.size - 1) {
+                        if (plist[i].name.toString()[0].toInt() < plist[j].name.toString()[0].toInt()) {
+                            var temp: Current = plist[i]
+                            plist[i] = plist[j]
+                            plist[j] = temp
+                        }
+                    }
+                }
+                return plist
+            }
 }
