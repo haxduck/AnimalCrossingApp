@@ -16,19 +16,13 @@
     <item
         android:right="3dp"
         android:bottom="3dp">
-        <shape
-            android:shape="rectangle" >
+        <shape android:shape="rectangle">
             <corners
                 android:radius="10dp" />
-            <solid
-                android:color="#FFF9E4" />
+            <solid android:color="#EEE1C8" />
             <stroke
                 android:width="3dp"
                 android:color="#7C6839" />
-
         </shape>
     </item>
 </layer-list>
-
-
-

@@ -59,6 +59,7 @@
             android:layout_marginLeft="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginRight="1dp"
+            android:background="#FFF9E4"
             android:outlineAmbientShadowColor="#0DB694"
             android:outlineSpotShadowColor="#0DB694"
             app:layout_constraintBottom_toTopOf="@+id/tabLayoutViewPager"
