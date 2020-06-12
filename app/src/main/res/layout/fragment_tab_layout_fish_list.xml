@@ -32,6 +32,17 @@
             app:layout_constraintVertical_bias="1.0"
             />
 
+        <ToggleButton
+            android:id="@+id/name_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="323dp"
+            android:layout_marginLeft="323dp"
+            android:text="ToggleButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -52,6 +63,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_wrap" />
+
+    <ToggleButton
+        android:id="@+id/price_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayoutFishList"
+        app:layout_constraintEnd_toStartOf="@+id/button_wrap"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <!--<androidx.constraintlayout.widget.ConstraintLayout

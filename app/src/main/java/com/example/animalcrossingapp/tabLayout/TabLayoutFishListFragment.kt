@@ -1,4 +1,4 @@
-package com.example.animalcrossingapp.tabLayout
+   package com.example.animalcrossingapp.tabLayout
 
 import android.content.Context
 import android.os.Bundle
@@ -54,13 +54,43 @@ class TabLayoutFishListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_tab_layout_fish_list, container, false)
         val context: Context = requireContext()
         val db = AnimalCrossingDB.getInstance(context)!!
-        val dbList = arrayListOf<Current>()
+        var dbList = arrayListOf<Current>()
         /*val clist = db.animalCrossingDao().selectTablayoutAllFish()
         val list = arguments?.getParcelableArrayList<Current>("flist")!!
         if (list.size == 0) clist.forEach { dbList.add(it) }
         else {
             dbList.addAll(list)
         }*/
+        fun sortByName(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
+
+
+        fun sortByPrice(klist : ArrayList<Current>): ArrayList<Current>{
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].price > plist[j].price){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
         //라이브
         val selector = arguments?.getString("selector")
         val keyword = arguments?.getString("keyword")!!
@@ -109,6 +139,7 @@ class TabLayoutFishListFragment : Fragment() {
             animals.forEach {
                 if (it.sortation == "魚") dbList.add(it)
             }
+
             if (view.toggleButton3.isChecked) {
             view.tabLayoutFishList.apply {
                 layoutManager = LinearLayoutManager(activity)
@@ -153,7 +184,122 @@ class TabLayoutFishListFragment : Fragment() {
             }
         }
 
+        view.price_btn.setOnCheckedChangeListener {_, isChecked ->
+
+            if(isChecked){
+                var plist = sortByPriceDown(dbList)
+                Log.d("plist", sortByPriceDown(dbList).toString())
+                view.tabLayoutFishList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+            }else{
+                var plist = sortByPriceUp(dbList)
+                view.tabLayoutFishList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+                Log.d("ddd", "qqweq")
+            }
+
+
+            var plist = sortByPrice(dbList)
+
+                view.tabLayoutFishList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+        }
+
+        view.name_btn.setOnCheckedChangeListener {_, isChecked ->
+
+            if(isChecked){
+                var plist = sortByNameDown(dbList)
+                Log.d("plist", sortByNameDown(dbList).toString())
+                view.tabLayoutFishList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+            }else{
+                var plist = sortByNameUp(dbList)
+                view.tabLayoutFishList.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CurrentAdapter(plist, context, view) { animal -> }
+                }
+                Log.d("ddd", "qqweq")
+            }
+
+
+            var plist = sortByName(dbList)
+
+            view.tabLayoutFishList.apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = CurrentAdapter(plist, context, view) { animal -> }
+            }
+        }
+
+
+
         return view
     }
+
+    fun sortByPriceUp(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+            for (i in 0 until plist.size) {
+                for (j in i until plist.size - 1) {
+                    if (plist[i].price < plist[j].price) {
+                        var temp: Current = plist[i]
+                        plist[i] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+        return plist
+        }
+
+    fun sortByPriceDown(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+            for (i in 0 until plist.size) {
+                for (j in i until plist.size - 1) {
+                    if (plist[i].price > plist[j].price) {
+                        var temp: Current = plist[i]
+                        plist[i] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+        return plist
+    }
+
+    fun sortByNameDown(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+        for (i in 0 until plist.size) {
+            for (j in i until plist.size - 1) {
+                if (plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()) {
+                    var temp: Current = plist[i]
+                    plist[i] = plist[j]
+                    plist[j] = temp
+                }
+            }
+        }
+        return plist
+    }
+
+    fun sortByNameUp(klist : ArrayList<Current>): ArrayList<Current>{
+        var plist : ArrayList<Current> = klist
+        for (i in 0 until plist.size) {
+            for (j in i until plist.size - 1) {
+                if (plist[i].name.toString()[0].toInt() < plist[j].name.toString()[0].toInt()) {
+                    var temp: Current = plist[i]
+                    plist[i] = plist[j]
+                    plist[j] = temp
+                }
+            }
+        }
+        return plist
+    }
+
+
+
 
 }

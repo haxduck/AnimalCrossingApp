@@ -15,6 +15,7 @@ import com.example.animalcrossingapp.view.ClickableGridviewAdapter
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.tabLayoutAllList
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,11 +54,39 @@ class TabLayoutAllListFragment : Fragment() {
         dbList.addAll(list)
 
 
+        fun sortByName(klist : ArrayList<Current>): ArrayList<Current> {
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].name.toString()[0].toInt() > plist[j].name.toString()[0].toInt()){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
+        fun sortByPrice(klist : ArrayList<Current>): ArrayList<Current> {
+            var plist : ArrayList<Current> = klist
+            for(i in 0 until plist.size-1){
+                for(j in i until plist.size-1){
+                    if(plist[i].price > plist[j].price){
+                        val temp : Current = plist[j+1]
+                        plist[j+1] = plist[j]
+                        plist[j] = temp
+                    }
+                }
+            }
+            return plist
+        }
+
 
 
         view.tabLayoutAllList.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = CurrentAdapter(dbList, context, view){
+            adapter = CurrentAdapter(sortByPrice(dbList), context, view){
                 animal ->
             }
         }
