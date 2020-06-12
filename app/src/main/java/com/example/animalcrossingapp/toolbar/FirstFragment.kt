@@ -26,6 +26,7 @@ import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.model.AnimalViewModel
+import com.example.animalcrossingapp.view.ClickableGridviewAdapter
 import com.example.animalcrossingapp.view.GridviewAdapter
 import com.example.animalcrossingapp.view.InitialActivity
 import com.example.animalcrossingapp.view.MainActivity
@@ -33,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -145,7 +147,11 @@ class FirstFragment : Fragment() {
             if (animals.size == 0) {
                 view.kanryo.visibility = View.VISIBLE
             } else {
-                val griviewAdapter = GridviewAdapter(context, animals)
+              /*  val griviewAdapter = GridviewAdapter(context, animals)
+                view.gridView1.adapter = griviewAdapter*/
+                val griviewAdapter = ClickableGridviewAdapter(context,
+                    animals as ArrayList<Current>
+                )
                 view.gridView1.adapter = griviewAdapter
             }
         })
