@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import androidx.room.Update
 
 @Dao
 interface AnimalCrossingDAO {
@@ -27,9 +26,11 @@ interface AnimalCrossingDAO {
             LEFT JOIN Month m ON m.month_code = mi.month_code
             LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
             LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE
+            m.location = :hemisphere
         GROUP BY i.information_code
         """)
-    fun selectAll() : LiveData<List<Current>>
+    fun selectAll(hemisphere: String) : LiveData<List<Current>>
 
 
     @Query("""
@@ -412,8 +413,73 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time t ON t.time_code = ti.time_code
         WHERE 
             i.name_japan LIKE :name
+            OR i.name_korea LIKE :name
         GROUP BY i.information_code
         """)
     fun selectLiveSearch(name: String): LiveData<List<Current>>
+
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.name_korea AS namek,
+            i.price AS price,
+            h.name_japan AS habitat, h.name_korea AS habitatk,
+            i.catch_flag AS flag,
+            i.sortation AS sortation,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE 
+            i.catch_flag LIKE :flag
+            AND i.sortation LIKE :sort
+            AND m.month IN (:months)
+            AND i.price >= :minPrice AND i.price <= :maxPrice
+            AND t.time >= :minTime AND t.time <= :maxTime
+            AND h.name_japan IN (:places)
+        GROUP BY i.information_code
+        """)
+    fun selectLiveDetail(
+        flag: String,
+        sort: String,
+        months: ArrayList<String>,
+        minTime: String,
+        maxTime: String,
+        minPrice: Int,
+        maxPrice: Int,
+        places: ArrayList<String>
+    ): LiveData<List<Current>>
+
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.name_korea AS namek,
+            i.price AS price,
+            h.name_japan AS habitat, h.name_korea AS habitatk,
+            i.catch_flag AS flag,
+            i.sortation AS sortation,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE 
+            i.information_code = :code
+        GROUP BY i.information_code
+        """)
+    fun selectCode(code: String): Current
 
 }

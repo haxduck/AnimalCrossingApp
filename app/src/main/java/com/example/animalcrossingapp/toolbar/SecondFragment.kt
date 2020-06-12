@@ -19,6 +19,7 @@ import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.fragment_second.view.*
+import java.io.Serializable
 import java.lang.Exception
 
 /**
@@ -38,6 +39,7 @@ class SecondFragment : Fragment() {
         var plist = arguments?.getParcelableArrayList<Current>("list")
         var selector: String = ""
         var keyword: String = ""
+        var searchMap = hashMapOf<String, Any>()
         try {
             selector = arguments?.getString("selector")!!
         } catch (e: Exception) {
@@ -48,11 +50,16 @@ class SecondFragment : Fragment() {
         } catch (e: Exception) {
             keyword = "%%"
         }
+        try {
+            searchMap = arguments?.getSerializable("searchMap")!! as HashMap<String, Any>
+        } catch (e: Exception) {
+            searchMap = hashMapOf<String, Any>()
+        }
         if (plist != null) {
             plist.forEach { list.add(it) }
         }
 
-        val pageAdapter : PagerAdapter = TabLayoutAdapter(childFragmentManager, list, selector, keyword, context)
+        val pageAdapter : PagerAdapter = TabLayoutAdapter(childFragmentManager, list, selector, keyword, searchMap, context)
 
 
 
@@ -60,8 +67,8 @@ class SecondFragment : Fragment() {
         view.tabLayoutViewPager.adapter = pageAdapter
         view.tabLayout.setupWithViewPager(view.tabLayoutViewPager)
 //        view.tabLayout.getTabAt(0)?.setIcon(R.drawable.ic_all)
-        view.tabLayout.getTabAt(0)?.setIcon(R.drawable.ic_fish)
-        view.tabLayout.getTabAt(1)?.setIcon(R.drawable.ic_bug)
+        view.tabLayout.getTabAt(0)?.setIcon(R.drawable.fish_copy)
+        view.tabLayout.getTabAt(1)?.setIcon(R.drawable.bug_copy)
 
 
 

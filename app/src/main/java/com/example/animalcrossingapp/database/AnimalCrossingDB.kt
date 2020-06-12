@@ -25,6 +25,7 @@ abstract class AnimalCrossingDB : RoomDatabase() {
                         context.applicationContext,
                         AnimalCrossingDB::class.java, "AnimalCrossing.db"
                     ).allowMainThreadQueries().createFromAsset("AnimalCrossing.db").build()
+                    // ).allowMainThreadQueries().createFromAsset("AnimalCrossing.db").build()
                 }
             }
             return INSTANCE

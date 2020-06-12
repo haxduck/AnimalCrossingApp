@@ -62,6 +62,7 @@ class TabLayoutInsectListFragment : Fragment() {
         //라이브
         val selector = arguments?.getString("selector")
         val keyword = arguments?.getString("keyword")!!
+        val searchMap = arguments?.getSerializable("searchMap") as HashMap<String, Any>
         val hemishpere = App.prefs.hemisphere!!
         val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
@@ -71,21 +72,8 @@ class TabLayoutInsectListFragment : Fragment() {
         when(selector){
             "current" -> liveList = model.currentAnimals
             "arrange" -> liveList = model.arrangeAnimals
-            "search" -> {
-                liveList = db.animalCrossingDao().selectLiveSearch(keyword)
-                liveList.observe(viewLifecycleOwner, Observer { animals ->
-                    if (animals.size == 0) {
-                        val bundle: Bundle = bundleOf()
-                        bundle.putString("ErrorCode", "0")
-                        val frg = ErrorFragment()
-                        frg.arguments = bundle
-                        (activity as MainActivity).supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-                        (activity as MainActivity).bottomBar.setActiveItem(1)
-                    }
-                    else liveList = db.animalCrossingDao().selectLiveSearch(keyword)
-                })
-            }
+            "search" -> liveList = model.getSearch(keyword)
+            "detail" -> liveList = model.getDetail(searchMap)
             else -> liveList = model.animals
         }
 
@@ -105,6 +93,15 @@ class TabLayoutInsectListFragment : Fragment() {
             dbList.clear()
             animals.forEach {
                 if (it.sortation == "虫") dbList.add(it)
+            }
+            if (dbList.size == 0 ) {
+                if( App.prefs.language == "ko"){
+                    view.ExceptionTextB.visibility = View.VISIBLE
+                    view.ExceptionTextB.text = "0건"
+                } else {
+                    view.ExceptionTextB.visibility = View.VISIBLE
+                    view.ExceptionTextB.text = "0件"
+                }
             }
             if (view.toggleButton1.isChecked) {
                 view.tabLayoutInsectList.apply {
@@ -140,11 +137,11 @@ class TabLayoutInsectListFragment : Fragment() {
 
         view.toggleButton1.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list))
+                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list_2))
                 tabLayoutInsectList.setVisibility(View.GONE)
                 m2.setVisibility(View.VISIBLE)
             } else {
-                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid))
+                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid_2))
                 tabLayoutInsectList.setVisibility(View.VISIBLE)
                 m2.setVisibility(View.GONE)
             }

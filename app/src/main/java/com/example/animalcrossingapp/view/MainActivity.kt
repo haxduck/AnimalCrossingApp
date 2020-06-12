@@ -26,6 +26,7 @@ import com.example.animalcrossingapp.toolbar.FirstFragment
 import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.toolbar.ThirdFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var navController: NavController
@@ -43,6 +44,22 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
         var list = db.animalCrossingDao().selectAll().observe(this, mainObserver)*/
 //        test2.visibility = View.GONE
+
+        //검색로직
+        try {
+            var searchMap = intent.getSerializableExtra("searchMap")
+            if(searchMap != null) {
+                val bundle: Bundle = Bundle()
+                bundle.putSerializable("searchMap", searchMap)
+                bundle.putString("selector", "detail")
+                val frg = SecondFragment()
+                frg.arguments = bundle
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
+            }
+        } catch (e : Exception) {
+            Log.d("searchMap", "null")
+        }
 
 
     }
@@ -88,22 +105,21 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 searchItem.collapseActionView()
                 Toast.makeText(this@MainActivity, "Looking for $query", Toast.LENGTH_LONG).show()
 
-                val searchList = db.animalCrossingDao().selectSearch("%" + query!! + "%")
+               /* val searchList = db.animalCrossingDao().selectSearch("%" + query!! + "%")
 //                Log.d("searList", query + "/" +searchList.toString())
-                var list = arrayListOf<Current>()
+                var list = arrayListOf<Current>()*/
 
                 val bundle: Bundle = Bundle()
-                searchList.forEach {
+                /*searchList.forEach {
                     list.add(it)
                 }
-                bundle.putParcelableArrayList("list", list)
+                bundle.putParcelableArrayList("list", list)*/
                 bundle.putString("selector", "search")
                 bundle.putString("keyword", "%" + query!! + "%")
                 val frg = SecondFragment()
                 frg.arguments = bundle
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-                bottomBar.setActiveItem(1)
                 return true
             }
 

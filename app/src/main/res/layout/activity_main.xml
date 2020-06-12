@@ -806,17 +806,17 @@
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         app:backgroundColor="@color/colorPrimary"
         app:iconSize="24dp"
         app:iconTint="#C8FFFFFF"
-        app:iconTintActive="#FFFFFF"
-        app:indicatorColor="#2DFFFFFF"
+        app:iconTintActive="#7C6839"
+        app:indicatorColor="#FFF9E4"
         app:indicatorRadius="10dp"
-        app:itemPadding="10dp"
+        app:itemPadding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom"
-        app:sideMargins="10dp"
+        app:sideMargins="8dp"
         app:textColor="#000000"
         app:textSize="14sp" />
 

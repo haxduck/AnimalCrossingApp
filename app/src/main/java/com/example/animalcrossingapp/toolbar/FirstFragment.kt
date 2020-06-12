@@ -57,7 +57,8 @@ class FirstFragment : Fragment() {
 
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
-        Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()
+//        App.prefs.initialFlag = "0"
+        /*Toast.makeText(context, "플래그: $iniFlag", Toast.LENGTH_LONG).show()*/
 
         if (iniFlag == "1") {
         } else {
@@ -88,11 +89,11 @@ class FirstFragment : Fragment() {
         )*/
         //
 
-        /*view.textView2.setText(
-            MainController.currentTime()
-        )*/
+        if (App.prefs.language == "ko") {
+            view.textView1.text = "실시간 정보"
+            view.textView5.text = "진행상황"
+        }
 
-        if (App.prefs.language == "ko") view.textView1.text = "실시간 정보"
 
         view.real_time_wrap.setOnClickListener {
             val list = arrayListOf<Current>()
@@ -104,9 +105,12 @@ class FirstFragment : Fragment() {
             bundle.putString("selector", "current")
             val frg = SecondFragment()
             frg.arguments = bundle
-            (activity as MainActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-            (activity as MainActivity).bottomBar.setActiveItem(1)
+            (activity as MainActivity).supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_fragment, frg)
+                .addToBackStack(null)
+                .commit()
+           /* (activity as MainActivity).bottomBar.setActiveItem(1)*/
 //            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
         }
 
@@ -138,8 +142,18 @@ class FirstFragment : Fragment() {
                     this.getResources().getIdentifier(id, "drawable", context.getPackageName())
                 idx++
             }*/
-            val griviewAdapter = GridviewAdapter(context, animals)
-            view.gridView1.adapter = griviewAdapter
+            if (animals.size == 0) {
+                if( App.prefs.language == "ko"){
+                    view.ExceptionText1.visibility = View.VISIBLE
+                    view.ExceptionText1.text = "0건"
+                } else {
+                    view.ExceptionText1.visibility = View.VISIBLE
+                    view.ExceptionText1.text = "0件"
+                }
+            } else {
+                val griviewAdapter = GridviewAdapter(context, animals)
+                view.gridView1.adapter = griviewAdapter
+            }
         })
 
 
@@ -157,6 +171,8 @@ class FirstFragment : Fragment() {
                 if (it.sortation == "魚" && it.flag == "1") { catchFishes++ }
                 else if (it.sortation == "虫" && it.flag == "1") { catchBugs++ }
             }
+            view.contentLoadingProgressBar.progress = catchFishes
+            view.contentLoadingProgressBar2.progress = catchBugs
             view.textView3.text = "" + catchFishes + "/80"
             view.textView4.text = "" + catchBugs + "/80"
         })
@@ -174,7 +190,7 @@ class FirstFragment : Fragment() {
             frg.arguments = bundle
             (activity as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-            (activity as MainActivity).bottomBar.setActiveItem(1)
+            /*(activity as MainActivity).bottomBar.setActiveItem(1)*/
         }
 
         return view

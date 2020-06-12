@@ -2,6 +2,7 @@ package com.example.animalcrossingapp.toolbar
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,7 +39,7 @@ class ThirdFragment : Fragment() {
         else view.hankyu.check(R.id.kita)
 
         if (mLanguageCode == "ko") {
-            view.Kankyo.setText("환경설정")
+            view.kankyo1.setText("환경설정")
             view.confBtn.setText("적용")
             view.minami.setText("남반구")
             view.kita.setText("북반구")
@@ -48,7 +49,7 @@ class ThirdFragment : Fragment() {
             view.korean.text = "한국어"
             view.language.check(R.id.korean)
         } else {
-            view.Kankyo.setText("環境設定")
+            view.kankyo1.setText("環境設定")
             view.confBtn.setText("適用")
             view.minami.setText("南半球")
             view.kita.setText("北半球")
@@ -59,15 +60,23 @@ class ThirdFragment : Fragment() {
 
         view.hankyu.setOnCheckedChangeListener { group, isChecked ->
             if (minami.isChecked == true) {
+                view.minami.setTextColor(Color.BLACK)
+                view.kita.setTextColor(Color.WHITE)
                 hemi = "南半球"
             } else if (kita.isChecked == true) {
+                view.minami.setTextColor(Color.WHITE)
+                view.kita.setTextColor(Color.BLACK)
                 hemi = "北半球"
             }
         }
         view.language.setOnCheckedChangeListener { group, checkedId ->
             if (japanese.isChecked == true) {
+                view.korean.setTextColor(Color.WHITE)
+                view.japanese.setTextColor(Color.BLACK)
                 mLanguageCode = "ja"
             } else if (korean.isChecked == true) {
+                view.japanese.setTextColor(Color.WHITE)
+                view.korean.setTextColor(Color.BLACK)
                 mLanguageCode = "ko"
             }
         }

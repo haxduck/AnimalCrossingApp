@@ -20,5 +20,13 @@ class AnimalViewModel(app: Application): AndroidViewModel(app) {
     val currentAnimals = repository.getCurrent()
     val arrangeAnimals = repository.getArrange()
 
+    fun getDetail(map: HashMap<String, Any>): LiveData<List<Current>> {
+        return repository.getDetail(map)
+    }
+
+    fun getSearch (keyword: String): LiveData<List<Current>> {
+        return repository.getSearch(keyword)
+    }
+
 
 }
