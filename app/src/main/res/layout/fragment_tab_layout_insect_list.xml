@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".tabLayout.TabLayoutInsectListFragment"
     android:background="#FFF9E4">
 
@@ -16,12 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <ToggleButton
             android:id="@+id/sButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
+            android:textOff=""
+            android:textOn=""
             android:background="@drawable/ic_baseline_sort_24"
             android:button="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -111,6 +112,7 @@
             android:id="@+id/name_sort_wrap"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +120,7 @@
 
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/textViewB11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -161,6 +163,7 @@
             android:id="@+id/price_sort_wrap"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,7 +171,7 @@
 
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textViewB12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

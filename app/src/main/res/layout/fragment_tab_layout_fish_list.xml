@@ -16,7 +16,7 @@
         android:background="#FFF9E4"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <ToggleButton
             android:id="@+id/sortBtn"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -24,6 +24,8 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/ic_baseline_sort_24"
             android:button="@android:color/transparent"
+            android:textOff=""
+            android:textOn=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/toggleButton3"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,6 +101,7 @@
             android:id="@+id/name_sort_wrap"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +109,7 @@
 
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/textViewF11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -149,6 +152,7 @@
             android:id="@+id/price_sort_wrap"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +160,7 @@
 
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textViewF12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

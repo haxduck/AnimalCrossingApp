@@ -67,13 +67,13 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
         minPriceText.text = price_rangeSeekbar.startProgress.toString()
         maxPriceText.text = price_rangeSeekbar.endProgress.toString()
 
-        var sort = "1"
+        var sort = "%%"
         var list = arrayListOf<Current>()
         val hemi = App.prefs.hemisphere
         val loc = App.prefs.language
 
         //잡음 여부
-        var flag: String = "%%"
+        var flag: String = "1"
         switch1.setOnCheckedChangeListener { buttonView, isChecked ->
             if (switch1.isChecked) flag = "0"
             else flag = "1"
@@ -144,7 +144,7 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
                 pla.add("岩")
                 pla.add("雨の日の切り株、岩")
             }
-            if (bugTgBtn6.isChecked) {
+            if (bugTgBtn4.isChecked) {
                 pla.add("花")
                 pla.add("黒・青・紫の花の周辺")
                 pla.add("白い花")
@@ -157,7 +157,7 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
                 pla.add("雪玉")
                 pla.add("地面")
             }
-            if (bugTgBtn3.isChecked) pla.add("切り株")
+            if (bugTgBtn6.isChecked) pla.add("切り株")
             if (bugTgBtn7.isChecked) {
                 pla.add("空中")
                 pla.add("街灯")
@@ -271,9 +271,9 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
             bugTgBtn1.setText("강")
             bugTgBtn2.setText("나무")
             bugTgBtn3.setText("바위")
-            bugTgBtn6.setText("꽃")
+            bugTgBtn4.setText("꽃")
             bugTgBtn5.setText("땅")
-            bugTgBtn3.setText("그루터기")
+            bugTgBtn6.setText("그루터기")
             bugTgBtn7.setText("공중")
             bugTgBtn8.setText("쓰레기")
             searchTgBtn1.setText("바다")
