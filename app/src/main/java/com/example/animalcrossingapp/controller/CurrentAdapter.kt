@@ -59,18 +59,22 @@ class CurrentAdapter(val items: ArrayList<Current>,
         }
         var hourStr: String
         var monthStr: String
+        var mirai: String
         when (App.prefs.language) {
             "ja" -> {
                 hourStr = "時"
                 monthStr = "月"
+                mirai = " ~ 来年"
             }
             "ko" -> {
                 hourStr = "시"
                 monthStr = "월"
+                mirai = " ~ 내년"
             }
             else -> {
                 hourStr = "時"
                 monthStr = "月"
+                mirai = " ~ 来年"
             }
         }
         if (slist.size == 0 && flist.size != 1) {
@@ -87,7 +91,6 @@ class CurrentAdapter(val items: ArrayList<Current>,
         var flist1: ArrayList<Int> = arrayListOf(marr[0].toInt())
         var slist1: ArrayList<Int> = arrayListOf()
         var fl = 0
-        Log.d("marr", marr.toString())
         for (i in 1..marr.size - 1) {
             if (marr[i].toInt() - marr[i-1].toInt() == 1 && fl == 0) {
                 flist1.add(marr[i].toInt())
@@ -101,7 +104,7 @@ class CurrentAdapter(val items: ArrayList<Current>,
             str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() + monthStr
         } else if (slist1.size != 0) {
             if (flist1[0] == 1 && slist1[slist1.size - 1] == 12 && marr.size < 12 ) {
-                str1 = slist1[0].toString() + " ~ 来年" + flist1[flist1.size - 1] + monthStr
+                str1 = slist1[0].toString() + mirai + flist1[flist1.size - 1] + monthStr
             } else {
                 str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() +
                         monthStr + ", " + slist1[0].toString() + " ~ " + slist1[slist1.size - 1].toString() + monthStr

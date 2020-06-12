@@ -105,15 +105,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 searchItem.collapseActionView()
                 Toast.makeText(this@MainActivity, "Looking for $query", Toast.LENGTH_LONG).show()
 
-                val searchList = db.animalCrossingDao().selectSearch("%" + query!! + "%")
+               /* val searchList = db.animalCrossingDao().selectSearch("%" + query!! + "%")
 //                Log.d("searList", query + "/" +searchList.toString())
-                var list = arrayListOf<Current>()
+                var list = arrayListOf<Current>()*/
 
                 val bundle: Bundle = Bundle()
-                searchList.forEach {
+                /*searchList.forEach {
                     list.add(it)
                 }
-                bundle.putParcelableArrayList("list", list)
+                bundle.putParcelableArrayList("list", list)*/
                 bundle.putString("selector", "search")
                 bundle.putString("keyword", "%" + query!! + "%")
                 val frg = SecondFragment()

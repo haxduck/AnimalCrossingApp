@@ -20,10 +20,7 @@ class InitialActivity : AppCompatActivity() {
         var hemi = App.prefs.hemisphere
         var mLanguageCode = App.prefs.language
 
-        if (hemi == "南半球") hankyu.check(R.id.minami)
-        else hankyu.check(R.id.kita)
-
-        if (mLanguageCode == "ko") {
+        /*if (mLanguageCode == "ko") {
             kankyo1.setText("초기설정")
             confBtn.setText("적용")
             minami.setText("남반구")
@@ -41,9 +38,9 @@ class InitialActivity : AppCompatActivity() {
             japanese.text = "日本語"
             korean.text = "韓国語"
             language.check(R.id.japanese)
-        }
+        }*/
 
-        hankyu.setOnCheckedChangeListener { group, isChecked ->
+        hemiSphere.setOnCheckedChangeListener { group, isChecked ->
             if (minami.isChecked == true) {
                 minami.setTextColor(Color.BLACK)
                 kita.setTextColor(Color.WHITE)
@@ -63,6 +60,25 @@ class InitialActivity : AppCompatActivity() {
                 japanese.setTextColor(Color.WHITE)
                 korean.setTextColor(Color.BLACK)
                 mLanguageCode = "ko"
+            }
+            if (mLanguageCode == "ko") {
+                kankyo1.setText("초기설정")
+                confBtn.setText("적용")
+                minami.setText("남반구")
+                kita.setText("북반구")
+                textView1.text = "반구설정"
+                textView2.text = "언어설정"
+                japanese.text = "일본어"
+                korean.text = "한국어"
+                language.check(R.id.korean)
+            } else {
+                kankyo1.setText("初期設定")
+                confBtn.setText("適用")
+                minami.setText("南半球")
+                kita.setText("北半球")
+                japanese.text = "日本語"
+                korean.text = "韓国語"
+                language.check(R.id.japanese)
             }
         }
 

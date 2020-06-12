@@ -27,6 +27,7 @@ import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
 import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.m4
@@ -76,25 +77,8 @@ class TabLayoutFishListFragment : Fragment() {
         when (selector) {
             "current" -> liveList = model.currentAnimals
             "arrange" -> liveList = model.arrangeAnimals
-            "search" -> {
-                liveList = db.animalCrossingDao().selectLiveSearch(keyword)
-                liveList.observe(viewLifecycleOwner, Observer { animals ->
-                    if (animals.size == 0) {
-                        val bundle: Bundle = bundleOf()
-                        bundle.putString("ErrorCode", "0")
-                        val frg = ErrorFragment()
-                        frg.arguments = bundle
-                        (activity as MainActivity).supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-                        (activity as MainActivity).bottomBar.setActiveItem(1)
-                    }
-                    else liveList = db.animalCrossingDao().selectLiveSearch(keyword)
-                })
-
-            }
-            "detail" -> {
-                liveList = model.getDetail(searchMap)
-            }
+            "search" -> liveList = model.getSearch(keyword)
+            "detail" -> liveList = model.getDetail(searchMap)
             else -> liveList = model.animals
         }
 //        val realTimeList = db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
@@ -115,6 +99,15 @@ class TabLayoutFishListFragment : Fragment() {
             dbList.clear()
             animals.forEach {
                 if (it.sortation == "魚") dbList.add(it)
+            }
+            if (dbList.size == 0 ) {
+                if( App.prefs.language == "ko"){
+                    view.ExceptionText.visibility = View.VISIBLE
+                    view.ExceptionText.text = "0건"
+                } else {
+                    view.ExceptionText.visibility = View.VISIBLE
+                    view.ExceptionText.text = "0件"
+                }
             }
             if (view.toggleButton3.isChecked) {
             view.tabLayoutFishList.apply {

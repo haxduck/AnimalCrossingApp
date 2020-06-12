@@ -72,24 +72,8 @@ class TabLayoutInsectListFragment : Fragment() {
         when(selector){
             "current" -> liveList = model.currentAnimals
             "arrange" -> liveList = model.arrangeAnimals
-            "search" -> {
-                liveList = db.animalCrossingDao().selectLiveSearch(keyword)
-                liveList.observe(viewLifecycleOwner, Observer { animals ->
-                    if (animals.size == 0) {
-                        val bundle: Bundle = bundleOf()
-                        bundle.putString("ErrorCode", "0")
-                        val frg = ErrorFragment()
-                        frg.arguments = bundle
-                        (activity as MainActivity).supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_fragment, frg).addToBackStack(null).commit()
-                        (activity as MainActivity).bottomBar.setActiveItem(1)
-                    }
-                    else liveList = db.animalCrossingDao().selectLiveSearch(keyword)
-                })
-            }
-            "detail" -> {
-                liveList = model.getDetail(searchMap)
-            }
+            "search" -> liveList = model.getSearch(keyword)
+            "detail" -> liveList = model.getDetail(searchMap)
             else -> liveList = model.animals
         }
 
@@ -109,6 +93,15 @@ class TabLayoutInsectListFragment : Fragment() {
             dbList.clear()
             animals.forEach {
                 if (it.sortation == "虫") dbList.add(it)
+            }
+            if (dbList.size == 0 ) {
+                if( App.prefs.language == "ko"){
+                    view.ExceptionTextB.visibility = View.VISIBLE
+                    view.ExceptionTextB.text = "0건"
+                } else {
+                    view.ExceptionTextB.visibility = View.VISIBLE
+                    view.ExceptionTextB.text = "0件"
+                }
             }
             if (view.toggleButton1.isChecked) {
                 view.tabLayoutInsectList.apply {

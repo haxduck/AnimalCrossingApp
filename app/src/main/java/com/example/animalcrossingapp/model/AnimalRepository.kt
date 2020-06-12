@@ -1,5 +1,6 @@
 package com.example.animalcrossingapp.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.AnimalCrossingDAO
@@ -33,5 +34,8 @@ class AnimalRepository(dao: AnimalCrossingDAO) {
         var maxPrice = map["maxPrice"] as Int
         var places = map["places"] as ArrayList<String>
         return dao.selectLiveDetail(flag, sort, months, minTime.toString(), maxTime.toString(), minPrice, maxPrice, places)
+    }
+    fun getSearch(keyword: String) : LiveData<List<Current>> {
+        return dao.selectLiveSearch(keyword)
     }
 }

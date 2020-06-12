@@ -15,6 +15,7 @@
         android:layout_height="80dp"
         android:id="@+id/grid_img"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:background='@{grid.flag.equals("1") ? @drawable/grid_wrap_r : @drawable/grid_wrap}'
         android:src='@{"android.resource://com.example.animalcrossingapp/drawable/" + grid.information_code}'/>
 

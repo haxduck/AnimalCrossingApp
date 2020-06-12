@@ -413,6 +413,7 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time t ON t.time_code = ti.time_code
         WHERE 
             i.name_japan LIKE :name
+            OR i.name_korea LIKE :name
         GROUP BY i.information_code
         """)
     fun selectLiveSearch(name: String): LiveData<List<Current>>

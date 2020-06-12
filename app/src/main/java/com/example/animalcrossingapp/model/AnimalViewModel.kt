@@ -24,5 +24,9 @@ class AnimalViewModel(app: Application): AndroidViewModel(app) {
         return repository.getDetail(map)
     }
 
+    fun getSearch (keyword: String): LiveData<List<Current>> {
+        return repository.getSearch(keyword)
+    }
+
 
 }
