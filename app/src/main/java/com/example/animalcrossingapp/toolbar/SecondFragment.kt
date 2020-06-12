@@ -72,6 +72,8 @@ class SecondFragment : Fragment() {
 
 
 
+
+
 //        view.search_wrap.setOnClickListener{
 //            view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
 //            view.test3.setVisibility(if (view.test3.isShown()) View.GONE else View.VISIBLE)

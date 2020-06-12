@@ -39,14 +39,13 @@ class GridviewAdapter(val context: Context, val list: List<Current>):BaseAdapter
         var marr = animal.month!!.replace("月","").split(",")
         for (i in (0..marr.size - 1)) {
             if (marr[i] == nextMonth.toString()) {
-                view.gridView_img.setBackgroundColor(Color.WHITE)
+                view.grid_wrap.setBackgroundResource(R.drawable.grid_wrap3)
                 break
             }
             else {
-                view.gridView_img.setBackgroundColor(Color.RED)
+                view.grid_wrap.setBackgroundResource(R.drawable.grid_wrap3_uc)
             }
         }
-
         return view
     }
 

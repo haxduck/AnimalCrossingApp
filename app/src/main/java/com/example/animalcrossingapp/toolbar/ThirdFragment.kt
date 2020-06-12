@@ -60,23 +60,15 @@ class ThirdFragment : Fragment() {
 
         view.hankyu.setOnCheckedChangeListener { group, isChecked ->
             if (minami.isChecked == true) {
-                view.minami.setTextColor(Color.BLACK)
-                view.kita.setTextColor(Color.WHITE)
                 hemi = "南半球"
             } else if (kita.isChecked == true) {
-                view.minami.setTextColor(Color.WHITE)
-                view.kita.setTextColor(Color.BLACK)
                 hemi = "北半球"
             }
         }
         view.language.setOnCheckedChangeListener { group, checkedId ->
             if (japanese.isChecked == true) {
-                view.korean.setTextColor(Color.WHITE)
-                view.japanese.setTextColor(Color.BLACK)
                 mLanguageCode = "ja"
             } else if (korean.isChecked == true) {
-                view.japanese.setTextColor(Color.WHITE)
-                view.korean.setTextColor(Color.BLACK)
                 mLanguageCode = "ko"
             }
         }

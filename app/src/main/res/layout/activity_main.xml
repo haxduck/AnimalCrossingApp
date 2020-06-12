@@ -808,7 +808,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:backgroundColor="@color/colorPrimary"
-        app:iconSize="24dp"
+        app:iconSize="28dp"
         app:iconTint="#C8FFFFFF"
         app:iconTintActive="#7C6839"
         app:indicatorColor="#FFF9E4"
