@@ -16,6 +16,18 @@
         android:background="#FFF9E4"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_baseline_sort_24"
+            android:button="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/toggleButton3"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/toggleButton3"
             android:layout_width="25dp"
@@ -33,6 +45,10 @@
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -60,76 +76,40 @@
         app:layout_constraintTop_toBottomOf="@id/button_wrap" />
 
 
-    <!--<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/m4"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sort_wrap"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_wrap">
+        app:layout_constraintTop_toBottomOf="@+id/button_wrap">
 
-        <HorizontalScrollView
-            android:id="@+id/Scroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/name_sort_wrap"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/price_sort_wrap"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu_top">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-
-                android:padding="10dp">
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <GridView
-                        android:id="@+id/gridView5"
-                        android:layout_width="1350dp"
-                        android:layout_height="match_parent"
-                        android:columnWidth="75dp"
-                        android:gravity="center"
-                        android:horizontalSpacing="10dp"
-                        android:verticalSpacing="10dp"
-                        android:numColumns="16"
-                        android:scrollbarAlwaysDrawHorizontalTrack="true"
-                        android:scrollbarAlwaysDrawVerticalTrack="true"
-                        android:scrollbars="vertical"
-                        android:stretchMode="none"
-                        >
+            app:layout_constraintTop_toBottomOf="@+id/name_sort_wrap">
 
 
-                    </GridView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                </FrameLayout>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
