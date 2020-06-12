@@ -115,8 +115,6 @@ class TabLayoutFishListFragment : Fragment() {
         }
         liveList.observe(viewLifecycleOwner, mainObserver)
         //
-        Log.d("fdsfsf", dbList.toString())
-
 
         /*var imgArr = Array(dbList.size, {0})
         var idx = 0
