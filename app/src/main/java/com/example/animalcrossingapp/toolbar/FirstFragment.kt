@@ -110,7 +110,7 @@ class FirstFragment : Fragment() {
                 .replace(R.id.main_fragment, frg)
                 .addToBackStack(null)
                 .commit()
-           /* (activity as MainActivity).bottomBar.setActiveItem(1)*/
+            /* (activity as MainActivity).bottomBar.setActiveItem(1)*/
 //            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
         }
 
@@ -143,13 +143,7 @@ class FirstFragment : Fragment() {
                 idx++
             }*/
             if (animals.size == 0) {
-                if( App.prefs.language == "ko"){
-                    view.ExceptionTextM.visibility = View.VISIBLE
-                    view.ExceptionTextM.text = "0건"
-                } else {
-                    view.ExceptionTextM.visibility = View.VISIBLE
-                    view.ExceptionTextM.text = "0件"
-                }
+                view.kanryo.visibility = View.VISIBLE
             } else {
                 val griviewAdapter = GridviewAdapter(context, animals)
                 view.gridView1.adapter = griviewAdapter
@@ -157,19 +151,22 @@ class FirstFragment : Fragment() {
         })
 
 
-       /* val catchFishes = db.animalCrossingDao().viewCatchFish().size
-        val catchBugs = db.animalCrossingDao().viewCatchBug().size
-        view.contentLoadingProgressBar.progress = catchFishes
-        view.contentLoadingProgressBar2.progress = catchBugs
-        view.textView3.text = "" + catchFishes + "/80"
-        view.textView4.text = "" + catchBugs + "/80"*/
+        /* val catchFishes = db.animalCrossingDao().viewCatchFish().size
+         val catchBugs = db.animalCrossingDao().viewCatchBug().size
+         view.contentLoadingProgressBar.progress = catchFishes
+         view.contentLoadingProgressBar2.progress = catchBugs
+         view.textView3.text = "" + catchFishes + "/80"
+         view.textView4.text = "" + catchBugs + "/80"*/
 
         model.animals.observe(viewLifecycleOwner, androidx.lifecycle.Observer { animals ->
             var catchFishes = 0
             var catchBugs = 0
             animals.forEach {
-                if (it.sortation == "魚" && it.flag == "1") { catchFishes++ }
-                else if (it.sortation == "虫" && it.flag == "1") { catchBugs++ }
+                if (it.sortation == "魚" && it.flag == "1") {
+                    catchFishes++
+                } else if (it.sortation == "虫" && it.flag == "1") {
+                    catchBugs++
+                }
             }
             view.contentLoadingProgressBar.progress = catchFishes
             view.contentLoadingProgressBar2.progress = catchBugs
