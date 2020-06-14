@@ -101,7 +101,7 @@ class TabLayoutAllListFragment : Fragment() {
 
         /*val griviewAdapter = GridviewAdapter2(requireContext(), imgArr)
         view.gridView4.adapter = griviewAdapter*/
-        val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList)
+        val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList){}
         view.gridView4.adapter = griviewAdapter
 
         view.m3.setVisibility(View.GONE)

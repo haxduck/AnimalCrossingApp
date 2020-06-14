@@ -10,8 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".alarm.TestActivity">
-           <!-- <intent-filter>
+
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,7 +23,9 @@
             android:name=".view.PopActivity"
             android:screenOrientation="portrait"
             android:theme="@style/popupTheme" />
+
         <receiver android:name=".alarm.AlarmReceiver" />
+
         <activity android:name=".view.ListActivity" />
         <activity android:name=".view.SearchActivity" />
         <activity android:name=".view.SettingActivity" />

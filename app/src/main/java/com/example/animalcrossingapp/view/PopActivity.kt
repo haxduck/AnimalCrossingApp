@@ -1,13 +1,18 @@
 package com.example.animalcrossingapp.view
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.Current
+import com.example.animalcrossingapp.model.AnimalViewModel
 import it.mirko.rangeseekbar.OnRangeSeekBarListener
 import it.mirko.rangeseekbar.RangeSeekBar
 import kotlinx.android.synthetic.main.activity_pop.*
@@ -18,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_pop.bugTgBtn8
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn5
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn3
 import kotlinx.android.synthetic.main.activity_pop.bugTgBtn2
+import kotlinx.android.synthetic.main.activity_pop.bugTgBtn7
 import kotlinx.android.synthetic.main.activity_pop.fishRB
 import kotlinx.android.synthetic.main.activity_pop.monthCB1
 import kotlinx.android.synthetic.main.activity_pop.monthCB10
@@ -38,14 +44,14 @@ import kotlinx.android.synthetic.main.activity_pop.searchTgBtn4
 import kotlinx.android.synthetic.main.activity_pop.searchTgBtn5
 import kotlinx.android.synthetic.main.activity_pop.searchTgBtn6
 import kotlinx.android.synthetic.main.activity_pop.sortRG
+import kotlinx.android.synthetic.main.activity_search.*
+import java.lang.Exception
 
 class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
 
-    override fun onStart() {
-        super.onStart()
+    private val model: AnimalViewModel by viewModels()
 
-    }
-
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -80,9 +86,176 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
 
         //종류
         sortRG.setOnCheckedChangeListener { group, checkid ->
-            if (fishRB.isChecked == true) sort = "魚"
-            else if (bugRB.isChecked == true) sort = "虫"
-            else sort = "%%"
+            if (fishRB.isChecked == true) {
+                sort = "魚"
+                bugTgBtn1.setBackgroundColor(Color.WHITE)
+                bugTgBtn1.setTextColor(Color.GRAY)
+                bugTgBtn1.isClickable = false
+                bugTgBtn2.setBackgroundColor(Color.WHITE)
+                bugTgBtn2.setTextColor(Color.GRAY)
+                bugTgBtn2.isClickable = false
+                bugTgBtn3.setBackgroundColor(Color.WHITE)
+                bugTgBtn3.setTextColor(Color.GRAY)
+                bugTgBtn3.isClickable = false
+                bugTgBtn4.setBackgroundColor(Color.WHITE)
+                bugTgBtn4.setTextColor(Color.GRAY)
+                bugTgBtn4.isClickable = false
+                bugTgBtn5.setBackgroundColor(Color.WHITE)
+                bugTgBtn5.setTextColor(Color.GRAY)
+                bugTgBtn5.isClickable = false
+                bugTgBtn6.setBackgroundColor(Color.WHITE)
+                bugTgBtn6.setTextColor(Color.GRAY)
+                bugTgBtn6.isClickable = false
+                bugTgBtn7.setBackgroundColor(Color.WHITE)
+                bugTgBtn7.setTextColor(Color.GRAY)
+                bugTgBtn7.isClickable = false
+                bugTgBtn8.setBackgroundColor(Color.WHITE)
+                bugTgBtn8.setTextColor(Color.GRAY)
+                bugTgBtn8.isClickable = false
+                searchTgBtn1.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn1.setTextColor(Color.BLACK)
+                searchTgBtn1.isClickable = true
+                searchTgBtn2.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn2.setTextColor(Color.BLACK)
+                searchTgBtn2.isClickable = true
+                searchTgBtn3.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn3.setTextColor(Color.BLACK)
+                searchTgBtn3.isClickable = true
+                searchTgBtn4.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn4.setTextColor(Color.BLACK)
+                searchTgBtn4.isClickable = true
+                searchTgBtn5.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn5.setTextColor(Color.BLACK)
+                searchTgBtn5.isClickable = true
+                searchTgBtn6.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn6.setTextColor(Color.BLACK)
+                searchTgBtn6.isClickable = true
+
+                searchTgBtn1.background = getDrawable(R.drawable.button_search)
+                searchTgBtn2.background = getDrawable(R.drawable.button_search)
+                searchTgBtn3.background = getDrawable(R.drawable.button_search)
+                searchTgBtn4.background = getDrawable(R.drawable.button_search)
+                searchTgBtn5.background = getDrawable(R.drawable.button_search)
+                searchTgBtn6.background = getDrawable(R.drawable.button_search)
+            }
+            else if (bugRB.isChecked == true) {
+                sort = "虫"
+                searchTgBtn1.setBackgroundColor(Color.WHITE)
+                searchTgBtn1.setTextColor(Color.GRAY)
+                searchTgBtn1.isClickable = false
+                searchTgBtn2.setBackgroundColor(Color.WHITE)
+                searchTgBtn2.setTextColor(Color.GRAY)
+                searchTgBtn2.isClickable = false
+                searchTgBtn3.setBackgroundColor(Color.WHITE)
+                searchTgBtn3.setTextColor(Color.GRAY)
+                searchTgBtn3.isClickable = false
+                searchTgBtn4.setBackgroundColor(Color.WHITE)
+                searchTgBtn4.setTextColor(Color.GRAY)
+                searchTgBtn4.isClickable = false
+                searchTgBtn5.setBackgroundColor(Color.WHITE)
+                searchTgBtn5.setTextColor(Color.GRAY)
+                searchTgBtn5.isClickable = false
+                searchTgBtn6.setBackgroundColor(Color.WHITE)
+                searchTgBtn6.setTextColor(Color.GRAY)
+                searchTgBtn6.isClickable = false
+
+                bugTgBtn1.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn1.setTextColor(Color.BLACK)
+                bugTgBtn1.isClickable = true
+                bugTgBtn2.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn2.setTextColor(Color.BLACK)
+                bugTgBtn2.isClickable = true
+                bugTgBtn3.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn3.setTextColor(Color.BLACK)
+                bugTgBtn3.isClickable = true
+                bugTgBtn4.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn4.setTextColor(Color.BLACK)
+                bugTgBtn4.isClickable = true
+                bugTgBtn5.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn5.setTextColor(Color.BLACK)
+                bugTgBtn5.isClickable = true
+                bugTgBtn6.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn6.setTextColor(Color.BLACK)
+                bugTgBtn6.isClickable = true
+                bugTgBtn7.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn7.setTextColor(Color.BLACK)
+                bugTgBtn7.isClickable = true
+                bugTgBtn8.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn8.setTextColor(Color.BLACK)
+                bugTgBtn8.isClickable = true
+
+                bugTgBtn1.background = getDrawable(R.drawable.button_search)
+                bugTgBtn2.background = getDrawable(R.drawable.button_search)
+                bugTgBtn3.background = getDrawable(R.drawable.button_search)
+                bugTgBtn4.background = getDrawable(R.drawable.button_search)
+                bugTgBtn5.background = getDrawable(R.drawable.button_search)
+                bugTgBtn6.background = getDrawable(R.drawable.button_search)
+                bugTgBtn7.background = getDrawable(R.drawable.button_search)
+                bugTgBtn8.background = getDrawable(R.drawable.button_search)
+            }
+            else {
+                sort = "%%"
+
+                bugTgBtn1.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn1.setTextColor(Color.BLACK)
+                bugTgBtn1.isClickable = true
+                bugTgBtn2.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn2.setTextColor(Color.BLACK)
+                bugTgBtn2.isClickable = true
+                bugTgBtn3.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn3.setTextColor(Color.BLACK)
+                bugTgBtn3.isClickable = true
+                bugTgBtn4.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn4.setTextColor(Color.BLACK)
+                bugTgBtn4.isClickable = true
+                bugTgBtn5.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn5.setTextColor(Color.BLACK)
+                bugTgBtn5.isClickable = true
+                bugTgBtn6.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn6.setTextColor(Color.BLACK)
+                bugTgBtn6.isClickable = true
+                bugTgBtn7.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn7.setTextColor(Color.BLACK)
+                bugTgBtn7.isClickable = true
+                bugTgBtn8.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                bugTgBtn8.setTextColor(Color.BLACK)
+                bugTgBtn8.isClickable = true
+
+                searchTgBtn1.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn1.setTextColor(Color.BLACK)
+                searchTgBtn1.isClickable = true
+                searchTgBtn2.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn2.setTextColor(Color.BLACK)
+                searchTgBtn2.isClickable = true
+                searchTgBtn3.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn3.setTextColor(Color.BLACK)
+                searchTgBtn3.isClickable = true
+                searchTgBtn4.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn4.setTextColor(Color.BLACK)
+                searchTgBtn4.isClickable = true
+                searchTgBtn5.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn5.setTextColor(Color.BLACK)
+                searchTgBtn5.isClickable = true
+                searchTgBtn6.setBackgroundColor(Color.parseColor("#E9E9E9"))
+                searchTgBtn6.setTextColor(Color.BLACK)
+                searchTgBtn6.isClickable = true
+
+                searchTgBtn1.background = getDrawable(R.drawable.button_search)
+                searchTgBtn2.background = getDrawable(R.drawable.button_search)
+                searchTgBtn3.background = getDrawable(R.drawable.button_search)
+                searchTgBtn4.background = getDrawable(R.drawable.button_search)
+                searchTgBtn5.background = getDrawable(R.drawable.button_search)
+                searchTgBtn6.background = getDrawable(R.drawable.button_search)
+
+                bugTgBtn1.background = getDrawable(R.drawable.button_search)
+                bugTgBtn2.background = getDrawable(R.drawable.button_search)
+                bugTgBtn3.background = getDrawable(R.drawable.button_search)
+                bugTgBtn4.background = getDrawable(R.drawable.button_search)
+                bugTgBtn5.background = getDrawable(R.drawable.button_search)
+                bugTgBtn6.background = getDrawable(R.drawable.button_search)
+                bugTgBtn7.background = getDrawable(R.drawable.button_search)
+                bugTgBtn8.background = getDrawable(R.drawable.button_search)
+            }
         }
 
         //월
@@ -213,13 +386,6 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
             minTime = time_rangeSeekbar.startProgress
             maxTime = time_rangeSeekbar.endProgress
 
-            Log.d("is", switch1.isChecked.toString())
-            Log.d("flag", flag)
-            Log.d("sort", sort)
-            Log.d("months", getMonths().toString())
-            Log.d("time", "" + minTime + "/" + maxTime)
-            Log.d("price", "" + minPrice + "/" + maxPrice)
-            Log.d("loc", getPlaces().toString())
 
             var searchMap = hashMapOf<String, Any>(
                 "flag" to flag,
@@ -297,6 +463,7 @@ class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
         }
 
     }
+
 
 }
 

@@ -10,8 +10,9 @@ import androidx.lifecycle.ViewModel
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.toolbar.FirstFragment
+import kotlinx.android.synthetic.main.activity_pop.*
 
-class AnimalViewModel(app: Application): AndroidViewModel(app) {
+class AnimalViewModel(app: Application) : AndroidViewModel(app) {
     private val context = app.applicationContext
     private val dao = AnimalCrossingDB.getInstance(context)!!.animalCrossingDao()
     private val repository = AnimalRepository(dao)
@@ -24,9 +25,10 @@ class AnimalViewModel(app: Application): AndroidViewModel(app) {
         return repository.getDetail(map)
     }
 
-    fun getSearch (keyword: String): LiveData<List<Current>> {
+    fun getSearch(keyword: String): LiveData<List<Current>> {
         return repository.getSearch(keyword)
     }
 
-
 }
+
+

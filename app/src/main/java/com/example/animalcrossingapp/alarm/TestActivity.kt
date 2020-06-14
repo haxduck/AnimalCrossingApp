@@ -9,59 +9,29 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import com.example.animalcrossingapp.toolbar.FirstFragment
 import it.mirko.rangeseekbar.OnRangeSeekBarListener
 import it.mirko.rangeseekbar.RangeSeekBar
+import kotlinx.android.synthetic.main.fragment_first.*
 
-class TestActivity : AppCompatActivity(), OnRangeSeekBarListener {
+class TestActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-        declareViews()
-        setupViews()
+        /*tbtn.setOnClickListener {
+            val bundle: Bundle = Bundle()
+            bundle.putString("test", tbtn.text.toString())
+            val frg = FireMissilesDialogFragment()
+            frg.arguments = bundle
+
+            frg.show(supportFragmentManager, "FireMissileDiaolgFragment")
+        }*/
 
     }
 
-    fun declareViews() {
-
-    }
-
-    fun setupViews() {
-        rangeSeekBar.startProgress = 20
-        rangeSeekBar.endProgress = 80
-        rangeSeekBar.setMinDifference(15)
-        startValue.text = rangeSeekBar.startProgress.toString()
-        endValue.text = rangeSeekBar.endProgress.toString()
-
-        rangeSeekBar1.startProgress = 20
-        rangeSeekBar1.endProgress = 80
-        rangeSeekBar1.setMinDifference(15)
-        startValue1.text = rangeSeekBar1.startProgress.toString()
-        endValue1.text = rangeSeekBar1.endProgress.toString()
-
-        Log.d("this", this.toString())
-
-        rangeSeekBar.setOnRangeSeekBarListener(this)
-        rangeSeekBar1.setOnRangeSeekBarListener(this)
-        /*enable.setOnCheckedChangeListener(this)*/
-    }
-
-    override fun onRangeValues(rangeSeekBar: RangeSeekBar?, start: Int, end: Int) {
-        if (rangeSeekBar!!.id == R.id.rangeSeekBar) {
-            startValue.text = start.toString()
-            endValue.text = end.toString()
-        } else {
-            startValue1.text = start.toString()
-            endValue1.text = end.toString()
-        }
-    }
-
-    /*override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-        rangeSeekBar.isEnabled = isChecked
-        seekBar.isEnabled = isChecked
-    }*/
 
 
 }

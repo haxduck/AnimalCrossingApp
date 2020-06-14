@@ -67,7 +67,10 @@ class TabLayoutInsectListFragment : Fragment() {
         val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
         when (selector) {
             "current" -> liveList = model.currentAnimals
-            "arrange" -> liveList = model.arrangeAnimals
+            "arrange" -> {
+                liveList = model.arrangeAnimals
+                view.sButton.visibility = View.GONE
+            }
             "search" -> liveList = model.getSearch(keyword)
             "detail" -> liveList = model.getDetail(searchMap)
             else -> liveList = model.animals

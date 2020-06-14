@@ -97,7 +97,7 @@ interface AnimalCrossingDAO {
         """)
     fun selectCurrentAnimal(hemisphere: String, currentHour: String, currentMonth: String): List<Current>
 
-    @Query("""
+    /*@Query("""
         SELECT
             lower(i.information_code) AS information_code,
             i.name_japan AS name,
@@ -123,7 +123,7 @@ interface AnimalCrossingDAO {
         GROUP BY i.information_code
         """)
 
-    fun select(hemi: String?, arrSort: String, min: Int, max: Int, loc: ArrayList<String>): List<Current>
+    fun select(hemi: String?, arrSort: String, min: Int, max: Int, loc: ArrayList<String>): List<Current>*/
 
     @Query("UPDATE Information SET catch_flag = :flag WHERE information_code = UPPER(:info)")
     fun updateCatchFlag(info: String, flag: String)

@@ -5,17 +5,24 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.Layout
+import android.transition.Slide
+import android.transition.TransitionManager
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
@@ -26,13 +33,16 @@ import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.model.AnimalViewModel
+import com.example.animalcrossingapp.popup.InformationPopDialogFragment
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
 import com.example.animalcrossingapp.view.GridviewAdapter
 import com.example.animalcrossingapp.view.InitialActivity
 import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
+import kotlinx.android.synthetic.main.listviewitem.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -97,7 +107,7 @@ class FirstFragment : Fragment() {
         }
 
 
-        view.real_time_wrap.setOnClickListener {
+        /*view.real_time_wrap.setOnClickListener {
             val list = arrayListOf<Current>()
             val bundle: Bundle = Bundle()
             realTimeList.forEach {
@@ -112,57 +122,27 @@ class FirstFragment : Fragment() {
                 .replace(R.id.main_fragment, frg)
                 .addToBackStack(null)
                 .commit()
-            /* (activity as MainActivity).bottomBar.setActiveItem(1)*/
+            *//* (activity as MainActivity).bottomBar.setActiveItem(1)*//*
 //            (activity as MainActivity).supportActionBar?.setTitle("Realtime List")
-        }
-
-
-        /*var imgArr = Array(realTimeList.size, {0})
-        var idx = 0
-        realTimeList.forEach {
-            var id = it.information_code
-            imgArr[idx] = this.getResources().getIdentifier(id, "drawable", context.getPackageName())
-            idx++
-        }
-        var list = arrayListOf<Current>()
-        list.addAll(realTimeList)
-        val griviewAdapter = GridviewAdapter(context, imgArr)
-        view.gridView1.adapter = griviewAdapter*/
-
-        /*view.gridView1.apply{
-            layoutManager = GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
-            adapter = GridAdapter(list, context) { animal -> }
         }*/
+
+
         //리얼라임 그리드
         model.currentAnimals.observe(viewLifecycleOwner, androidx.lifecycle.Observer { animals ->
-            /*realTimeList = animals
-            var imgArr = Array(realTimeList.size, { 0 })
-            var idx = 0
-            realTimeList.forEach {
-                var id = it.information_code
-                imgArr[idx] =
-                    this.getResources().getIdentifier(id, "drawable", context.getPackageName())
-                idx++
-            }*/
             if (animals.size == 0) {
                 view.kanryo.visibility = View.VISIBLE
             } else {
-              /*  val griviewAdapter = GridviewAdapter(context, animals)
-                view.gridView1.adapter = griviewAdapter*/
-                val griviewAdapter = ClickableGridviewAdapter(context,
-                    animals as ArrayList<Current>
-                )
-                view.gridView1.adapter = griviewAdapter
+                view.gridView1.apply {
+                    adapter = ClickableGridviewAdapter( context, animals as ArrayList<Current> ) { animal->
+                        val bundle = Bundle()
+                        bundle.putParcelable("animal", animal)
+                        var frg = InformationPopDialogFragment()
+                        frg.arguments = bundle
+                        frg.show(parentFragmentManager, "Information")
+                    }
+                }
             }
         })
-
-
-        /* val catchFishes = db.animalCrossingDao().viewCatchFish().size
-         val catchBugs = db.animalCrossingDao().viewCatchBug().size
-         view.contentLoadingProgressBar.progress = catchFishes
-         view.contentLoadingProgressBar2.progress = catchBugs
-         view.textView3.text = "" + catchFishes + "/80"
-         view.textView4.text = "" + catchBugs + "/80"*/
 
         model.animals.observe(viewLifecycleOwner, androidx.lifecycle.Observer { animals ->
             var catchFishes = 0

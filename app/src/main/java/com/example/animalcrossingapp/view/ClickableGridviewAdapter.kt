@@ -6,10 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.Toast
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
@@ -25,8 +23,10 @@ import kotlinx.android.synthetic.main.gridviewitem2.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current>):BaseAdapter(){
-
+class ClickableGridviewAdapter(val context: Context,
+                               val list: ArrayList<Current>,
+                               private val clickListener: (current: Current) -> Unit
+                               ):BaseAdapter(){
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val view: View = LayoutInflater.from(context).inflate(R.layout.gridviewitem2,null)
         var img_list = Array(list.size, {0})
@@ -64,7 +64,6 @@ class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current
         view.gridView_img.setOnClickListener {
             if (flag == "1") {
                 db.animalCrossingDao().updateCatchFlag(info , "0")
-//                view.gridView_img.setBackgroundColor(Color.WHITE)
                 view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2)
                 flag = "0"
             } else {
@@ -74,13 +73,7 @@ class ClickableGridviewAdapter(val context: Context, val list: ArrayList<Current
             }
         }
         view.gridView_img.setOnLongClickListener {
-            Toast.makeText(context,"dfsdf", Toast.LENGTH_LONG).show()
-
-            /*var popupView = LayoutInflater.from(context).inflate(R.layout.popup_window, null)
-            var popupWindow = popupView
-            popupWindow.*/
-
-
+            clickListener.invoke(list[p0])
             true
         }
 
