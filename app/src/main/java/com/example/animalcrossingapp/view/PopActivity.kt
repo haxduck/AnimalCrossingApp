@@ -6,13 +6,18 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.Window
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.model.AnimalViewModel
+import com.example.animalcrossingapp.model.KeywordViewModel
 import it.mirko.rangeseekbar.OnRangeSeekBarListener
 import it.mirko.rangeseekbar.RangeSeekBar
 import kotlinx.android.synthetic.main.activity_pop.*
@@ -48,8 +53,6 @@ import kotlinx.android.synthetic.main.activity_search.*
 import java.lang.Exception
 
 class PopActivity : AppCompatActivity(), OnRangeSeekBarListener {
-
-    private val model: AnimalViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,7 +65,7 @@ class TabLayoutInsectListFragment : Fragment() {
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
         val currentMonth = "" + thisMonth + "月"
         var liveList: LiveData<List<Current>>
-        val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
+        val model: AnimalViewModel = ViewModelProvider(this).get(AnimalViewModel::class.java)
         when (selector) {
             "current" -> liveList = model.currentAnimals
             "arrange" -> {

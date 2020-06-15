@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
@@ -22,6 +23,7 @@ import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.databinding.ListviewitemBinding
 import com.example.animalcrossingapp.model.AnimalViewModel
+import com.example.animalcrossingapp.model.KeywordViewModel
 import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.android.synthetic.main.listviewitem.view.*
 import java.lang.IllegalStateException
@@ -31,7 +33,7 @@ class InformationPopDialogFragment : DialogFragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val animal = arguments?.getParcelable<Current>("animal")
-        val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
+        val model: AnimalViewModel = ViewModelProvider(this).get(AnimalViewModel::class.java)
         val dao = AnimalCrossingDB.getInstance(requireContext())?.animalCrossingDao()!!
         val lang = App.prefs.language
         val month = if (lang == "ko") {

@@ -63,7 +63,7 @@ class TabLayoutFishListFragment : Fragment() {
         val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
         val currentMonth = "" + thisMonth + "月"
         var liveList: LiveData<List<Current>>
-        val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
+        val model: AnimalViewModel = ViewModelProvider(this).get(AnimalViewModel::class.java)
         when (selector) {
             "current" -> liveList = model.currentAnimals
             "arrange" -> {
@@ -87,6 +87,7 @@ class TabLayoutFishListFragment : Fragment() {
         }
 
         val mainObserver = Observer<List<Current>> { animals ->
+            Log.d("asdf", animals.toString())
             dbList.clear()
             animals.forEach {
                 if (it.sortation == "魚") dbList.add(it)

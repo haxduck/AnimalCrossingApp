@@ -7,21 +7,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.animalcrossingapp.R
-import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.AnimalCrossingDB
-import com.example.animalcrossingapp.database.Current
+import com.example.animalcrossingapp.model.KeywordViewModel
+import com.example.animalcrossingapp.popup.SearchPopDialogFragment
 import com.example.animalcrossingapp.toolbar.FirstFragment
 import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.toolbar.ThirdFragment
@@ -37,16 +34,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 //      setupActionBarWithNavController(navController)
         setSupportActionBar(menu_top)
         val db = AnimalCrossingDB.getInstance(this)!!
+        val model: KeywordViewModel by viewModels()
 
-        //LiveData
-        /*val mainObserver = Observer<List<Current>> { animal ->
-            Log.d("change", animal.toString())
-        }
-        var list = db.animalCrossingDao().selectAll().observe(this, mainObserver)*/
-//        test2.visibility = View.GONE
 
         //검색로직
-        try {
+       /* try {
             var searchMap = intent.getSerializableExtra("searchMap")
             if(searchMap != null) {
                 val bundle: Bundle = Bundle()
@@ -59,16 +51,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
         } catch (e : Exception) {
             Log.d("searchMap", "null")
-        }
+        }*/
 
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.btn_filter) {
-            var intent = Intent(this, PopActivity::class.java)
-            startActivityForResult(intent, 1)
-//            test2.visibility = View.VISIBLE
+           /* var intent = Intent(this, PopActivity::class.java)
+            startActivityForResult(intent, 1)*/
+            //
+            var frg = SearchPopDialogFragment()
+            frg.show(supportFragmentManager, "search")
         }
         return super.onOptionsItemSelected(item)
     }
@@ -80,7 +74,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val db = AnimalCrossingDB.getInstance(this)!!
 
         val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchItem = menu?.findItem(R.id.search)
+        val searchItem = menu.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
 
 //        Log.d("mm", menu.getItem(0).toString())

@@ -20,6 +20,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
@@ -64,7 +65,7 @@ class FirstFragment : Fragment() {
         val currentMonth = "" + thisMonth + "月"
         var realTimeList =
             db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
-        val model: AnimalViewModel = ViewModelProviders.of(this).get(AnimalViewModel::class.java)
+        val model: AnimalViewModel = ViewModelProvider(this).get(AnimalViewModel::class.java)
 
 
         //첫 실행 판단 prefs.xml 저장

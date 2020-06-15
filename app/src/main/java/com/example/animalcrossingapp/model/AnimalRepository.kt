@@ -33,7 +33,8 @@ class AnimalRepository(dao: AnimalCrossingDAO) {
         var minPrice = map["minPrice"] as Int
         var maxPrice = map["maxPrice"] as Int
         var places = map["places"] as ArrayList<String>
-        return dao.selectLiveDetail(flag, sort, months, minTime.toString(), maxTime.toString(), minPrice, maxPrice, places)
+        var times = map["times"] as ArrayList<Int>
+        return dao.selectLiveDetail(flag, sort, months, minPrice, maxPrice, places, times)
     }
     fun getSearch(keyword: String) : LiveData<List<Current>> {
         return dao.selectLiveSearch(keyword)

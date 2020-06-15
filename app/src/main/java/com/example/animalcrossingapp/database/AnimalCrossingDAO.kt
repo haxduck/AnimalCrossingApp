@@ -442,7 +442,7 @@ interface AnimalCrossingDAO {
             AND i.sortation LIKE :sort
             AND m.month IN (:months)
             AND i.price >= :minPrice AND i.price <= :maxPrice
-            AND t.time >= :minTime AND t.time <= :maxTime
+            AND t.time IN (:times)
             AND h.name_japan IN (:places)
         GROUP BY i.information_code
         """)
@@ -450,11 +450,10 @@ interface AnimalCrossingDAO {
         flag: String,
         sort: String,
         months: ArrayList<String>,
-        minTime: String,
-        maxTime: String,
         minPrice: Int,
         maxPrice: Int,
-        places: ArrayList<String>
+        places: ArrayList<String>,
+        times: ArrayList<Int>
     ): LiveData<List<Current>>
 
     @Query("""
