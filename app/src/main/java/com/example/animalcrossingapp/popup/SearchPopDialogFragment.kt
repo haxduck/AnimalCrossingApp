@@ -244,7 +244,7 @@ class SearchPopDialogFragment : DialogFragment(), OnRangeSeekBarListener {
         view.bugTgBtn6.setOnCheckedChangeListener { buttonView, isChecked ->
             model.b6.value = isChecked
         }
-        view.bugTgBtn6.setOnCheckedChangeListener { buttonView, isChecked ->
+        view.bugTgBtn7.setOnCheckedChangeListener { buttonView, isChecked ->
             model.b7.value = isChecked
         }
         view.bugTgBtn8.setOnCheckedChangeListener { buttonView, isChecked ->
