@@ -476,7 +476,7 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
             LEFT JOIN Time t ON t.time_code = ti.time_code
         WHERE 
-            i.information_code = :code
+            i.information_code like :code
         GROUP BY i.information_code
         """)
     fun selectCode(code: String): Current

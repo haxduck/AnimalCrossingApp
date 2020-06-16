@@ -19,7 +19,7 @@ data class Information (
     val name_japan: String? = "",
     val name_korea: String? = "",
     @NotNull @ColumnInfo(defaultValue = "0") val price: Int = 0,
-    @NotNull @ColumnInfo(defaultValue = "c1") val catch_flag: String = "",
+    @NotNull @ColumnInfo(defaultValue = "0") val catch_flag: String = "",
     val size: String? = "",
     val sortation: String? = ""
 ) : Parcelable

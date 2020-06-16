@@ -20,12 +20,15 @@ import kotlinx.android.synthetic.main.gridviewitem1.view.*
 import kotlinx.android.synthetic.main.listviewitem.view.*
 import kotlinx.android.synthetic.main.listviewitem.view.grid_wrap
 
-class CurrentAdapter(val items: ArrayList<Current>,
-                     val context: Context,
-                     val view: View,
-                     private val clickListener: (current: Current) -> Unit) :
+class CurrentAdapter(
+    val items: ArrayList<Current>,
+    val context: Context,
+    val view: View,
+    private val clickListener: (current: Current) -> Unit
+) :
     RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>() {
-    class CurrentViewHolder(val binding: ListviewitemBinding): RecyclerView.ViewHolder(binding.root)
+    class CurrentViewHolder(val binding: ListviewitemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -40,17 +43,18 @@ class CurrentAdapter(val items: ArrayList<Current>,
     override fun getItemId(position: Int): Long {
         return items.get(position).hashCode().toLong()
     }
+
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: CurrentViewHolder, position: Int) {
-//        Log.d("dddd", view.findViewById<ToggleButton>(R.id.toggleButton3).toString())
+        val dao = AnimalCrossingDB.getInstance(context)?.animalCrossingDao()!!
         var tarr = items[position].time!!.split(",")
         var str = ""
         var flist: ArrayList<Int> = arrayListOf(tarr[0].toInt())
         var slist: ArrayList<Int> = arrayListOf()
         var f = 0
         for (i in 1..tarr.size - 1) {
-            if (tarr[i].toInt() - tarr[i-1].toInt() == 1 && f == 0) {
+            if (tarr[i].toInt() - tarr[i - 1].toInt() == 1 && f == 0) {
                 flist.add(tarr[i].toInt())
             } else {
                 f = 1
@@ -86,13 +90,13 @@ class CurrentAdapter(val items: ArrayList<Current>,
             str = flist[0].toString() + hourStr
         }
         //
-        var marr = items[position].month!!.replace("月","").split(",")
+        var marr = items[position].month!!.replace("月", "").split(",")
         var str1 = ""
         var flist1: ArrayList<Int> = arrayListOf(marr[0].toInt())
         var slist1: ArrayList<Int> = arrayListOf()
         var fl = 0
         for (i in 1..marr.size - 1) {
-            if (marr[i].toInt() - marr[i-1].toInt() == 1 && fl == 0) {
+            if (marr[i].toInt() - marr[i - 1].toInt() == 1 && fl == 0) {
                 flist1.add(marr[i].toInt())
             } else {
                 fl = 1
@@ -103,7 +107,7 @@ class CurrentAdapter(val items: ArrayList<Current>,
         if (slist1.size == 0 && flist1.size != 1) {
             str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() + monthStr
         } else if (slist1.size != 0) {
-            if (flist1[0] == 1 && slist1[slist1.size - 1] == 12 && marr.size < 12 ) {
+            if (flist1[0] == 1 && slist1[slist1.size - 1] == 12 && marr.size < 12) {
                 str1 = slist1[0].toString() + mirai + flist1[flist1.size - 1] + monthStr
             } else {
                 str1 = flist1[0].toString() + " ~ " + flist1[flist1.size - 1].toString() +
@@ -121,13 +125,17 @@ class CurrentAdapter(val items: ArrayList<Current>,
         holder.itemView.setOnClickListener {
             if (flag == "1") {
                 db.animalCrossingDao().updateCatchFlag(items[position].information_code!!, "0")
-                holder.itemView.grid_wrap.background = holder.itemView.resources.getDrawable(R.drawable.list_wrap)
-                holder.itemView.view_img.background = holder.itemView.resources.getDrawable(R.drawable.grid_wrap)
+                holder.itemView.grid_wrap.background =
+                    holder.itemView.resources.getDrawable(R.drawable.list_wrap)
+                holder.itemView.view_img.background =
+                    holder.itemView.resources.getDrawable(R.drawable.grid_wrap)
                 flag = "0"
             } else {
                 db.animalCrossingDao().updateCatchFlag(items[position].information_code!!, "1")
-                holder.itemView.grid_wrap.background = holder.itemView.resources.getDrawable(R.drawable.list_wrap_c)
-                holder.itemView.view_img.background = holder.itemView.resources.getDrawable(R.drawable.grid_wrap_r)
+                holder.itemView.grid_wrap.background =
+                    holder.itemView.resources.getDrawable(R.drawable.list_wrap_c)
+                holder.itemView.view_img.background =
+                    holder.itemView.resources.getDrawable(R.drawable.grid_wrap_r)
                 flag = "1"
             }
 

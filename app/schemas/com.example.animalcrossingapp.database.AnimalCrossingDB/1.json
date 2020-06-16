@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "553ff6a3905aacd020387ed520d80354",
+    "identityHash": "91f770e4950fae8b81fe9f18a1382b7d",
     "entities": [
       {
         "tableName": "Information",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`information_code` TEXT NOT NULL, `habitat_code` TEXT NOT NULL, `capture_code` TEXT NOT NULL, `name_japan` TEXT, `name_korea` TEXT, `price` INTEGER NOT NULL DEFAULT 0, `catch_flag` TEXT NOT NULL DEFAULT 'c1', `size` TEXT, `sortation` TEXT, PRIMARY KEY(`information_code`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`information_code` TEXT NOT NULL, `habitat_code` TEXT NOT NULL, `capture_code` TEXT NOT NULL, `name_japan` TEXT, `name_korea` TEXT, `price` INTEGER NOT NULL DEFAULT 0, `catch_flag` TEXT NOT NULL DEFAULT '0', `size` TEXT, `sortation` TEXT, PRIMARY KEY(`information_code`))",
         "fields": [
           {
             "fieldPath": "information_code",
@@ -50,7 +50,7 @@
             "columnName": "catch_flag",
             "affinity": "TEXT",
             "notNull": true,
-            "defaultValue": "'c1'"
+            "defaultValue": "'0'"
           },
           {
             "fieldPath": "size",
@@ -264,7 +264,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '553ff6a3905aacd020387ed520d80354')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '91f770e4950fae8b81fe9f18a1382b7d')"
     ]
   }
 }
