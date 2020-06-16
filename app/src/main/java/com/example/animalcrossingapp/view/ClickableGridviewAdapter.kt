@@ -14,7 +14,6 @@ import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
-import com.example.animalcrossingapp.databinding.ItemAnimalBinding.inflate
 import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
 import kotlinx.android.synthetic.main.gridviewitem1.view.*
@@ -61,7 +60,7 @@ class ClickableGridviewAdapter(val context: Context,
         //클릭 함수
         var flag = list[p0].flag
         var info = list[p0].information_code!!
-        view.gridView_img.setOnClickListener {
+        /*view.gridView_img.setOnClickListener {
             if (flag == "1") {
                 db.animalCrossingDao().updateCatchFlag(info , "0")
                 view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2)
@@ -71,8 +70,8 @@ class ClickableGridviewAdapter(val context: Context,
                 view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2_r)
                 flag = "1"
             }
-        }
-        view.gridView_img.setOnLongClickListener {
+        }*/
+        view.gridView_img.setOnClickListener {
             clickListener.invoke(list[p0])
             true
         }

@@ -132,6 +132,7 @@ class FirstFragment : Fragment() {
         model.currentAnimals.observe(viewLifecycleOwner, androidx.lifecycle.Observer { animals ->
             if (animals.size == 0) {
                 view.kanryo.visibility = View.VISIBLE
+                view.gridView1.visibility = View.GONE
             } else {
                 view.gridView1.apply {
                     adapter = ClickableGridviewAdapter( context, animals as ArrayList<Current> ) { animal->

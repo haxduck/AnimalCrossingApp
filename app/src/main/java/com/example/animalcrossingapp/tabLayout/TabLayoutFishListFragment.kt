@@ -22,7 +22,6 @@ import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.model.AnimalViewModel
-import com.example.animalcrossingapp.toolbar.ErrorFragment
 import com.example.animalcrossingapp.toolbar.SecondFragment
 import com.example.animalcrossingapp.view.ClickableGridviewAdapter
 import com.example.animalcrossingapp.view.MainActivity

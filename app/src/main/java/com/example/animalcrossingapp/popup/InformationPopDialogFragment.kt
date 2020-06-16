@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
@@ -25,6 +26,7 @@ import com.example.animalcrossingapp.databinding.ListviewitemBinding
 import com.example.animalcrossingapp.model.AnimalViewModel
 import com.example.animalcrossingapp.model.KeywordViewModel
 import com.example.animalcrossingapp.view.MainActivity
+import kotlinx.android.synthetic.main.gridviewitem2.view.*
 import kotlinx.android.synthetic.main.listviewitem.view.*
 import java.lang.IllegalStateException
 
@@ -52,18 +54,32 @@ class InformationPopDialogFragment : DialogFragment() {
         val binding= DataBindingUtil.inflate<ListviewitemBinding>(
             LayoutInflater.from(context), R.layout.listviewitem, null, false)
         val view = binding.root
+       /* var button: Button = Button(context)
+        button.text = if (lang == "ko") "잡기" else "捕える"
+        button.setBackgroundResource(R.drawable.radiobutton_hankyusetting)
+        view.grid_wrap.addView(button)*/
 //        view.grid_wrap.background = context?.getDrawable(R.drawable.list_wrap)
         binding.current = animal
         binding.month = month
         binding.time = time
         binding.lang = lang
 
+        var flag = animal?.flag
+        var info = animal?.information_code!!
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.setView(view)
-                .setPositiveButton("",
+                .setPositiveButton("Catch",
                 DialogInterface.OnClickListener { dialog, id ->
-
+                    if (flag == "1") {
+                        dao.updateCatchFlag(info , "0")
+//                        view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2)
+                        flag = "0"
+                    } else {
+                        dao.updateCatchFlag(info , "1")
+//                        view.grid_wrap2.setBackgroundResource(R.drawable.grid_wrap2_r)
+                        flag = "1"
+                    }
                 })
                 .setNegativeButton("",
                 DialogInterface.OnClickListener { dialog, id ->

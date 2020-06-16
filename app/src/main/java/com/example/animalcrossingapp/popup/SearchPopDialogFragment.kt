@@ -28,7 +28,6 @@ import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.databinding.ActivityPopBinding
 import com.example.animalcrossingapp.databinding.ActivityPopBinding.inflate
-import com.example.animalcrossingapp.databinding.ItemAnimalBinding.inflate
 import com.example.animalcrossingapp.databinding.ListviewitemBinding
 import com.example.animalcrossingapp.model.AnimalViewModel
 import com.example.animalcrossingapp.model.KeywordViewModel
