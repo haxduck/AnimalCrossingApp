@@ -1,14 +1,9 @@
 package com.example.animalcrossingapp.controller
 
 import android.content.Context
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.database.AnimalCrossingDB

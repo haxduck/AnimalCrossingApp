@@ -66,6 +66,7 @@ class FirstFragment : Fragment() {
         var realTimeList =
             db.animalCrossingDao().selectCurrentAnimal(hemishpere, currentTime, currentMonth)
         val model: AnimalViewModel = ViewModelProvider(this).get(AnimalViewModel::class.java)
+
         //첫 실행 판단 prefs.xml 저장
         val iniFlag = App.prefs.initialFlag
 //        App.prefs.initialFlag = "0"

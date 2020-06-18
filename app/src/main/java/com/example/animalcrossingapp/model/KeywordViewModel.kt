@@ -4,13 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.animalcrossingapp.R
+import kotlinx.android.synthetic.main.activity_pop.view.*
 
 class KeywordViewModel: ViewModel() {
     val switch: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>(false)
     }
     val sort: MutableLiveData<Int> by lazy {
-        MutableLiveData<Int>()
+        MutableLiveData<Int>(R.id.BothRB)
     }
     val m1: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()

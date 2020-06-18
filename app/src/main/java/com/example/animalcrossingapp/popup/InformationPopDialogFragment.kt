@@ -22,11 +22,13 @@ import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
+import com.example.animalcrossingapp.databinding.ListPopCopyBinding
 import com.example.animalcrossingapp.databinding.ListviewitemBinding
 import com.example.animalcrossingapp.model.AnimalViewModel
 import com.example.animalcrossingapp.model.KeywordViewModel
 import com.example.animalcrossingapp.view.MainActivity
 import kotlinx.android.synthetic.main.gridviewitem2.view.*
+import kotlinx.android.synthetic.main.list_pop_copy.view.*
 import kotlinx.android.synthetic.main.listviewitem.view.*
 import java.lang.IllegalStateException
 
@@ -51,8 +53,8 @@ class InformationPopDialogFragment : DialogFragment() {
 
 
 //        val view = layoutInflater.inflate(R.layout.listviewitem, null)
-        val binding= DataBindingUtil.inflate<ListviewitemBinding>(
-            LayoutInflater.from(context), R.layout.listviewitem, null, false)
+        val binding= DataBindingUtil.inflate<ListPopCopyBinding>(
+            LayoutInflater.from(context), R.layout.list_pop_copy, null, false)
         val view = binding.root
        /* var button: Button = Button(context)
         button.text = if (lang == "ko") "잡기" else "捕える"
@@ -66,10 +68,21 @@ class InformationPopDialogFragment : DialogFragment() {
 
         var flag = animal?.flag
         var info = animal?.information_code!!
+        view.search_btn.setOnClickListener {
+            if (flag == "1") {
+                dao.updateCatchFlag(info , "0")
+                flag = "0"
+            } else {
+                dao.updateCatchFlag(info , "1")
+                flag = "1"
+            }
+            dismiss()
+        }
+
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.setView(view)
-                .setPositiveButton("Catch",
+                .setPositiveButton("",
                 DialogInterface.OnClickListener { dialog, id ->
                     if (flag == "1") {
                         dao.updateCatchFlag(info , "0")
