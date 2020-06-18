@@ -179,58 +179,82 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName() {
         var flag = false
-        val name1 = db.selectLiveSearch("%タナゴ%").blockingValue?.forEach {
-            if (it.name == "タナゴ") flag = true
+        db.selectLiveSearch("%テントウムシ%").blockingValue?.forEach {
+            if (it.name == "テントウムシ") flag = true
         }
         assertEquals(true, flag)
     }
 
-    //이름 검색 한 자리 추가
+    //이름 검색 일부분
     @Test
     fun searchName1() {
         var flag = false
-        val name1 = db.selectLiveSearch("%タナゴア%").blockingValue?.forEach {
-            if (it.name == "タナゴ") flag = true
+        db.selectLiveSearch("%テン%").blockingValue?.forEach {
+            if (it.name == "テントウムシ") flag = true
+        }
+        assertEquals(true, flag)
+    }
+
+    //이름 검색 일부분
+    @Test
+    fun searchName2() {
+        var flag = false
+        db.selectLiveSearch("%テト%").blockingValue?.forEach {
+            if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
     }
 
-    //이름 검색 두 자리 검색
-    @Test
-    fun searchName2() {
-        var flag = false
-        val name1 = db.selectLiveSearch("%タナ%").blockingValue?.forEach {
-            if (it.name == "タナゴ") flag = true
-        }
-        assertEquals(true, flag)
-    }
-
-    //이름 검색 한 자리 검색
+    //이름 검색 다른 이름
     @Test
     fun searchName3() {
         var flag = false
-        val name1 = db.selectLiveSearch("%タ%").blockingValue?.forEach {
-            if (it.name == "タナゴ") flag = true
+        db.selectLiveSearch("%タゴ%").blockingValue?.forEach {
+            if (it.name == "テントウムシ") flag = true
         }
-        assertEquals(true, flag)
+        assertEquals(false, flag)
+    }
+
+    //이름 검색 영어 검색
+    @Test
+    fun searchName4() {
+        var flag = false
+        db.selectLiveSearch("%ladybug%").blockingValue?.forEach {
+            if (it.name == "テントウムシ") flag = true
+        }
+        assertEquals(false, flag)
+    }
+
+    //이름 검색 한글 검색
+    @Test
+    fun searchName5() {
+        var flag = false
+        db.selectLiveSearch("%무당벌레%").blockingValue?.forEach {
+            if (it.name == "テントウムシ") flag = true
+        }
+        assertEquals(false, flag)
     }
 
     //물고기만
     @Test
     fun getFishes() {
+        var flag = false
         val list = arrayListOf<Current>()
         val all1 = db.selectLive().blockingValue as ArrayList<Current>
         all1.forEach { if (it.sortation == "魚") list.add(it)}
-        assertEquals(80, list.size)
+        list.forEach { if (it.sortation == "虫") flag = true }
+        assertEquals(false, flag)
     }
 
     //벌레만
     @Test
     fun getInsects() {
+        var flag = false
         val list = arrayListOf<Current>()
         val all1 = db.selectLive().blockingValue as ArrayList<Current>
         all1.forEach { if (it.sortation == "虫") list.add(it)}
-        assertEquals(80, list.size)
+        list.forEach { if (it.sortation == "魚") flag = true }
+        assertEquals(false, flag)
     }
 
 

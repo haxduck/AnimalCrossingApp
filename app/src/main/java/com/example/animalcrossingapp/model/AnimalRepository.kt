@@ -37,6 +37,10 @@ class AnimalRepository(dao: AnimalCrossingDAO) {
         return dao.selectLiveDetail(flag, sort, months, minPrice, maxPrice, places, times)
     }
     fun getSearch(keyword: String) : LiveData<List<Current>> {
-        return dao.selectLiveSearch(keyword)
+        if (App.prefs.language == "ko") {
+            return dao.selectLiveSearchK(keyword)
+        } else {
+            return dao.selectLiveSearch(keyword)
+        }
     }
 }
