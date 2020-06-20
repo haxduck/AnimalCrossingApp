@@ -504,9 +504,10 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time t ON t.time_code = ti.time_code
         WHERE 
             i.information_code like :code
+            AND m.location = :hemisphere
         GROUP BY i.information_code
         """)
-    fun selectCode(code: String): Current
+    fun selectCode(code: String, hemisphere: String): Current
 
     @Query("""
         SELECT

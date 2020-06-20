@@ -42,7 +42,9 @@ class InformationPopDialogFragment : DialogFragment() {
         val model: AnimalViewModel = ViewModelProvider(this).get(AnimalViewModel::class.java)
         val dao = AnimalCrossingDB.getInstance(requireContext())?.animalCrossingDao()!!
         val lang = App.prefs.language
-        val animal = dao.selectCode(orginAnimal?.information_code!!.toUpperCase(Locale.ROOT))
+        val animal = dao.selectCode(
+            orginAnimal?.information_code!!.toUpperCase(Locale.ROOT),
+            App.prefs.hemisphere!!)
         //
         val hourStr: String
         val monthStr: String

@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
@@ -46,7 +47,9 @@ class ClickableGridviewAdapter(val context: Context,
         if (nextMonth > 11) nextMonth = nextMonth - 11
 
         // 이번 달 지나면 못잡는 것 체크
-        var animal = db.animalCrossingDao().selectCode(list[p0].information_code!!.toUpperCase())
+        var animal = db.animalCrossingDao().selectCode(
+            list[p0].information_code!!.toUpperCase(),
+            App.prefs.hemisphere!!)
         var marr = animal.month!!.replace("月","").split(",")
         for (i in (0..marr.size - 1)) {
             if (marr[i] == nextMonth.toString()) {

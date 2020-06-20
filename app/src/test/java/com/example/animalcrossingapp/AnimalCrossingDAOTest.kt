@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import org.junit.Assert.assertEquals
@@ -140,7 +141,7 @@ class AnimalCrossingDAOTest {
             maxPrice = 300,
             places = arrayListOf("長靴、缶、タイヤ、腐ったカブ"),
             times = arrayListOf(6)
-        ).blockingValue?.size
+        ).size
         assertEquals(1, test3)
     }
 
@@ -155,7 +156,7 @@ class AnimalCrossingDAOTest {
             maxPrice = 200,
             places = arrayListOf("長靴、缶、タイヤ、腐ったカブ"),
             times = arrayListOf(6)
-        ).blockingValue?.size
+        ).size
         assertEquals(0, test3)
     }
 
@@ -170,7 +171,7 @@ class AnimalCrossingDAOTest {
             maxPrice = 200,
             places = arrayListOf("長靴、缶、タイヤ、腐ったカブ"),
             times = arrayListOf(6)
-        ).blockingValue?.size
+        ).size
         assertEquals(0, test3)
     }
 
@@ -185,7 +186,7 @@ class AnimalCrossingDAOTest {
             maxPrice = 200,
             places = arrayListOf("長靴、缶、タイヤ、腐ったカブ"),
             times = arrayListOf(6)
-        ).blockingValue?.size
+        ).size
         assertEquals(0, test3)
     }
 
@@ -200,7 +201,7 @@ class AnimalCrossingDAOTest {
             maxPrice = 0,
             places = arrayListOf("長靴、缶、タイヤ、腐ったカブ"),
             times = arrayListOf(6)
-        ).blockingValue?.size
+        ).size
         assertEquals(0, test3)
     }
 
@@ -215,7 +216,7 @@ class AnimalCrossingDAOTest {
             maxPrice = 200,
             places = arrayListOf("岩"),
             times = arrayListOf(6)
-        ).blockingValue?.size
+        ).size
         assertEquals(0, test3)
     }
 
@@ -230,7 +231,7 @@ class AnimalCrossingDAOTest {
             maxPrice = 200,
             places = arrayListOf("長靴、缶、タイヤ、腐ったカブ"),
             times = arrayListOf(10)
-        ).blockingValue?.size
+        ).size
         assertEquals(0, test3)
     }
 
@@ -238,7 +239,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName1() {
         var flag = false
-        db.selectLiveSearch("%テントウムシ%").blockingValue?.forEach {
+        db.selectLiveSearch("%テントウムシ%", App.prefs.hemisphere!!).blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(true, flag)
@@ -248,7 +249,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName2() {
         var flag = false
-        db.selectLiveSearch("%テン%").blockingValue?.forEach {
+        db.selectLiveSearch("%テン%", App.prefs.hemisphere!!).blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(true, flag)
@@ -258,7 +259,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName3() {
         var flag = false
-        db.selectLiveSearch("%テト%").blockingValue?.forEach {
+        db.selectLiveSearch("%テト%", App.prefs.hemisphere!!).blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -268,7 +269,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName4() {
         var flag = false
-        db.selectLiveSearch("%タゴ%").blockingValue?.forEach {
+        db.selectLiveSearch("%タゴ%", App.prefs.hemisphere!!).blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -278,7 +279,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName5() {
         var flag = false
-        db.selectLiveSearch("%ladybug%").blockingValue?.forEach {
+        db.selectLiveSearch("%ladybug%", App.prefs.hemisphere!!).blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -288,7 +289,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName6() {
         var flag = false
-        db.selectLiveSearch("%무당벌레%").blockingValue?.forEach {
+        db.selectLiveSearch("%무당벌레%", App.prefs.hemisphere!!).blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -298,7 +299,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName7() {
         var flag = false
-        db.selectLiveSearch("%テントウムシタ%").blockingValue?.forEach {
+        db.selectLiveSearch("%テントウムシタ%", App.prefs.hemisphere!!).blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -341,7 +342,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun checkThisMonth1() {
         val nextMonth = 6
-        val animal = db.selectCode("FIS0024")
+        val animal = db.selectCode("FIS0024", App.prefs.hemisphere!!)
         val marr = animal.month!!.replace("月","").split(",")
         var flag = false
         for (i in (0..marr.size - 1)) {
@@ -356,7 +357,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun checkThisMonth2() {
         val nextMonth = 7
-        val animal = db.selectCode("FIS0024")
+        val animal = db.selectCode("FIS0024", App.prefs.hemisphere!!)
         val marr = animal.month!!.replace("月","").split(",")
         var flag = false
         for (i in (0..marr.size - 1)) {
@@ -458,4 +459,5 @@ class AnimalCrossingDAOTest {
     }
 
 }
+
 

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.animalcrossingapp.R
+import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.gridviewitem1.view.*
@@ -35,7 +36,9 @@ class GridviewAdapter(val context: Context, val list: List<Current>):BaseAdapter
         var nextMonth = Calendar.getInstance().get(Calendar.MONTH) + 2
         if (nextMonth > 11) nextMonth = nextMonth - 11
 
-        var animal = db.animalCrossingDao().selectCode(list[p0].information_code!!.toUpperCase())
+        var animal = db.animalCrossingDao().selectCode(
+            list[p0].information_code!!.toUpperCase(),
+            App.prefs.hemisphere!!)
         var marr = animal.month!!.replace("月","").split(",")
         for (i in (0..marr.size - 1)) {
             if (marr[i] == nextMonth.toString()) {
