@@ -36,6 +36,7 @@
             android:layout_height="100dp"
             android:background='@{current.flag.equals("1") ? @drawable/list_wrap_c : @drawable/list_wrap}'
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

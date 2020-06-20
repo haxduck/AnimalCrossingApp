@@ -45,6 +45,7 @@ class ClickableGridviewAdapter(val context: Context,
         var nextMonth = Calendar.getInstance().get(Calendar.MONTH) + 2
         if (nextMonth > 11) nextMonth = nextMonth - 11
 
+        // 이번 달 지나면 못잡는 것 체크
         var animal = db.animalCrossingDao().selectCode(list[p0].information_code!!.toUpperCase())
         var marr = animal.month!!.replace("月","").split(",")
         for (i in (0..marr.size - 1)) {

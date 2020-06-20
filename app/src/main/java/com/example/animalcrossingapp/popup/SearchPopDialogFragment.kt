@@ -383,7 +383,6 @@ class SearchPopDialogFragment : DialogFragment(), OnRangeSeekBarListener {
                 "times" to times
             )
             dismiss()
-            Log.d("mmmm", searchMap.toString())
             val bundle: Bundle = Bundle()
             bundle.putSerializable("searchMap", searchMap)
             bundle.putString("selector", "detail")

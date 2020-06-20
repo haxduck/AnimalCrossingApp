@@ -72,7 +72,15 @@ class TabLayoutInsectListFragment : Fragment() {
                 view.sButton.visibility = View.GONE
             }
             "search" -> liveList = model.getSearch(keyword)
-            "detail" -> liveList = model.getDetail(searchMap)
+            /*"detail" -> liveList = model.getDetail(searchMap)*/
+            "detail" -> {
+//                liveList = model.getDetail(searchMap)
+                var codeList = arrayListOf<String>()
+                model.getDetail(searchMap).forEach {
+                    codeList.add(it.information_code!!.toUpperCase())
+                }
+                liveList = model.getFullList(codeList)
+            }
             else -> liveList = model.animals
         }
 

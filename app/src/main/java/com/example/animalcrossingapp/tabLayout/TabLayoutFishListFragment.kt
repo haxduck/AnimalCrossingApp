@@ -64,13 +64,26 @@ class TabLayoutFishListFragment : Fragment() {
         var liveList: LiveData<List<Current>>
         val model: AnimalViewModel = ViewModelProvider(this).get(AnimalViewModel::class.java)
         when (selector) {
-            "current" -> liveList = model.currentAnimals
+            "current" -> {
+                var codeList = arrayListOf<String>()
+                model.currentAnimals.observe(viewLifecycleOwner, Observer {
+                    it.forEach { codeList.add(it.information_code!!) }
+                })
+                liveList = model.getFullList(codeList)
+            }
             "arrange" -> {
                 liveList = model.arrangeAnimals
                 view.sortBtn.visibility = View.GONE
             }
             "search" -> liveList = model.getSearch(keyword)
-            "detail" -> liveList = model.getDetail(searchMap)
+            "detail" -> {
+//                liveList = model.getDetail(searchMap)
+                var codeList = arrayListOf<String>()
+                model.getDetail(searchMap).forEach {
+                    codeList.add(it.information_code!!.toUpperCase())
+                }
+                liveList = model.getFullList(codeList)
+            }
             else -> liveList = model.animals
         }
 
@@ -86,6 +99,9 @@ class TabLayoutFishListFragment : Fragment() {
         }
 
         val mainObserver = Observer<List<Current>> { animals ->
+            animals.forEach {
+                Log.d("${it.information_code}", it.toString())
+            }
             dbList.clear()
             animals.forEach {
                 if (it.sortation == "魚") dbList.add(it)

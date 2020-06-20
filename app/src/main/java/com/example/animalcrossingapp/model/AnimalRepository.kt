@@ -15,16 +15,20 @@ class AnimalRepository(dao: AnimalCrossingDAO) {
     private val currentTime: String = Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
     private val thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
     private val currentMonth = "" + thisMonth + "月"
+
     fun getAnimals(): LiveData<List<Current>> {
         return dao.selectAll(hemishpere)
     }
+
     fun getCurrent(): LiveData<List<Current>> {
         return dao.selectLiveCurrentAnimal(hemishpere, currentTime, currentMonth)
     }
+
     fun getArrange(): LiveData<List<Current>> {
         return dao.selectLiveArrange(hemishpere)
     }
-    fun getDetail(map: HashMap<String, Any>): LiveData<List<Current>> {
+
+    fun getDetail(map: HashMap<String, Any>): List<Current> {
         var flag = map["flag"] as String
         var sort = map["sort"] as String
         var months = map["months"] as ArrayList<String>
@@ -36,11 +40,17 @@ class AnimalRepository(dao: AnimalCrossingDAO) {
         var times = map["times"] as ArrayList<Int>
         return dao.selectLiveDetail(flag, sort, months, minPrice, maxPrice, places, times)
     }
+
     fun getSearch(keyword: String) : LiveData<List<Current>> {
+        val hemisphere = App.prefs.hemisphere!!
         if (App.prefs.language == "ko") {
-            return dao.selectLiveSearchK(keyword)
+            return dao.selectLiveSearchK(keyword, hemisphere)
         } else {
-            return dao.selectLiveSearch(keyword)
+            return dao.selectLiveSearch(keyword, hemisphere)
         }
+    }
+
+    fun getFullList(codeList: ArrayList<String>): LiveData<List<Current>> {
+        return dao.selectFull(codeList)
     }
 }

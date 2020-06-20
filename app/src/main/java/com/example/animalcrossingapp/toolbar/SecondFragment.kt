@@ -61,62 +61,12 @@ class SecondFragment : Fragment() {
 
         val pageAdapter : PagerAdapter = TabLayoutAdapter(childFragmentManager, list, selector, keyword, searchMap, context)
 
-
-
-
         view.tabLayoutViewPager.adapter = pageAdapter
         view.tabLayout.setupWithViewPager(view.tabLayoutViewPager)
-//        view.tabLayout.getTabAt(0)?.setIcon(R.drawable.ic_all)
         view.tabLayout.getTabAt(0)?.setIcon(R.drawable.fish_copy)
         view.tabLayout.getTabAt(1)?.setIcon(R.drawable.bug_copy)
 
-
-
-
-
-//        view.search_wrap.setOnClickListener{
-//            view.test2.setVisibility(if (view.test2.isShown()) View.GONE else View.VISIBLE)
-//            view.test3.setVisibility(if (view.test3.isShown()) View.GONE else View.VISIBLE)
-//        }
-
-//        try{
-//            list.addAll(arguments?.getParcelableArrayList("list")!!)
-//        }catch(e: KotlinNullPointerException){
-//            var clist = db.animalCrossingDao().selectAll()
-//            clist.forEach {
-//                list.add(it)
-//            }
-//        }
-        /*if (list.addAll(arguments?.getParcelableArrayList("list")!!) == null ){
-            var clist = db.animalCrossingDao().selectAll()
-            clist.forEach {
-                list.add(it)
-            }
-        } else {
-            list.addAll(arguments?.getParcelableArrayList("list")!!)
-        }*/
-
-//        view.test2.setVisibility(View.GONE)
-//        view.test3.setVisibility(View.VISIBLE)
-//
-//        view.price_rangeSeekbar.setRangeColor(Color.BLACK)
-//        view.time_rangeSeekbar.setRangeColor(Color.BLACK)
-//
-//        view.recycler_view.apply {
-//            layoutManager = LinearLayoutManager(activity)
-//            adapter = CurrentAdapter(list) { animal ->
-//            }
-//        }
-
         return view
     }
-
-
-    /*companion object {
-        val TAG = SecondFragment::class.java.simpleName
-        @JvmStatic
-        fun newInstance() = SecondFragment()
-    }*/
-
 
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
+import com.example.animalcrossingapp.controller.App
 
 @Dao
 interface AnimalCrossingDAO {
@@ -412,10 +413,11 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
             LEFT JOIN Time t ON t.time_code = ti.time_code
         WHERE 
-            i.name_japan LIKE :name          
+            i.name_japan LIKE :name
+            AND m.location = :hemisphere
         GROUP BY i.information_code
         """)
-    fun selectLiveSearch(name: String): LiveData<List<Current>>
+    fun selectLiveSearch(name: String, hemisphere: String): LiveData<List<Current>>
 
     @Query("""
         SELECT
@@ -438,9 +440,10 @@ interface AnimalCrossingDAO {
             LEFT JOIN Time t ON t.time_code = ti.time_code
         WHERE 
             i.name_korea LIKE :name
+            AND m.location = :hemisphere
         GROUP BY i.information_code
         """)
-    fun selectLiveSearchK(name: String): LiveData<List<Current>>
+    fun selectLiveSearchK(name: String, hemisphere: String): LiveData<List<Current>>
 
     @Query("""
         SELECT
@@ -478,7 +481,7 @@ interface AnimalCrossingDAO {
         maxPrice: Int,
         places: ArrayList<String>,
         times: ArrayList<Int>
-    ): LiveData<List<Current>>
+    ): List<Current>
 
     @Query("""
         SELECT
@@ -504,5 +507,30 @@ interface AnimalCrossingDAO {
         GROUP BY i.information_code
         """)
     fun selectCode(code: String): Current
+
+    @Query("""
+        SELECT
+            lower(i.information_code) AS information_code,
+            i.name_japan AS name,
+            i.name_korea AS namek,
+            i.price AS price,
+            h.name_japan AS habitat, h.name_korea AS habitatk,
+            i.catch_flag AS flag,
+            i.sortation AS sortation,
+            group_concat(DISTINCT m.month) AS month, 
+            group_concat(DISTINCT t.time) AS time
+        FROM 
+            Information AS i
+            LEFT JOIN Month_Information mi ON mi.information_code = i.information_code
+            LEFT JOIN Capture c ON i.capture_code = c.capture_code
+            LEFT JOIN Habitat h ON h.habitat_code = i.habitat_code
+            LEFT JOIN Month m ON m.month_code = mi.month_code
+            LEFT JOIN Time_Information ti ON ti.information_code = i.information_code
+            LEFT JOIN Time t ON t.time_code = ti.time_code
+        WHERE
+            i.information_code IN (:codeList)
+        GROUP BY i.information_code
+        """)
+    fun selectFull(codeList: ArrayList<String>) : LiveData<List<Current>>
 
 }
