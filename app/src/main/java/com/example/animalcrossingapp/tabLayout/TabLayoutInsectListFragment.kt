@@ -172,14 +172,36 @@ class TabLayoutInsectListFragment : Fragment() {
         view.m2.setVisibility(View.GONE)
 
         view.toggleButton1.setOnCheckedChangeListener { _, isChecked ->
+            val arrangeList = db.animalCrossingDao().selectArrange(hemishpere)
+            val list = arrayListOf<Current>()
+            arrangeList.forEach {
+                if(it.sortation == "虫") list.add(it)
+            }
             if (isChecked) {
                 toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list_2))
                 tabLayoutInsectList.setVisibility(View.GONE)
                 m2.setVisibility(View.VISIBLE)
+                //
+                if (selector == "arrange") {
+                    view.m2.apply {
+                        layoutManager =
+                            GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
+                        adapter = GridAdapter(list, context) { animal -> }
+                    }
+                }
+                //
             } else {
                 toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid_2))
                 tabLayoutInsectList.setVisibility(View.VISIBLE)
                 m2.setVisibility(View.GONE)
+                //
+                if (selector == "arrange") {
+                    view.tabLayoutInsectList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(list, context, view) { animal -> }
+                    }
+                }
+                //
             }
         }
 

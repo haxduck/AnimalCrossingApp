@@ -34,6 +34,7 @@ import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.tabLayo
 import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.toggleButton3
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class TabLayoutFishListFragment : Fragment() {
@@ -146,14 +147,36 @@ class TabLayoutFishListFragment : Fragment() {
         view.m4.setVisibility(View.GONE)
 
         view.toggleButton3.setOnCheckedChangeListener { _, isChecked ->
+            val arrangeList = db.animalCrossingDao().selectArrange(hemishpere)
+            val list = arrayListOf<Current>()
+            arrangeList.forEach {
+                if(it.sortation == "魚") list.add(it)
+            }
             if (isChecked) {
                 toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_list_2))
                 tabLayoutFishList.setVisibility(View.GONE)
                 m4.setVisibility(View.VISIBLE)
+                //
+                if (selector == "arrange") {
+                    view.m4.apply {
+                        layoutManager =
+                            GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
+                        adapter = GridAdapter(list, context) { animal -> }
+                    }
+                }
+                //
             } else {
                 toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_grid_2))
                 tabLayoutFishList.setVisibility(View.VISIBLE)
                 m4.setVisibility(View.GONE)
+                //
+                if (selector == "arrange") {
+                    view.tabLayoutFishList.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CurrentAdapter(list, context, view) { animal -> }
+                    }
+                }
+                //
             }
         }
         view.fsort_wrap.setVisibility(View.GONE)
