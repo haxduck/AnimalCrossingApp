@@ -239,7 +239,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName1() {
         var flag = false
-        db.selectLiveSearch("%テントウムシ%", App.prefs.hemisphere!!).blockingValue?.forEach {
+        db.selectLiveSearch("%テントウムシ%", "北半球").blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(true, flag)
@@ -249,7 +249,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName2() {
         var flag = false
-        db.selectLiveSearch("%テン%", App.prefs.hemisphere!!).blockingValue?.forEach {
+        db.selectLiveSearch("%テン%", "北半球").blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(true, flag)
@@ -259,7 +259,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName3() {
         var flag = false
-        db.selectLiveSearch("%テト%", App.prefs.hemisphere!!).blockingValue?.forEach {
+        db.selectLiveSearch("%テト%", "北半球").blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -269,7 +269,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName4() {
         var flag = false
-        db.selectLiveSearch("%タゴ%", App.prefs.hemisphere!!).blockingValue?.forEach {
+        db.selectLiveSearch("%タゴ%", "北半球").blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -279,7 +279,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName5() {
         var flag = false
-        db.selectLiveSearch("%ladybug%", App.prefs.hemisphere!!).blockingValue?.forEach {
+        db.selectLiveSearch("%ladybug%", "北半球").blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -289,7 +289,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName6() {
         var flag = false
-        db.selectLiveSearch("%무당벌레%", App.prefs.hemisphere!!).blockingValue?.forEach {
+        db.selectLiveSearch("%무당벌레%", "北半球").blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -299,7 +299,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun searchName7() {
         var flag = false
-        db.selectLiveSearch("%テントウムシタ%", App.prefs.hemisphere!!).blockingValue?.forEach {
+        db.selectLiveSearch("%テントウムシタ%", "北半球").blockingValue?.forEach {
             if (it.name == "テントウムシ") flag = true
         }
         assertEquals(false, flag)
@@ -342,7 +342,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun checkThisMonth1() {
         val nextMonth = 6
-        val animal = db.selectCode("FIS0024", App.prefs.hemisphere!!)
+        val animal = db.selectCode("FIS0024", "北半球")
         val marr = animal.month!!.replace("月","").split(",")
         var flag = false
         for (i in (0..marr.size - 1)) {
@@ -357,7 +357,7 @@ class AnimalCrossingDAOTest {
     @Test
     fun checkThisMonth2() {
         val nextMonth = 7
-        val animal = db.selectCode("FIS0024", App.prefs.hemisphere!!)
+        val animal = db.selectCode("FIS0024", "北半球")
         val marr = animal.month!!.replace("月","").split(",")
         var flag = false
         for (i in (0..marr.size - 1)) {

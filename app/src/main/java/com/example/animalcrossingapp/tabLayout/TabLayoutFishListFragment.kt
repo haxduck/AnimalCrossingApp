@@ -99,9 +99,6 @@ class TabLayoutFishListFragment : Fragment() {
         }
 
         val mainObserver = Observer<List<Current>> { animals ->
-            animals.forEach {
-                Log.d("${it.information_code}", it.toString())
-            }
             dbList.clear()
             animals.forEach {
                 if (it.sortation == "魚") dbList.add(it)

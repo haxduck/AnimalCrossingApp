@@ -104,6 +104,9 @@ class CurrentAdapter(
                     }
                     oneFlag = false
                 }
+                if (i < tarr.size - 1 && tarr.get(i) - tarr.get(i-1) > 1 && tarr.get(i+1) - tarr.get(i) > 1) {
+                    oneFlag = true
+                }
                 if ( i == tarr.size -1 && tarr.size > 1 ) flag = true
             }
             if ( i == tarr.size -1 && tarr.size > 1 && flag == false ) {
