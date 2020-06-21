@@ -1,49 +1,25 @@
 package com.example.animalcrossingapp.toolbar
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.text.Layout
-import android.transition.Slide
-import android.transition.TransitionManager
 import android.util.Log
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalcrossingapp.R
-import com.example.animalcrossingapp.alarm.AlarmReceiver
 import com.example.animalcrossingapp.controller.App
-import com.example.animalcrossingapp.controller.CurrentAdapter
-import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.model.AnimalViewModel
 import com.example.animalcrossingapp.popup.InformationPopDialogFragment
-import com.example.animalcrossingapp.view.ClickableGridviewAdapter
-import com.example.animalcrossingapp.view.GridviewAdapter
+import com.example.animalcrossingapp.controller.ClickableGridviewAdapter
 import com.example.animalcrossingapp.view.InitialActivity
 import com.example.animalcrossingapp.view.MainActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.fragment_first.view.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
-import kotlinx.android.synthetic.main.listviewitem.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -134,13 +110,17 @@ class FirstFragment : Fragment() {
                 view.gridView1.visibility = View.GONE
             } else {
                 view.gridView1.apply {
-                    adapter = ClickableGridviewAdapter( context, animals as ArrayList<Current> ) { animal->
-                        val bundle = Bundle()
-                        bundle.putParcelable("animal", animal)
-                        var frg = InformationPopDialogFragment()
-                        frg.arguments = bundle
-                        frg.show(parentFragmentManager, "Information")
-                    }
+                    adapter =
+                        ClickableGridviewAdapter(
+                            context,
+                            animals as ArrayList<Current>
+                        ) { animal ->
+                            val bundle = Bundle()
+                            bundle.putParcelable("animal", animal)
+                            var frg = InformationPopDialogFragment()
+                            frg.arguments = bundle
+                            frg.show(parentFragmentManager, "Information")
+                        }
                 }
             }
         })

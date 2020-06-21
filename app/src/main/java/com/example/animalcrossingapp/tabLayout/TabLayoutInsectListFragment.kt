@@ -2,20 +2,15 @@ package com.example.animalcrossingapp.tabLayout
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.controller.CurrentAdapter
@@ -23,12 +18,6 @@ import com.example.animalcrossingapp.controller.GridAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import com.example.animalcrossingapp.model.AnimalViewModel
-import com.example.animalcrossingapp.view.ClickableGridviewAdapter
-import com.example.animalcrossingapp.view.MainActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.*
-import kotlinx.android.synthetic.main.fragment_tab_layout_fish_list.view.fnameBtn
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.m2
 import kotlinx.android.synthetic.main.fragment_tab_layout_insect_list.view.*

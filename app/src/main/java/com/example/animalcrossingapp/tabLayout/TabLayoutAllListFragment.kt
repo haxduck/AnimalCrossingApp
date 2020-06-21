@@ -11,7 +11,7 @@ import com.example.animalcrossingapp.R
 import com.example.animalcrossingapp.controller.CurrentAdapter
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
-import com.example.animalcrossingapp.view.ClickableGridviewAdapter
+import com.example.animalcrossingapp.controller.ClickableGridviewAdapter
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.*
 import kotlinx.android.synthetic.main.fragment_tab_layout_all_list.view.tabLayoutAllList
@@ -101,7 +101,11 @@ class TabLayoutAllListFragment : Fragment() {
 
         /*val griviewAdapter = GridviewAdapter2(requireContext(), imgArr)
         view.gridView4.adapter = griviewAdapter*/
-        val griviewAdapter = ClickableGridviewAdapter(requireContext(), dbList){}
+        val griviewAdapter =
+            ClickableGridviewAdapter(
+                requireContext(),
+                dbList
+            ) {}
         view.gridView4.adapter = griviewAdapter
 
         view.m3.setVisibility(View.GONE)

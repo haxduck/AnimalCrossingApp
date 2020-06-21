@@ -1,4 +1,4 @@
-package com.example.animalcrossingapp.view
+package com.example.animalcrossingapp.controller
 
 import android.content.Context
 import android.view.LayoutInflater

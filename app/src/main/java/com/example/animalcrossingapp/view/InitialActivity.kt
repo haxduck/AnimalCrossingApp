@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -56,12 +57,23 @@ class InitialActivity : AppCompatActivity() {
                 korean.setTextColor(Color.WHITE)
                 japanese.setTextColor(Color.BLACK)
                 mLanguageCode = "ja"
+                //
+                Log.d("zzz","jj")
+                kankyo1.setText("初期設定")
+                confBtn.setText("適用")
+                minami.setText("南半球")
+                kita.setText("北半球")
+                textView1.text = "半球設定"
+                textView2.text = "言語設定"
+                japanese.text = "日本語"
+                korean.text = "韓国語"
+                language.check(R.id.japanese)
             } else if (korean.isChecked == true) {
                 japanese.setTextColor(Color.WHITE)
                 korean.setTextColor(Color.BLACK)
                 mLanguageCode = "ko"
-            }
-            if (mLanguageCode == "ko") {
+                //
+                Log.d("zzz","kk")
                 kankyo1.setText("초기설정")
                 confBtn.setText("적용")
                 minami.setText("남반구")
@@ -71,15 +83,8 @@ class InitialActivity : AppCompatActivity() {
                 japanese.text = "일본어"
                 korean.text = "한국어"
                 language.check(R.id.korean)
-            } else {
-                kankyo1.setText("初期設定")
-                confBtn.setText("適用")
-                minami.setText("南半球")
-                kita.setText("北半球")
-                japanese.text = "日本語"
-                korean.text = "韓国語"
-                language.check(R.id.japanese)
             }
+
         }
 
         confBtn.setOnClickListener {

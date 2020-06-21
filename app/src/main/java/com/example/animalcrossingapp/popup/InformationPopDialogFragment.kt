@@ -195,6 +195,18 @@ class InformationPopDialogFragment : DialogFragment() {
             }
             dismiss()
         }
+        //이번달 지나면 한동안 못잡는 것들
+        var nextMonth1 = Calendar.getInstance().get(Calendar.MONTH) + 2
+        if (nextMonth1 > 11) nextMonth1 = nextMonth1 - 11
+        for (i in 0..marr.size - 1) {
+            if (marr[i] == nextMonth1) {
+                view.view_img1.setBackgroundResource(R.drawable.grid_wrap3)
+                break
+            } else {
+                Log.d("ttt", "${marr} / ${nextMonth1}")
+                view.view_img1.setBackgroundResource(R.drawable.grid_wrap3_uc)
+            }
+        }
 
         return activity?.let {
             val builder = AlertDialog.Builder(it)

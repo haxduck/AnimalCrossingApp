@@ -26,9 +26,6 @@
 
         <receiver android:name=".alarm.AlarmReceiver" />
 
-        <activity android:name=".view.ListActivity" />
-        <activity android:name=".view.SearchActivity" />
-        <activity android:name=".view.SettingActivity" />
         <activity android:name=".view.InitialActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>

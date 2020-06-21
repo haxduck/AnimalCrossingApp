@@ -1,19 +1,15 @@
-package com.example.animalcrossingapp.view
+package com.example.animalcrossingapp.controller
 
 import android.content.Context
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.animalcrossingapp.R
-import com.example.animalcrossingapp.controller.App
 import com.example.animalcrossingapp.database.AnimalCrossingDB
 import com.example.animalcrossingapp.database.Current
 import kotlinx.android.synthetic.main.gridviewitem1.view.*
 import kotlinx.android.synthetic.main.gridviewitem1.view.gridView_img
-import kotlinx.android.synthetic.main.gridviewitem2.view.*
 import java.util.*
 
 class GridviewAdapter(val context: Context, val list: List<Current>):BaseAdapter(){

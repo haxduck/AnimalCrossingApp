@@ -100,7 +100,12 @@ class CurrentAdapter(
                     if (i == tarr.size - 1) {
                         str += "${hourStr}, ${tarr.get(i)}${hourStr}"
                     } else {
-                        str += ", ${tarr.get(i)}${hourStr}"
+//                        str += ", ${tarr.get(i)}${hourStr}"
+                        if (tarr[i-1] - tarr[i-2] > 1 && tarr[i] - tarr[i-1] > 1) {
+                            str += "${hourStr}, ${tarr.get(i)}"
+                        } else {
+                            str += ", ${tarr.get(i)}"
+                        }
                     }
                     oneFlag = false
                 }
@@ -118,7 +123,7 @@ class CurrentAdapter(
         if (tarr.size == 24) {
             str = str.replaceFirst("1", "0")
         }
-        //
+        //월 출력
         var marr = items[position].month!!.replace("月", "").split(",").map{it.toInt()}.toCollection(ArrayList())
         marr.sortWith(compareBy({it}))
         var str1 = ""
@@ -157,7 +162,12 @@ class CurrentAdapter(
                     if (i == marr.size - 1) {
                         str1 += "${monthStr}, ${marr.get(i)}${monthStr}"
                     } else {
-                        str1 += ", ${marr.get(i)}"
+//                        str1 += ", ${marr.get(i)}"
+                        if (marr[i-1] - marr[i-2] > 1 && marr[i] - marr[i-1] > 1) {
+                            str1 += "${monthStr}, ${marr[i]}"
+                        } else {
+                            str1 += ", ${marr[i]}"
+                        }
                     }
                     oneFlag1 = false
                 }
